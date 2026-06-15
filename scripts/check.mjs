@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -8,7 +8,17 @@ import { loops, site as siteMeta } from "./loop-data.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "site");
 
-const [html, css, script, dataSource, sitemap, feed, hereNowIcon, loopPages] =
+const [
+  html,
+  css,
+  script,
+  dataSource,
+  sitemap,
+  feed,
+  hereNowIcon,
+  loopDirectories,
+  loopPages,
+] =
   await Promise.all([
     readFile(path.join(siteRoot, "index.html"), "utf8"),
     readFile(path.join(siteRoot, "styles.css"), "utf8"),
@@ -17,6 +27,7 @@ const [html, css, script, dataSource, sitemap, feed, hereNowIcon, loopPages] =
     readFile(path.join(siteRoot, "sitemap.xml"), "utf8"),
     readFile(path.join(siteRoot, "feed.xml"), "utf8"),
     readFile(path.join(siteRoot, "assets", "here-now-icon.svg"), "utf8"),
+    readdir(path.join(siteRoot, "loops")),
     Promise.all(
       loops.map((loop) =>
         readFile(
@@ -46,6 +57,7 @@ assert.equal(collection.mainEntity.itemListElement.length, loops.length);
 assert.equal(slugs.size, loops.length);
 assert.equal(new Set(loops.map((loop) => loop.number)).size, loops.length);
 assert.equal(new Set(loops.map((loop) => loop.seoTitle)).size, loops.length);
+assert.deepEqual(loopDirectories.sort(), [...slugs].sort());
 
 for (const [index, loop] of loops.entries()) {
   const url = `${siteMeta.baseUrl}loops/${loop.slug}/`;
@@ -92,10 +104,13 @@ assert(html.includes("Continue until every page loads in under 50 ms."));
 assert(html.includes("If no actionable errors are"));
 assert(html.includes("Add tests until we have 100% test coverage."));
 assert(html.includes("the same crawl and target-query benchmark"));
-assert(html.includes("The logging coverage matrix has no unexplained gaps."));
-assert(html.includes("Every change from the previous 24 hours is accounted for."));
+assert(html.includes("stop scanning when the source pass"));
+assert(html.includes("no conclusion depends"));
+assert(html.includes("instead of resetting if the archive"));
+assert(html.includes("stop without spending credits"));
 assert(html.includes("Matthew Berman"));
 assert(html.includes("Peter Steinberger"));
+assert(html.includes("Jonah / Forward Future"));
 assert.equal((html.match(/class="loop-row"/g) || []).length, loops.length);
 assert.equal((html.match(/data-copy-root/g) || []).length, loops.length);
 assert(html.includes('class="loop-table"'));

@@ -127,7 +127,7 @@
             },
             "mainEntity": {
               "@type": "ItemList",
-              "numberOfItems": 8,
+              "numberOfItems": 10,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -168,14 +168,26 @@
                 {
                   "@type": "ListItem",
                   "position": 7,
-                  "name": "The exhaustive logging coverage loop",
-                  "url": "https://signals.forwardfuture.ai/loop-library/loops/exhaustive-logging-coverage-loop/"
+                  "name": "The focused AI signal brief",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/focused-ai-signal-brief/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 8,
-                  "name": "The nightly changelog sweep",
-                  "url": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/"
+                  "name": "The hands-on tool evaluation loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/hands-on-tool-evaluation-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 9,
+                  "name": "The archive-before-reset loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/archive-before-reset-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 10,
+                  "name": "The approval-gated overnight production loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/approval-gated-overnight-production-loop/"
                 }
               ]
             }
@@ -286,7 +298,7 @@
         </div>
 
         <div class="results-line">
-          <p id="results-count" aria-live="polite">Showing 8 loops</p>
+          <p id="results-count" aria-live="polite">Showing 10 loops</p>
           <time datetime="2026-06-13">Updated June 13, 2026</time>
         </div>
 
@@ -555,10 +567,53 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal logging logs observability coverage audit inventory structured events errors retries timeouts external calls state changes auth security jobs correlation trace request id context redaction secrets pii tests matrix matthew berman"
+                data-type="scheduled"
+                data-search="scheduled daily weekday ai news signal zeitgeist frontier primary sources deduplicate brief act watch ignore focus jonah forward future"
               >
                 <td class="cell-number">007</td>
+                <td class="cell-type">
+                  <span class="type-badge type-scheduled">Scheduled</span>
+                </td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/focused-ai-signal-brief/">
+                      The focused AI signal brief
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Each weekday at a fixed time, scan the approved AI sources
+                    and newest primary announcements. Deduplicate against recent
+                    briefs, verify each candidate with a primary source, then
+                    select at most three developments. For each, state what
+                    changed, why it matters now, what remains uncertain, and
+                    whether to act, watch, or ignore. Record when to check again,
+                    publish the brief, and stop scanning when the source pass
+                    and three-item cap are complete.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>Every item is source-backed, deduplicated, and assigned an action.</strong>
+                  <span>Stop after the fixed source pass and three-item cap.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Jonah / Forward Future
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-type="goal"
+                data-search="goal ai tool evaluation compare benchmark baseline hands on quality time cost setup friction failures adopt show watch ignore jonah forward future"
+              >
+                <td class="cell-number">008</td>
                 <td class="cell-type">
                   <span class="type-badge type-goal">Goal</span>
                 </td>
@@ -566,35 +621,30 @@
                   <h3>
                     <a
                       class="loop-title-link"
-                      href="./loops/exhaustive-logging-coverage-loop/"
+                      href="./loops/hands-on-tool-evaluation-loop/"
                     >
-                      The exhaustive logging coverage loop
+                      The hands-on tool evaluation loop
                     </a>
                   </h3>
                   <p data-prompt>
-                    Build a logging coverage matrix for every critical user
-                    flow, service boundary, background job, external call,
-                    state change, authentication decision, error, retry, and
-                    timeout. Add structured logs for each uncovered path with
-                    the right severity, outcome, correlation context, and
-                    actionable fields. Add tests that exercise success and
-                    failure paths and verify the expected events. Run
-                    representative end-to-end flows, inspect the emitted logs,
-                    and fix gaps, duplicates, noise, or ambiguous messages.
-                    Verify that secrets, credentials, tokens, and sensitive
-                    personal data are always redacted. Repeat until every row
-                    in the matrix is covered or has a documented reason not to
-                    log.
+                    When a new AI tool may be relevant, define 3-5
+                    representative tasks and the current baseline. Run both
+                    under the same inputs and constraints, recording output
+                    quality, completion time, cost, setup friction, and failure
+                    modes. Repeat only to resolve material uncertainty, then
+                    decide to adopt, show, watch, or ignore. Stop when the
+                    evidence supports the decision and no conclusion depends
+                    only on marketing claims or a single cherry-picked result.
                   </p>
                 </td>
                 <td class="cell-check">
                   <span class="cell-label">Verify / stop</span>
-                  <strong>The logging coverage matrix has no unexplained gaps.</strong>
-                  <span>Tests and representative runs prove useful, correlated, and safely redacted events.</span>
+                  <strong>The decision is backed by repeatable side-by-side evidence.</strong>
+                  <span>Tasks, inputs, costs, failures, and remaining uncertainty are documented.</span>
                 </td>
                 <td class="cell-attribution">
                   <span class="cell-label">Attribution</span>
-                  Matthew Berman
+                  Jonah / Forward Future
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -607,9 +657,53 @@
                 class="loop-row"
                 data-copy-root
                 data-type="scheduled"
-                data-search="scheduled nightly changelog changes previous 24 hours commits merged pull requests prs deployments repository release notes history deduplicate verify matthew berman"
+                data-search="scheduled weekly archive reset spreadsheet sheet tracker snapshot verify rows columns formulas formatting validation approved ranges data loss jonah forward future"
               >
-                <td class="cell-number">008</td>
+                <td class="cell-number">009</td>
+                <td class="cell-type">
+                  <span class="type-badge type-scheduled">Scheduled</span>
+                </td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/archive-before-reset-loop/">
+                      The archive-before-reset loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    At the close of each reporting period, read the live tracker
+                    and confirm the approved archive destination and reset
+                    ranges. Create a timestamped snapshot before changing
+                    anything, verify the archived rows and columns match the
+                    source, then clear only the approved user-entry ranges.
+                    Re-read the live tracker to confirm formulas, formatting,
+                    validation, and unapproved ranges are unchanged. Stop and
+                    report instead of resetting if the archive or verification
+                    is incomplete.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The archive matches the source before any reset occurs.</strong>
+                  <span>Only approved ranges change; formulas and structure remain intact.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Jonah / Forward Future
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-type="scheduled"
+                data-search="scheduled nightly overnight editorial content candidates production video generation approval gate spend credits rights duplicate qa archive publish schedule jonah forward future"
+              >
+                <td class="cell-number">010</td>
                 <td class="cell-type">
                   <span class="type-badge type-scheduled">Scheduled</span>
                 </td>
@@ -617,34 +711,31 @@
                   <h3>
                     <a
                       class="loop-title-link"
-                      href="./loops/nightly-changelog-sweep/"
+                      href="./loops/approval-gated-overnight-production-loop/"
                     >
-                      The nightly changelog sweep
+                      The approval-gated overnight production loop
                     </a>
                   </h3>
                   <p data-prompt>
-                    Each night, inspect every commit, merged pull request,
-                    deployment, and repository change from the previous 24
-                    hours. Compare the full set against the current changelog,
-                    add a dated entry for each missing change in the right
-                    category, and include useful issue, pull request, or commit
-                    references. Preserve existing entries and avoid duplicates.
-                    Verify that every in-scope change is either represented in
-                    the changelog or explicitly documented as
-                    changelog-exempt. If there were no changes, record that no
-                    update was needed without adding an empty release entry.
-                    When the changelog changes, run the relevant checks and
-                    commit the update.
+                    Each evening, gather approved editorial signals and produce
+                    3-5 source-backed candidates with duplicate and rights
+                    checks. If no candidate is explicitly approved, save the
+                    candidate board and stop without spending credits. If a
+                    candidate and budget tier are approved, run readiness
+                    checks, execute the production pipeline, review the result
+                    for factual accuracy, source rights, brand fit, and QA
+                    warnings, then archive the manifest and outputs. Never
+                    publish or schedule without a separate approval.
                   </p>
                 </td>
                 <td class="cell-check">
                   <span class="cell-label">Verify / stop</span>
-                  <strong>Every change from the previous 24 hours is accounted for.</strong>
-                  <span>The changelog is updated and validated, or the no-change result is recorded.</span>
+                  <strong>No approval means no spend; publishing requires separate approval.</strong>
+                  <span>Approved runs finish with archived artifacts and documented QA.</span>
                 </td>
                 <td class="cell-attribution">
                   <span class="cell-label">Attribution</span>
-                  Matthew Berman
+                  Jonah / Forward Future
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
