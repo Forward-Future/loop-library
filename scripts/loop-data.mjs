@@ -347,28 +347,28 @@ export const loops = [
     title: "The full product evaluation loop",
     seoTitle: "Full Product Evaluation Loop for AI Systems | Loop Library",
     description:
-      "A comprehensive product-quality workflow that scores realistic tests across every major feature, fixes weak cases, and reruns them to the defined bar.",
+      "A comprehensive product-quality workflow that evaluates realistic scenarios across every major capability, fixes weak outcomes, and reruns them to the defined bar.",
     categoryLabel: "AI product evaluation workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
     modified: "2026-06-17",
     prompt:
-      "Create [N] realistic tests covering every major feature. Score each response, fix anything unsatisfactory, and rerun it until every case meets the quality bar.",
-    verifyTitle: "Every one of the [N] cases meets the defined quality bar.",
+      "Create [N] realistic scenarios covering every major capability. Before testing, define clear success criteria and choose a consistent evaluation method, such as pass/fail checks or a scoring rubric. Run every scenario under the same conditions and record evidence for each outcome. Fix the underlying cause of anything that does not meet the criteria, rerun the affected scenarios, and then rerun the complete set. Continue until every scenario meets the original quality bar.",
+    verifyTitle: "Every one of the [N] scenarios meets the defined quality bar.",
     verifyDetail:
-      "The final scored run covers every major feature under the original conditions.",
+      "The final evaluated run covers every major capability under the original conditions.",
     useWhen:
       "Use this for an end-to-end product evaluation when quality must be measured across the full feature set rather than a narrow regression or a few hand-picked examples.",
     steps: [
-      "List every major feature, define the scoring rubric, choose [N], and allocate realistic cases across the product surface.",
-      "Run the full set under consistent conditions and score every response with evidence.",
-      "Document each unsatisfactory case, fix the underlying issue, and add focused regression coverage where appropriate.",
-      "Rerun affected cases and then the complete set until every score meets the original quality bar.",
+      "List every major capability, define the success criteria and evaluation method, choose [N], and allocate realistic scenarios across the product surface.",
+      "Run the full set under consistent conditions and evaluate every outcome with evidence.",
+      "Document each scenario that misses the criteria, fix the underlying issue, and add focused regression coverage where appropriate.",
+      "Rerun affected scenarios and then the complete set until every outcome meets the original quality bar.",
     ],
     why:
-      "A fixed feature map and scoring rubric make product quality visible across the whole system. Requiring a final complete run catches fixes that improve one case while weakening another.",
+      "A fixed capability map and consistent evaluation method make product quality visible across the whole system. Requiring a final complete run catches fixes that improve one scenario while weakening another.",
     note:
-      "Keep the test set representative and preserve failed examples. Averages can hide severe misses, so require every case to clear the bar.",
+      "Keep the scenario set representative and preserve failed examples. Aggregate results can hide severe misses, so require every scenario to clear the bar.",
     keywords: [
       "AI product evaluation",
       "full product testing",
