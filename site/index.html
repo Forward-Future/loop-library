@@ -88,7 +88,7 @@
       href="https://signals.forwardfuture.ai/loop-library/feed.xml"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260617-weekly-signup" />
+    <link rel="stylesheet" href="./styles.css?v=20260617-simplified-content" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -225,7 +225,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260617-weekly-signup" defer></script>
+    <script src="./script.js?v=20260617-simplified-content" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -247,7 +247,6 @@
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#library">Loops</a>
         <a href="#weekly">Weekly picks</a>
-        <a href="#tips">Best practices</a>
         <button
           class="theme-toggle"
           id="theme-toggle"
@@ -951,28 +950,13 @@
           trigger, action, proof, memory, and a stopping condition.
         </p>
 
-        <section class="about-library" aria-labelledby="about-library-heading">
-          <p class="eyebrow">The practical definition</p>
-          <h2 id="about-library-heading">What is an agentic workflow loop?</h2>
-          <p>
-            An agentic workflow loop is a repeatable instruction set for an AI
-            agent: when to start, what to do, how to prove the result, what
-            context to preserve, and when to stop. This library focuses on
-            workflows that produce reviewable outcomes instead of open-ended
-            prompts.
-          </p>
-        </section>
       </section>
 
       <section class="newsletter-section" id="weekly">
         <div class="page-width newsletter-layout">
           <div class="newsletter-copy">
-            <p class="eyebrow">Weekly signal</p>
-            <h2>Get the best loops, once a week.</h2>
-            <p>
-              One practical agent workflow worth stealing, with the prompt,
-              proof, and stopping condition included.
-            </p>
+            <p class="eyebrow">Weekly picks</p>
+            <h2>One useful loop, once a week.</h2>
           </div>
 
           <form class="newsletter-form" id="weekly-form" novalidate>
@@ -1019,92 +1003,28 @@
         </div>
       </section>
 
-      <section class="tips-section" id="tips">
-        <div class="page-width">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Tips &amp; best practices</p>
-              <h2>Best practices</h2>
-            </div>
-            <p>Small habits that make long-running agent work easier to resume and review.</p>
+      <section class="workflow-help-section page-width">
+        <details class="workflow-help">
+          <summary>
+            <span>How to use these loops</span>
+            <small>Copy the prompt, choose a trigger, keep the stopping condition.</small>
+          </summary>
+          <div class="workflow-help-grid">
+            <p><strong>Codex</strong> Paste into a project thread or Automation.</p>
+            <p><strong>Cursor</strong> Paste into Agent or an Automation.</p>
+            <p><strong>Claude Code</strong> Use <code>/goal</code> or <code>/loop</code>.</p>
           </div>
-
-          <div class="table-wrap">
-            <table class="practice-table">
-              <caption class="sr-only">
-                Agentic engineering tips and best practices
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Practice</th>
-                  <th scope="col">Why</th>
-                  <th scope="col">Example</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Keep track of work in <code>tmp/&lt;file&gt;</code></strong>
-                  </td>
-                  <td>
-                    Record the goal, decisions, completed steps, blockers, and
-                    next action. Update it after significant work and before a
-                    handoff.
-                  </td>
-                  <td>
-                    <code>tmp/refactor-my-project.md</code>
-                    <span>Temporary workspace only. Never store secrets.</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </details>
       </section>
 
       <section class="submission-section page-width" id="submit">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Contribute</p>
-            <h2>Submit a loop</h2>
-          </div>
-          <p>
-            Send the version you actually use. Specific checks and stopping
-            conditions are more useful than polished theory.
-          </p>
-        </div>
-
-        <div class="submission-safety">
-          <strong>Private review queue.</strong>
-          <span>Nothing is published automatically.</span>
-          <span>Limited to 3 submissions per hour per IP.</span>
-          <span>Never include secrets or private code.</span>
+        <div class="submission-header">
+          <p class="eyebrow">Contribute</p>
+          <h2>Share a loop</h2>
+          <p>Send the prompt you actually use. We review everything before publishing.</p>
         </div>
 
         <form class="submission-form" id="loop-form" novalidate>
-          <div class="field-grid">
-            <label class="field">
-              <span>Your name or handle *</span>
-              <input
-                name="name"
-                type="text"
-                maxlength="80"
-                autocomplete="name"
-                required
-              />
-            </label>
-
-            <label class="field">
-              <span>Email <small>optional, private</small></span>
-              <input
-                name="email"
-                type="email"
-                maxlength="160"
-                autocomplete="email"
-              />
-            </label>
-          </div>
-
           <div class="field-grid">
             <label class="field">
               <span>Loop title *</span>
@@ -1112,40 +1032,26 @@
             </label>
 
             <label class="field">
-              <span>Loop type *</span>
-              <select name="loop_type" required>
-                <option value="">Choose a type</option>
-                <option value="scheduled">Scheduled</option>
-                <option value="goal">Goal</option>
-                <option value="event">Event-driven</option>
-                <option value="review">Review</option>
-                <option value="recovery">Recovery</option>
-                <option value="other">Other</option>
-              </select>
+              <span>Attribution <small>optional</small></span>
+              <input
+                name="name"
+                type="text"
+                maxlength="80"
+                autocomplete="name"
+                placeholder="Name or handle"
+              />
             </label>
           </div>
 
           <label class="field">
-            <span>Loop instructions *</span>
+            <span>Prompt or instructions *</span>
             <textarea
               name="instructions"
-              rows="6"
+              rows="5"
               maxlength="3000"
-              placeholder="Write the prompt or operating instructions as someone should run them."
+              placeholder="Paste the loop exactly as someone should run it."
               required
             ></textarea>
-            <small class="field-counter" data-counter-for="instructions">0 / 3000</small>
-          </label>
-
-          <label class="field">
-            <span>Why it works <small>optional</small></span>
-            <textarea
-              name="why_it_works"
-              rows="3"
-              maxlength="1000"
-              placeholder="What failure does this loop prevent? What makes it reliable?"
-            ></textarea>
-            <small class="field-counter" data-counter-for="why_it_works">0 / 1000</small>
           </label>
 
           <label class="field">
@@ -1174,109 +1080,23 @@
           <label class="consent-field">
             <input name="permission" type="checkbox" required />
             <span>
-              I have the right to share this loop and understand it may be
-              edited for clarity before publication.
+              I have the right to share this and understand it may be edited
+              for clarity.
             </span>
           </label>
 
           <div class="form-footer">
             <p>
-              By submitting, you agree not to send confidential or harmful
-              material.
+              Private review queue. Never include secrets or private code.
             </p>
             <button class="submit-button" type="submit">
-              <span>Send for review</span>
+              <span>Submit loop</span>
               <span aria-hidden="true">&rarr;</span>
             </button>
           </div>
 
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
-      </section>
-
-      <section class="setup-section" id="setup">
-        <div class="page-width">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Put them to work</p>
-              <h2>Set up a loop</h2>
-            </div>
-            <p>
-              Copy a loop above, keep its proof and stopping condition, then
-              use the native workflow in your coding agent.
-            </p>
-          </div>
-
-          <div class="setup-grid">
-            <article class="setup-card">
-              <header class="setup-card-header">
-                <span>01</span>
-                <h3>Codex</h3>
-              </header>
-              <dl>
-                <div>
-                  <dt>Goal loop</dt>
-                  <dd>Paste the loop into a project thread and run it.</dd>
-                </div>
-                <div>
-                  <dt>Scheduled loop</dt>
-                  <dd>
-                    Open <strong>Automations</strong>, create a project
-                    automation, paste the loop, and choose its schedule and run
-                    location.
-                  </dd>
-                </div>
-              </dl>
-            </article>
-
-            <article class="setup-card">
-              <header class="setup-card-header">
-                <span>02</span>
-                <h3>Cursor</h3>
-              </header>
-              <dl>
-                <div>
-                  <dt>Goal loop</dt>
-                  <dd>
-                    Paste it into Agent, or save it as
-                    <code>.cursor/skills/&lt;name&gt;/SKILL.md</code> and invoke
-                    <code>/&lt;name&gt;</code>.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Scheduled loop</dt>
-                  <dd>
-                    Open <strong>Automations</strong> from the Agents Window,
-                    choose a trigger, paste the loop, and select its repo and
-                    tools.
-                  </dd>
-                </div>
-              </dl>
-            </article>
-
-            <article class="setup-card">
-              <header class="setup-card-header">
-                <span>03</span>
-                <h3>Claude Code</h3>
-              </header>
-              <dl>
-                <div>
-                  <dt>Goal loop</dt>
-                  <dd>
-                    Run <code>/goal &lt;completion condition&gt;</code>.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Scheduled loop</dt>
-                  <dd>
-                    Run <code>/loop 30m &lt;prompt&gt;</code>. Put a reusable
-                    default prompt in <code>.claude/loop.md</code>.
-                  </dd>
-                </div>
-              </dl>
-            </article>
-          </div>
-        </div>
       </section>
     </main>
 

@@ -185,23 +185,6 @@ document.querySelectorAll(".copy-button").forEach((button) => {
   });
 });
 
-document.querySelectorAll("textarea[maxlength]").forEach((textarea) => {
-  const counter = document.querySelector(
-    `[data-counter-for="${textarea.name}"]`,
-  );
-
-  if (!counter) {
-    return;
-  }
-
-  const updateCounter = () => {
-    counter.textContent = `${textarea.value.length} / ${textarea.maxLength}`;
-  };
-
-  textarea.addEventListener("input", updateCounter);
-  updateCounter();
-});
-
 const form = document.querySelector("#loop-form");
 const formStatus = document.querySelector("#form-status");
 const submitButton = form?.querySelector(".submit-button");
@@ -298,22 +281,15 @@ if (form && submitButton && submitButtonLabel) {
     }
 
     const payload = {
-      name: String(formData.get("name")).trim(),
       loop_title: String(formData.get("loop_title")).trim(),
-      loop_type: String(formData.get("loop_type")).trim(),
       instructions: String(formData.get("instructions")).trim(),
     };
 
-    const email = optionalValue(formData, "email");
-    const whyItWorks = optionalValue(formData, "why_it_works");
+    const name = optionalValue(formData, "name");
     const sourceUrl = optionalValue(formData, "source_url");
 
-    if (email) {
-      payload.email = email;
-    }
-
-    if (whyItWorks) {
-      payload.why_it_works = whyItWorks;
+    if (name) {
+      payload.name = name;
     }
 
     if (sourceUrl) {
@@ -333,9 +309,6 @@ if (form && submitButton && submitButtonLabel) {
       );
 
       form.reset();
-      document.querySelectorAll("textarea[maxlength]").forEach((textarea) => {
-        textarea.dispatchEvent(new Event("input"));
-      });
       setFormStatus(
         "Received. The loop is now in the private review queue.",
         "success",
@@ -349,7 +322,7 @@ if (form && submitButton && submitButtonLabel) {
       );
     } finally {
       submitButton.disabled = false;
-      submitButtonLabel.textContent = "Send for review";
+      submitButtonLabel.textContent = "Submit loop";
     }
   });
 }
