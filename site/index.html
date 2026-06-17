@@ -88,7 +88,7 @@
       href="https://signals.forwardfuture.ai/loop-library/feed.xml"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260617-simplified-content" />
+    <link rel="stylesheet" href="./styles.css?v=20260617-no-loop-type" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -225,7 +225,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260617-simplified-content" defer></script>
+    <script src="./script.js?v=20260617-no-loop-type" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -314,25 +314,11 @@
             />
           </label>
 
-          <div class="filter-group" aria-label="Filter by loop type">
-            <button class="filter-button is-active" type="button" data-filter="all">
-              All
-            </button>
-            <button class="filter-button" type="button" data-filter="scheduled">
-              Scheduled
-            </button>
-            <button class="filter-button" type="button" data-filter="goal">
-              Goal
-            </button>
-            <button class="filter-button" type="button" data-filter="triggered">
-              Triggered
-            </button>
-          </div>
         </div>
 
         <div class="results-line">
           <p id="results-count" aria-live="polite">Showing 15 loops</p>
-          <time datetime="2026-06-16">Updated June 16, 2026</time>
+          <time datetime="2026-06-17">Updated June 17, 2026</time>
         </div>
 
         <div class="table-wrap">
@@ -343,7 +329,6 @@
             <thead>
               <tr>
                 <th scope="col">No.</th>
-                <th scope="col">Type</th>
                 <th scope="col">Loop</th>
                 <th scope="col">Verify / stop</th>
                 <th scope="col">Attribution</th>
@@ -354,13 +339,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="scheduled"
-                data-search="scheduled nightly documentation docs pull request pr matthew berman review codebase"
+                data-search="nightly documentation docs pull request pr matthew berman review codebase"
               >
                 <td class="cell-number">001</td>
-                <td class="cell-type">
-                  <span class="type-badge type-scheduled">Scheduled</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/overnight-docs-sweep/">
@@ -393,13 +374,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal refactor architecture live test autoreview commit progress tmp peter steinberger"
+                data-search="refactor architecture live test autoreview commit progress tmp peter steinberger"
               >
                 <td class="cell-number">002</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a
@@ -435,13 +412,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal performance speed page load pageload 50ms benchmark optimize profiling routes matthew berman"
+                data-search="performance speed page load pageload 50ms benchmark optimize profiling routes matthew berman"
               >
                 <td class="cell-number">003</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a
@@ -477,13 +450,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="scheduled"
-                data-search="scheduled production logs errors bugs root cause fix pull request pr slack notification matthew berman"
+                data-search="production logs errors bugs root cause fix pull request pr slack notification matthew berman"
               >
                 <td class="cell-number">004</td>
-                <td class="cell-type">
-                  <span class="type-badge type-scheduled">Scheduled</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/production-error-sweep/">
@@ -517,13 +486,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal tests testing test coverage 100 percent full suite matthew berman"
+                data-search="tests testing test coverage 100 percent full suite matthew berman"
               >
                 <td class="cell-number">005</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a
@@ -556,13 +521,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal seo geo search generative engine optimization ai answer visibility crawlability indexation indexing metadata titles internal links structured data citations content benchmark matthew berman"
+                data-search="seo geo search generative engine optimization ai answer visibility crawlability indexation indexing metadata titles internal links structured data citations content benchmark matthew berman"
               >
                 <td class="cell-number">006</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/seo-geo-visibility-loop/">
@@ -600,13 +561,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal logging logs observability coverage structured events important paths tests diagnostics matthew berman"
+                data-search="logging logs observability coverage structured events important paths tests diagnostics matthew berman"
               >
                 <td class="cell-number">007</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/exhaustive-logging-coverage-loop/">
@@ -637,13 +594,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="scheduled"
-                data-search="scheduled nightly changelog previous day changes users release notes commits pull requests deployments matthew berman"
+                data-search="nightly changelog previous day changes users release notes commits pull requests deployments matthew berman"
               >
                 <td class="cell-number">008</td>
-                <td class="cell-type">
-                  <span class="type-badge type-scheduled">Scheduled</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/nightly-changelog-sweep/">
@@ -674,13 +627,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal quality streak realistic scenarios regression benchmark failure restart consecutive cases matthew berman"
+                data-search="quality streak realistic scenarios regression benchmark failure restart consecutive cases matthew berman"
               >
                 <td class="cell-number">009</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/quality-streak-loop/">
@@ -712,13 +661,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal full product evaluation realistic tests major features score responses quality bar rerun matthew berman"
+                data-search="full product evaluation realistic tests major features score responses quality bar rerun matthew berman"
               >
                 <td class="cell-number">010</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/full-product-evaluation-loop/">
@@ -750,13 +695,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal test suite speed performance runtime faster ci coverage behavior optimize matthew berman"
+                data-search="test suite speed performance runtime faster ci coverage behavior optimize matthew berman"
               >
                 <td class="cell-number">011</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/test-suite-speed-loop/">
@@ -787,13 +728,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal repository cleanup local remote branches pull requests commits worktrees recover stale organized matthew berman"
+                data-search="repository cleanup local remote branches pull requests commits worktrees recover stale organized matthew berman"
               >
                 <td class="cell-number">012</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/repository-cleanup-loop/">
@@ -825,13 +762,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal stale safe batch release pending changes pull requests exclude unfinished combine valid release together matthew berman"
+                data-search="stale safe batch release pending changes pull requests exclude unfinished combine valid release together matthew berman"
               >
                 <td class="cell-number">013</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/stale-safe-batch-release-loop/">
@@ -863,13 +796,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="goal"
-                data-search="goal production data cleanup records allowed definition classification logic verify remaining matthew berman"
+                data-search="production data cleanup records allowed definition classification logic verify remaining matthew berman"
               >
                 <td class="cell-number">014</td>
-                <td class="cell-type">
-                  <span class="type-badge type-goal">Goal</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/production-data-cleanup-loop/">
@@ -901,13 +830,9 @@
               <tr
                 class="loop-row"
                 data-copy-root
-                data-type="triggered"
-                data-search="triggered post release baseline benchmarks standard results current releases finish record matthew berman"
+                data-search="post release baseline benchmarks standard results current releases finish record matthew berman"
               >
                 <td class="cell-number">015</td>
-                <td class="cell-type">
-                  <span class="type-badge type-triggered">Triggered</span>
-                </td>
                 <td class="cell-loop">
                   <h3>
                     <a class="loop-title-link" href="./loops/post-release-baseline-loop/">

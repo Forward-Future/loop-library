@@ -18,11 +18,6 @@
           "maxLength": 120,
           "trim": true
         },
-        "loop_type": {
-          "type": "string",
-          "maxLength": 32,
-          "trim": true
-        },
         "instructions": {
           "type": "string",
           "required": true,

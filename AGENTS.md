@@ -5,7 +5,7 @@
 - Treat `scripts/loop-data.mjs` as the canonical SEO/GEO content catalog for
   every public loop.
 - Keep the matching searchable row in `site/index.html` aligned with the
-  catalog entry, including title, prompt, type, attribution, link, and visible
+  catalog entry, including title, prompt, attribution, link, and visible
   count.
 - Every loop must have a stable slug, unique search title and description,
   contributor attribution, published and modified dates, practical context,

@@ -4,7 +4,7 @@ export const site = {
   baseUrl: "https://signals.forwardfuture.ai/loop-library/",
   description:
     "Practical AI agent workflows for engineering, research, editorial work, evaluation, and operations.",
-  updated: "2026-06-16",
+  updated: "2026-06-17",
 };
 
 export const loops = [
@@ -16,12 +16,10 @@ export const loops = [
       "Overnight Documentation Audit for Coding Agents | Loop Library",
     description:
       "A scheduled AI coding-agent workflow for comparing documentation with the current codebase, fixing drift, and opening a reviewable pull request.",
-    type: "Scheduled",
-    typeSlug: "scheduled",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-12",
-    modified: "2026-06-12",
+    modified: "2026-06-17",
     prompt:
       "Each night, review the codebase in full and make sure all documentation reflects the latest changes from the previous day. Update the documentation as needed, then open a pull request with those changes.",
     verifyTitle: "Documentation matches the current implementation.",
@@ -55,12 +53,10 @@ export const loops = [
       "Architecture Refactoring Loop for Coding Agents | Loop Library",
     description:
       "A bounded refactoring workflow that live-tests the system, runs an independent review, commits checkpoints, and records progress.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI coding agent workflow",
     author: "Peter Steinberger",
     published: "2026-06-12",
-    modified: "2026-06-12",
+    modified: "2026-06-17",
     prompt:
       "Refactor until you are happy with the architecture. After each significant step, live-test the system, run autoreview, and commit. Track progress in /tmp/refactor-{projectname}.md.",
     verifyTitle: "The architecture is satisfactory and checks pass.",
@@ -94,12 +90,10 @@ export const loops = [
     seoTitle: "Sub-50 ms Page-Load Optimization Loop | Loop Library",
     description:
       "A performance optimization workflow for coding agents that uses one repeatable benchmark and stops only when every target page meets the threshold.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-12",
-    modified: "2026-06-12",
+    modified: "2026-06-17",
     prompt:
       "Continue optimizing the code for speed. After each significant change, measure page-load performance across every page under the same repeatable test conditions. Continue until every page loads in under 50 ms.",
     verifyTitle: "Every page loads in under 50 ms.",
@@ -133,12 +127,10 @@ export const loops = [
     seoTitle: "Production Error Triage Loop for Coding Agents | Loop Library",
     description:
       "A scheduled production-log workflow that traces actionable errors to root causes, verifies fixes, opens a pull request, and reports the result.",
-    type: "Scheduled",
-    typeSlug: "scheduled",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-12",
-    modified: "2026-06-12",
+    modified: "2026-06-17",
     prompt:
       "Review our production logs for errors. If you find an actionable issue, trace it to its root cause, fix it, verify the fix, and open a pull request. Then ping me in Slack with the findings and PR link. If no actionable errors are present, ping me with that result instead.",
     verifyTitle: "Actionable production errors are fixed and verified.",
@@ -172,12 +164,10 @@ export const loops = [
     seoTitle: "100% Test Coverage Loop for Coding Agents | Loop Library",
     description:
       "A goal-based coding-agent workflow that identifies uncovered behavior, adds meaningful tests, and stops when the full suite passes at 100% coverage.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-13",
-    modified: "2026-06-13",
+    modified: "2026-06-17",
     prompt: "Add tests until we have 100% test coverage.",
     verifyTitle: "The full test suite passes at 100% coverage.",
     verifyDetail: "Use the project's coverage report as the source of truth.",
@@ -209,12 +199,10 @@ export const loops = [
     seoTitle: "SEO and GEO Visibility Audit Loop | Loop Library",
     description:
       "A repeatable search visibility workflow that fixes the highest-impact crawl, indexation, page-intent, citation, and answer-readiness gaps first.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI search visibility workflow",
     author: "Matthew Berman",
     published: "2026-06-13",
-    modified: "2026-06-13",
+    modified: "2026-06-17",
     prompt:
       "Run an SEO/GEO audit across crawlability, indexation, page intent, titles, internal links, structured data, source citations, and answer-first content. Rank the gaps by expected impact, fix the highest-leverage issue, then rerun the same crawl and target-query benchmark across search engines and AI answer engines. Repeat until no critical technical issues remain, every priority query maps to a clear answer-ready page, and the benchmark shows no high-impact gap left to fix.",
     verifyTitle:
@@ -249,12 +237,10 @@ export const loops = [
     seoTitle: "Logging Coverage Loop for Coding Agents | Loop Library",
     description:
       "A goal-based observability workflow that audits important paths, adds useful structured logs, and verifies success and failure events with tests.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Review the system's logging and add missing coverage until every important path produces useful, tested logs.",
     verifyTitle: "Every important path emits useful, tested logs.",
@@ -288,12 +274,10 @@ export const loops = [
     seoTitle: "Nightly Changelog Loop for Coding Agents | Loop Library",
     description:
       "A scheduled coding-agent workflow that reviews the previous day's changes and keeps user-facing release history complete and current.",
-    type: "Scheduled",
-    typeSlug: "scheduled",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Each night, review changes from the previous day and update the changelog with anything users should know.",
     verifyTitle: "Every user-relevant change from the previous day is accounted for.",
@@ -327,12 +311,10 @@ export const loops = [
     seoTitle: "Quality Streak Evaluation Loop for AI Products | Loop Library",
     description:
       "A realistic product-testing workflow that turns every failure into documented regression coverage and restarts the success streak after each fix.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI product evaluation workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Test realistic scenarios. When one fails, document it, add regression and benchmark coverage, fix it, and restart the streak. Stop after [N] successful cases in a row.",
     verifyTitle: "The latest [N] realistic cases pass in a row.",
@@ -366,12 +348,10 @@ export const loops = [
     seoTitle: "Full Product Evaluation Loop for AI Systems | Loop Library",
     description:
       "A comprehensive product-quality workflow that scores realistic tests across every major feature, fixes weak cases, and reruns them to the defined bar.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI product evaluation workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Create [N] realistic tests covering every major feature. Score each response, fix anything unsatisfactory, and rerun it until every case meets the quality bar.",
     verifyTitle: "Every one of the [N] cases meets the defined quality bar.",
@@ -405,12 +385,10 @@ export const loops = [
     seoTitle: "Test-Suite Speed Optimization Loop | Loop Library",
     description:
       "A performance workflow for reducing test runtime under repeatable conditions without weakening coverage, assertions, isolation, or behavior.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI coding agent workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Optimize the test suite to run as quickly as possible without reducing coverage or changing behavior.",
     verifyTitle: "The suite is faster with no coverage or behavior regression.",
@@ -444,12 +422,10 @@ export const loops = [
     seoTitle: "Repository Cleanup Loop for Coding Agents | Loop Library",
     description:
       "A repository-hygiene workflow that audits branches, pull requests, commits, and worktrees, recovers valuable changes, and removes proven stale state.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI repository operations workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Inspect local and remote branches, pull requests, commits, and worktrees. Recover valuable work and clean everything stale until the repository is current and organized.",
     verifyTitle: "Valuable work is recovered and remaining repository state is intentional.",
@@ -483,12 +459,10 @@ export const loops = [
     seoTitle: "Stale-Safe Batch Release Loop | Loop Library",
     description:
       "A release-coordination workflow that excludes stale or unfinished work, combines valid changes, and ships complete artifacts from the latest integrated main.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI release operations workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Review pending changes and pull requests, exclude stale or unfinished work, combine the valid changes, and release them together.",
     verifyTitle: "Only current, complete changes ship in the combined release.",
@@ -522,12 +496,10 @@ export const loops = [
     seoTitle: "Production Data Cleanup Loop for AI Systems | Loop Library",
     description:
       "A production-data quality workflow that removes disallowed records, improves classification logic, and verifies the remaining dataset against an explicit definition.",
-    type: "Goal",
-    typeSlug: "goal",
     categoryLabel: "AI data operations workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "Review production records, remove anything that does not meet the allowed definition, improve the classification logic, and verify the remaining data.",
     verifyTitle: "Every remaining record meets the allowed definition.",
@@ -561,12 +533,10 @@ export const loops = [
     seoTitle: "Post-Release Benchmark Baseline Loop | Loop Library",
     description:
       "A triggered release workflow that runs standard benchmarks against the completed release and records a reproducible baseline for future comparisons.",
-    type: "Triggered",
-    typeSlug: "triggered",
     categoryLabel: "AI release operations workflow",
     author: "Matthew Berman",
     published: "2026-06-16",
-    modified: "2026-06-16",
+    modified: "2026-06-17",
     prompt:
       "After current releases finish, run the standard benchmarks and record the results as the new baseline.",
     verifyTitle: "The new baseline belongs to the completed release.",

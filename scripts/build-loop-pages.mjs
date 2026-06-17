@@ -40,7 +40,6 @@ function relatedLinks(loop) {
     .map(
       (related) => `
               <a class="related-loop-link" href="../${escapeHtml(related.slug)}/">
-                <span>${escapeHtml(related.type)}</span>
                 <strong>${escapeHtml(related.title)}</strong>
               </a>`,
     )
@@ -204,11 +203,11 @@ function renderLoopPage(loop) {
     <link rel="sitemap" type="application/xml" href="${escapeHtml(site.baseUrl)}sitemap.xml" />
     <link rel="alternate" type="application/atom+xml" title="${escapeHtml(site.name)} updates" href="${escapeHtml(site.baseUrl)}feed.xml" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
-    <link rel="stylesheet" href="../../styles.css?v=20260616-loop-batch" />
+    <link rel="stylesheet" href="../../styles.css?v=20260617-no-loop-type" />
     <script type="application/ld+json">
 ${structuredData(loop)}
     </script>
-    <script src="../../script.js?v=20260615-here-now" defer></script>
+    <script src="../../script.js?v=20260617-no-loop-type" defer></script>
     <title>${escapeHtml(loop.seoTitle)}</title>
   </head>
   <body>
@@ -262,14 +261,10 @@ ${structuredData(loop)}
 
       <article class="loop-detail">
         <header class="detail-hero">
-          <p class="eyebrow">${escapeHtml(loop.type)} ${escapeHtml(loop.categoryLabel)}</p>
+          <p class="eyebrow">${escapeHtml(loop.categoryLabel)}</p>
           <h1>${escapeHtml(loop.title)}</h1>
           <p class="detail-lede">${escapeHtml(loop.description)}</p>
           <dl class="detail-meta">
-            <div>
-              <dt>Type</dt>
-              <dd>${escapeHtml(loop.type)}</dd>
-            </div>
             <div>
               <dt>Contributor</dt>
               <dd>${escapeHtml(loop.author)}</dd>

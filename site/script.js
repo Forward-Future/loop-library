@@ -55,13 +55,11 @@ themeMedia.addEventListener("change", (event) => {
 });
 
 const searchInput = document.querySelector("#loop-search");
-const filterButtons = [...document.querySelectorAll("[data-filter]")];
 const loopRows = [...document.querySelectorAll(".loop-row")];
 const resultsCount = document.querySelector("#results-count");
 const emptyState = document.querySelector("#empty-state");
 const toast = document.querySelector("#toast");
 
-let activeFilter = "all";
 let toastTimer;
 
 function normalize(value) {
@@ -77,15 +75,12 @@ function updateLibrary() {
   let visibleCount = 0;
 
   loopRows.forEach((row) => {
-    const matchesType =
-      activeFilter === "all" || row.dataset.type === activeFilter;
     const searchableText = `${row.dataset.search} ${row.textContent}`;
     const matchesSearch =
       query.length === 0 || normalize(searchableText).includes(query);
-    const isVisible = matchesType && matchesSearch;
 
-    row.hidden = !isVisible;
-    if (isVisible) {
+    row.hidden = !matchesSearch;
+    if (matchesSearch) {
       visibleCount += 1;
     }
   });
@@ -100,27 +95,6 @@ if (searchInput) {
   searchInput.addEventListener("input", updateLibrary);
   searchInput.addEventListener("search", updateLibrary);
 }
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter;
-
-    filterButtons.forEach((candidate) => {
-      const isActive = candidate === button;
-      candidate.classList.toggle("is-active", isActive);
-      candidate.setAttribute("aria-pressed", String(isActive));
-    });
-
-    updateLibrary();
-  });
-});
-
-filterButtons.forEach((button) => {
-  button.setAttribute(
-    "aria-pressed",
-    String(button.classList.contains("is-active")),
-  );
-});
 
 updateLibrary();
 
