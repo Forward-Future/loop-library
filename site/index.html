@@ -116,7 +116,7 @@
       href="https://signals.forwardfuture.ai/loop-library/catalog.md"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260619-skill-promo-compact" />
+    <link rel="stylesheet" href="./styles.css?v=20260619-pagination" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -343,7 +343,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260619-skill-promo-compact" defer></script>
+    <script src="./script.js?v=20260619-pagination" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -1704,6 +1704,35 @@
           <p>Try another category, broaden your search, or submit the workflow.</p>
           <a href="#submit">Submit a loop</a>
         </div>
+
+        <nav
+          class="pagination"
+          id="library-pagination"
+          aria-label="Loop pages"
+          hidden
+        >
+          <button
+            class="pagination-button"
+            id="pagination-previous"
+            type="button"
+          >
+            Previous
+          </button>
+          <p
+            class="pagination-status"
+            id="pagination-status"
+            aria-live="polite"
+          >
+            Page 1 of 2
+          </p>
+          <button
+            class="pagination-button"
+            id="pagination-next"
+            type="button"
+          >
+            Next
+          </button>
+        </nav>
 
         <p class="loop-guide">
           <strong>A useful loop specifies:</strong>

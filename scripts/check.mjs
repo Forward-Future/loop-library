@@ -446,8 +446,13 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260619-skill-promo-compact"));
-assert(html.includes("./script.js?v=20260619-skill-promo-compact"));
+assert(html.includes("./styles.css?v=20260619-pagination"));
+assert(html.includes("./script.js?v=20260619-pagination"));
+assert(html.includes('id="library-pagination"'));
+assert(html.includes('aria-label="Loop pages"'));
+assert(html.includes('id="pagination-previous"'));
+assert(html.includes('id="pagination-status"'));
+assert(html.includes('id="pagination-next"'));
 assert(html.includes('id="agent-skill"'));
 assert(html.includes("Use Loop Library in your coding agent."));
 assert(
@@ -513,6 +518,10 @@ assert(css.includes(".related-loop-link"));
 assert(css.includes(".category-filters"));
 assert(css.includes(".category-filter.is-active"));
 assert(css.includes(".loop-category"));
+assert(css.includes(".pagination"));
+assert(css.includes(".pagination-button:disabled"));
+assert(css.includes("scroll-margin-top: 80px"));
+assert(css.includes(".pagination-button,\n  .pagination-status"));
 assert(css.includes(".skill-promo"));
 assert(css.includes(".skill-copy-button"));
 assert(css.includes("border-left: 5px solid var(--orange)"));
@@ -549,11 +558,25 @@ assert(script.includes("bytes[6] = (bytes[6] & 0x0f) | 0x40"));
 assert(script.includes("bytes[8] = (bytes[8] & 0x3f) | 0x80"));
 assert(!script.includes("./.herenow/data/"));
 assert(script.includes('document.querySelectorAll(".loop-row")'));
-assert(script.includes('searchInput.addEventListener("input", updateLibrary)'));
-assert(script.includes('searchInput.addEventListener("search", updateLibrary)'));
+assert(script.includes("const PAGE_SIZE = 25"));
+assert(script.includes("Math.ceil(totalMatches / PAGE_SIZE)"));
+assert(script.includes("matchingRows.slice(pageStart, pageEnd)"));
+assert(script.includes('searchInput.addEventListener("input", resetSearchPage)'));
+assert(script.includes('searchInput.addEventListener("search", resetSearchPage)'));
 assert(script.includes('document.querySelectorAll("[data-category-filter]")'));
 assert(script.includes('let activeCategory = "all"'));
+assert(script.includes("let currentPage = 1"));
 assert(script.includes('row.dataset.category === activeCategory'));
+assert(script.includes('paginationPrevious.addEventListener("click"'));
+assert(script.includes('paginationNext.addEventListener("click"'));
+assert(script.includes("pagination.hidden = totalPages <= 1"));
+assert(script.includes("function focusFirstVisibleLoop()"));
+assert(script.includes("firstVisibleTitle.focus({ preventScroll: true })"));
+assert(
+  script.includes(
+    'firstVisibleTitle.scrollIntoView({ behavior: "instant", block: "start" })',
+  ),
+);
 assert(script.includes('candidate.setAttribute("aria-pressed", String(isActive))'));
 assert(script.includes('themeToggle.addEventListener("click"'));
 assert(script.includes("window.localStorage.setItem(THEME_STORAGE_KEY, theme)"));

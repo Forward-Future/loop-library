@@ -61,9 +61,15 @@ const categoryFilters = [
 ];
 const resultsCount = document.querySelector("#results-count");
 const emptyState = document.querySelector("#empty-state");
+const pagination = document.querySelector("#library-pagination");
+const paginationPrevious = document.querySelector("#pagination-previous");
+const paginationNext = document.querySelector("#pagination-next");
+const paginationStatus = document.querySelector("#pagination-status");
 const toast = document.querySelector("#toast");
+const PAGE_SIZE = 25;
 
 let activeCategory = "all";
+let currentPage = 1;
 let toastTimer;
 
 function normalize(value) {
@@ -76,36 +82,81 @@ function updateLibrary() {
   }
 
   const query = normalize(searchInput.value);
-  let visibleCount = 0;
-
-  loopRows.forEach((row) => {
+  const matchingRows = loopRows.filter((row) => {
     const searchableText = `${row.dataset.search} ${row.textContent}`;
     const matchesSearch =
       query.length === 0 || normalize(searchableText).includes(query);
     const matchesCategory =
       activeCategory === "all" || row.dataset.category === activeCategory;
-    const isVisible = matchesSearch && matchesCategory;
-
-    row.hidden = !isVisible;
-    if (isVisible) {
-      visibleCount += 1;
-    }
+    return matchesSearch && matchesCategory;
   });
 
-  resultsCount.textContent = `Showing ${visibleCount} ${
-    visibleCount === 1 ? "loop" : "loops"
-  }`;
-  emptyState.hidden = visibleCount !== 0;
+  const totalMatches = matchingRows.length;
+  const totalPages = Math.max(1, Math.ceil(totalMatches / PAGE_SIZE));
+  currentPage = Math.min(currentPage, totalPages);
+
+  const pageStart = (currentPage - 1) * PAGE_SIZE;
+  const pageEnd = Math.min(pageStart + PAGE_SIZE, totalMatches);
+  const pageRows = new Set(matchingRows.slice(pageStart, pageEnd));
+
+  loopRows.forEach((row) => {
+    row.hidden = !pageRows.has(row);
+  });
+
+  if (totalMatches === 0) {
+    resultsCount.textContent = "Showing 0 loops";
+  } else if (totalMatches === 1) {
+    resultsCount.textContent = "Showing 1 loop";
+  } else {
+    resultsCount.textContent = `Showing ${pageStart + 1}–${pageEnd} of ${totalMatches} loops`;
+  }
+
+  emptyState.hidden = totalMatches !== 0;
+
+  if (
+    pagination &&
+    paginationPrevious &&
+    paginationNext &&
+    paginationStatus
+  ) {
+    pagination.hidden = totalPages <= 1;
+    paginationPrevious.disabled = currentPage === 1;
+    paginationNext.disabled = currentPage === totalPages;
+    paginationStatus.textContent = `Page ${currentPage} of ${totalPages}`;
+  }
+}
+
+function focusFirstVisibleLoop() {
+  const firstVisibleTitle = loopRows
+    .find((row) => !row.hidden)
+    ?.querySelector(".loop-title-link");
+
+  if (!firstVisibleTitle) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      firstVisibleTitle.focus({ preventScroll: true });
+      firstVisibleTitle.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  });
 }
 
 if (searchInput) {
-  searchInput.addEventListener("input", updateLibrary);
-  searchInput.addEventListener("search", updateLibrary);
+  const resetSearchPage = () => {
+    currentPage = 1;
+    updateLibrary();
+  };
+
+  searchInput.addEventListener("input", resetSearchPage);
+  searchInput.addEventListener("search", resetSearchPage);
 }
 
 categoryFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
     activeCategory = filter.dataset.categoryFilter;
+    currentPage = 1;
 
     categoryFilters.forEach((candidate) => {
       const isActive = candidate === filter;
@@ -116,6 +167,24 @@ categoryFilters.forEach((filter) => {
     updateLibrary();
   });
 });
+
+if (paginationPrevious) {
+  paginationPrevious.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage -= 1;
+      updateLibrary();
+      focusFirstVisibleLoop();
+    }
+  });
+}
+
+if (paginationNext) {
+  paginationNext.addEventListener("click", () => {
+    currentPage += 1;
+    updateLibrary();
+    focusFirstVisibleLoop();
+  });
+}
 
 updateLibrary();
 

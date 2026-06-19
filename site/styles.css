@@ -684,6 +684,7 @@ code {
 }
 
 .loop-title-link {
+  scroll-margin-top: 80px;
   text-decoration-color: var(--orange);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -753,6 +754,63 @@ code {
 
 .empty-state a {
   font-weight: 700;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0 0;
+}
+
+.pagination[hidden] {
+  display: none;
+}
+
+.pagination-button {
+  min-width: 92px;
+  padding: 8px 12px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pagination-button:hover,
+.pagination-button:focus-visible {
+  color: var(--solid-foreground);
+  background: var(--solid-background);
+}
+
+.pagination-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.pagination-button:disabled {
+  border-color: var(--line);
+  color: var(--muted);
+  background: transparent;
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.pagination-status {
+  min-width: 92px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .loop-guide {
@@ -1615,6 +1673,23 @@ code {
 
   .here-now-credit strong {
     font-size: 0.72rem;
+  }
+
+  .pagination {
+    gap: 8px;
+  }
+
+  .pagination-button,
+  .pagination-status {
+    min-width: 0;
+  }
+
+  .pagination-button {
+    padding-inline: 10px;
+  }
+
+  .pagination-status {
+    flex: 1;
   }
 
   .section-heading h2 {
