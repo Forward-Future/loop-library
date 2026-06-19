@@ -58,11 +58,11 @@
     />
     <meta
       property="og:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-5.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-6.png"
     />
     <meta
       property="og:image:secure_url"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-5.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-6.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta
@@ -82,7 +82,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-5.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-6.png"
     />
     <meta
       name="twitter:image:alt"
@@ -116,7 +116,7 @@
       href="https://signals.forwardfuture.ai/loop-library/catalog.md"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260619-answer-first" />
+    <link rel="stylesheet" href="./styles.css?v=20260619-loop-summaries" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -152,7 +152,7 @@
             "dateModified": "2026-06-19",
             "primaryImageOfPage": {
               "@type": "ImageObject",
-              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-5.png",
+              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619-6.png",
               "width": 1200,
               "height": 630
             },
@@ -599,7 +599,6 @@
                 <th scope="col">No.</th>
                 <th scope="col">Loop</th>
                 <th scope="col">Verify / stop</th>
-                <th scope="col">Attribution</th>
                 <th scope="col"><span class="sr-only">Action</span></th>
               </tr>
             </thead>
@@ -612,12 +611,16 @@
               >
                 <td class="cell-number">001</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/overnight-docs-sweep/">
                       The docs sweep
                     </a>
                   </h3>
+                  <p class="loop-summary">Keeps documentation aligned with the current codebase and opens a reviewable pull request.</p>
                   <p data-prompt>
                     Whenever a documentation pass is needed, review the codebase
                     in full and make sure all documentation reflects the current
@@ -629,10 +632,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Documentation matches the current implementation.</strong>
                   <span>Finish with a reviewable pull request.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -649,7 +648,10 @@
               >
                 <td class="cell-number">002</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Peter Steinberger</span>
+                  </div>
                   <h3>
                     <a
                       class="loop-title-link"
@@ -658,6 +660,7 @@
                       The architecture satisfaction loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Refactors architecture in small, tested, independently reviewed checkpoints.</p>
                   <p data-prompt>
                     Refactor until you are happy with the architecture. After
                     each significant step, live-test the system, run autoreview,
@@ -669,10 +672,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The architecture is satisfactory and checks pass.</strong>
                   <span>Live-test, autoreview, and commit each significant step.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Peter Steinberger
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -689,7 +688,10 @@
               >
                 <td class="cell-number">003</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a
                       class="loop-title-link"
@@ -698,6 +700,7 @@
                       The sub-50 ms page-load loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Optimizes every page until it consistently loads in under 50 ms.</p>
                   <p data-prompt>
                     Continue optimizing the code for speed. After each
                     significant change, measure page-load performance across
@@ -709,10 +712,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Every page loads in under 50 ms.</strong>
                   <span>Use the same benchmark and confirm there are no regressions.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -729,12 +728,16 @@
               >
                 <td class="cell-number">004</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/production-error-sweep/">
                       The production error sweep
                     </a>
                   </h3>
+                  <p class="loop-summary">Finds, fixes, and verifies actionable errors in production.</p>
                   <p data-prompt>
                     Review our production logs for errors. If you find an
                     actionable issue, trace it to its root cause, fix it, verify
@@ -746,10 +749,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Actionable production errors are fixed and verified.</strong>
                   <span>Finish with a PR, or stop when no actionable errors are present.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -766,7 +765,10 @@
               >
                 <td class="cell-number">005</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a
                       class="loop-title-link"
@@ -775,6 +777,7 @@
                       The 100% test coverage loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Adds meaningful tests until the full suite reaches 100% coverage.</p>
                   <p data-prompt>
                     Add tests until we have 100% test coverage.
                   </p>
@@ -783,10 +786,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The full test suite passes at 100% coverage.</strong>
                   <span>Use the project's coverage report as the source of truth.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -803,12 +802,16 @@
               >
                 <td class="cell-number">006</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Content</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Content</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/seo-geo-visibility-loop/">
                       The SEO/GEO visibility loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Fixes the highest-impact gaps in search and AI answer visibility.</p>
                   <p data-prompt>
                     Run an SEO/GEO audit across crawlability, indexation, page
                     intent, titles, internal links, structured data, source
@@ -826,10 +829,6 @@
                   <strong>Priority pages are indexable, answer-ready, and technically sound.</strong>
                   <span>The repeatable crawl and query benchmark finds no remaining high-impact gaps.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -845,12 +844,16 @@
               >
                 <td class="cell-number">007</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/exhaustive-logging-coverage-loop/">
                       The logging coverage loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Adds useful, tested logs to every important system path.</p>
                   <p data-prompt>
                     Review the system's logging and add missing coverage until
                     every important path produces useful, tested logs.
@@ -860,10 +863,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Every important path emits useful, tested logs.</strong>
                   <span>Representative success and failure tests prove coverage without exposing sensitive data.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -880,12 +879,16 @@
               >
                 <td class="cell-number">008</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/nightly-changelog-sweep/">
                       The nightly changelog loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Keeps the changelog current with meaningful changes from the previous day.</p>
                   <p data-prompt>
                     Each night, review changes from the previous day and update
                     the changelog with anything users should know.
@@ -895,10 +898,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Every user-relevant change from the previous day is accounted for.</strong>
                   <span>The changelog is updated and validated, or the no-change result is recorded.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -915,12 +914,16 @@
               >
                 <td class="cell-number">009</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Evaluation</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/quality-streak-loop/">
                       The quality streak loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Fixes product failures until a defined streak of realistic tests passes.</p>
                   <p data-prompt>
                     Test realistic scenarios. When one fails, document it, add
                     regression and benchmark coverage, fix it, and restart the
@@ -931,10 +934,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The latest [N] realistic cases pass in a row.</strong>
                   <span>Every earlier failure is documented, fixed, and protected by regression and benchmark coverage.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -951,12 +950,16 @@
               >
                 <td class="cell-number">010</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Evaluation</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/full-product-evaluation-loop/">
                       The full product evaluation loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Tests every major product capability and fixes outcomes below the quality bar.</p>
                   <p data-prompt>
                     Create [N] realistic scenarios covering every major
                     capability. Before testing, define clear success criteria
@@ -974,10 +977,6 @@
                   <strong>Every one of the [N] scenarios meets the defined quality bar.</strong>
                   <span>The final evaluated run covers every major capability under the original conditions.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -993,12 +992,16 @@
               >
                 <td class="cell-number">011</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/test-suite-speed-loop/">
                       The test-suite speed loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Speeds up the test suite without weakening coverage, assertions, or isolation.</p>
                   <p data-prompt>
                     Optimize the test suite to run as quickly as possible
                     without reducing coverage or changing behavior.
@@ -1008,10 +1011,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The suite is faster with no coverage or behavior regression.</strong>
                   <span>Repeatable timing, the full passing suite, and the original coverage report prove the result.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -1028,12 +1027,16 @@
               >
                 <td class="cell-number">012</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/repository-cleanup-loop/">
                       The repository cleanup loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Recovers valuable repository work and safely removes proven stale state.</p>
                   <p data-prompt>
                     Inspect local and remote branches, pull requests, commits,
                     and worktrees. Recover valuable work and clean everything
@@ -1044,10 +1047,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Valuable work is recovered and remaining repository state is intentional.</strong>
                   <span>Branches, pull requests, commits, and worktrees are current, owned, or safely removed with evidence.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -1064,12 +1063,16 @@
               >
                 <td class="cell-number">013</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Operations</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/stale-safe-batch-release-loop/">
                       The stale-safe batch release loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Batches valid changes and releases complete artifacts from the latest integrated main.</p>
                   <p data-prompt>
                     Review pending changes and pull requests, exclude stale or
                     unfinished work, combine the valid changes, and release them
@@ -1080,10 +1083,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Only current, complete changes ship in the combined release.</strong>
                   <span>The released revision is the latest integrated main that contains every selected change.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -1100,12 +1099,16 @@
               >
                 <td class="cell-number">014</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Operations</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/production-data-cleanup-loop/">
                       The production data cleanup loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Removes disallowed production data and prevents the same classification errors from returning.</p>
                   <p data-prompt>
                     Review production records, remove anything that does not
                     meet the allowed definition, improve the classification
@@ -1116,10 +1119,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>Every remaining record meets the allowed definition.</strong>
                   <span>Representative classification tests and a post-cleanup audit prove the retained data is valid.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -1136,12 +1135,16 @@
               >
                 <td class="cell-number">015</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Operations</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By Matthew Berman</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/post-release-baseline-loop/">
                       The post-release baseline loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Benchmarks each completed release and records a reproducible baseline.</p>
                   <p data-prompt>
                     After current releases finish, run the standard benchmarks
                     and record the results as the new baseline.
@@ -1151,10 +1154,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The new baseline belongs to the completed release.</strong>
                   <span>Revision, environment, benchmark version, conditions, and results are recorded together.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Matthew Berman
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
@@ -1171,12 +1170,16 @@
               >
                 <td class="cell-number">016</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Hiten Shah</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/ticket-to-pr-ready-loop/">
                       The ticket-to-PR-ready loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Turns a ticket or complaint into a verified, reviewer-ready pull request.</p>
                   <p data-prompt>
                     Take a ticket, bug report, failing behavior, or customer
                     complaint and turn it into a review-ready patch. Reproduce
@@ -1194,10 +1197,6 @@
                   <strong>The failure is fixed, verified, and ready for review.</strong>
                   <span>The issue reproduces before the fix, no longer reproduces afterward, and relevant regression checks pass.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Hiten Shah
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1213,12 +1212,16 @@
               >
                 <td class="cell-number">017</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Operations</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By AgentLed.ai Agent</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/customer-ai-deployment-loop/">
                       The customer AI deployment loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Moves one customer AI priority through validation, controlled rollout, and monitoring.</p>
                   <p data-prompt>
                     Run this when a customer requests an AI workflow, reports a
                     failure, or reaches an operations review. Choose one
@@ -1236,10 +1239,6 @@
                   <strong>One customer priority reaches a proven terminal state.</strong>
                   <span>The workflow reaches its agreed rollout stage, a production issue is fixed, or a blocker is escalated with an owner and next step.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  AgentLed.ai Agent
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1255,12 +1254,16 @@
               >
                 <td class="cell-number">018</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Content</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Content</span>
+                    <span class="loop-attribution">By Pierson Marks</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/product-update-podcast-loop/">
                       The product update podcast loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Turns meaningful product updates into a short, source-grounded podcast episode.</p>
                   <p data-prompt>
                     Each night, review publicly released product changes and
                     select only those users need to know. Verify each against the
@@ -1278,10 +1281,6 @@
                   <strong>The episode accurately covers every meaningful public update.</strong>
                   <span>Finish with a review-ready three-to-five-minute episode, or a confirmed no-episode result when nothing meaningful shipped.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Pierson Marks
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1297,12 +1296,16 @@
               >
                 <td class="cell-number">019</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Lukas Kucinski</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/clodex-adversarial-review-loop/">
                       The Clodex adversarial-review loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Uses Codex to review Claude&#39;s pull request until blocking findings are resolved.</p>
                   <p data-prompt>
                     Run /clodex [task] think hard --max-iter 5 --threshold medium.
                     Claude plans the task, implements it, opens a pull request,
@@ -1320,10 +1323,6 @@
                   <strong>The pull request reaches the configured review bar.</strong>
                   <span>Codex approves it or only explicitly accepted findings remain; errors, stalls, and exhausted limits are reported as such.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Lukas Kucinski
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1339,12 +1338,16 @@
               >
                 <td class="cell-number">020</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Istasha</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/loop-harness-verification-loop/">
                       The Loop Harness verification loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Ships scheduled agent work only after an independent verification pass.</p>
                   <p data-prompt>
                     Use Loop Harness for scheduled repository work such as CI
                     triage, issue grooming, dependency updates, or docs sync.
@@ -1361,10 +1364,6 @@
                   <strong>Only independently verified output ships.</strong>
                   <span>A second-agent pass releases the configured output; a failed verification preserves evidence and produces no external change.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Istasha
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1380,12 +1379,16 @@
               >
                 <td class="cell-number">021</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Design</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Design</span>
+                    <span class="loop-attribution">By @victormustar</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/boeing-747-benchmark/">
                       The Boeing 747 benchmark
                     </a>
                   </h3>
+                  <p class="loop-summary">Builds and improves a Three.js Boeing 747 across nine repeatable views.</p>
                   <p data-prompt>
                     Before building, choose reference images, a scoring rubric,
                     [visual threshold], and [budget]. Build the most realistic
@@ -1403,10 +1406,6 @@
                   <strong>The Boeing 747 meets the visual bar from all nine angles.</strong>
                   <span>The same camera rig and rubric show every required view meeting the preset threshold, or the run reports stagnation, budget exhaustion, and remaining gaps.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  @victormustar
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1422,12 +1421,16 @@
               >
                 <td class="cell-number">022</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Design</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Design</span>
+                    <span class="loop-attribution">By Swayam</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/war-loops-frontend-designer/">
                       War Loops: frontend reconstruction
                     </a>
                   </h3>
+                  <p class="loop-summary">Reconstructs a real interface and repairs its weakest visual and motion mismatches.</p>
                   <p data-prompt>
                     Point War Loops at an authorized URL or image. Capture it
                     with a genuine browser and record the layout, styles,
@@ -1444,10 +1447,6 @@
                   <strong>The builds match the source across all three fidelity axes.</strong>
                   <span>Static appearance, experiential motion, and responsive reflow pass their gates, or the run reports stagnation or a blocked capture.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Swayam
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1463,12 +1462,16 @@
               >
                 <td class="cell-number">023</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Evaluation</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Jose C. Munoz</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/self-improving-champion-loop/">
                       The self-improving champion loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Promotes prompt or policy changes only when they win on fresh holdout cases.</p>
                   <p data-prompt>
                     Improve a prompt, policy, or configuration. A
                     support assistant's system prompt is one example. Save the
@@ -1487,10 +1490,6 @@
                   <strong>The best holdout-tested champion is returned.</strong>
                   <span>Every challenger is logged, and accepted changes beat the previous champion on untouched cases without weakening a must-pass check.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Jose C. Munoz
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1506,12 +1505,16 @@
               >
                 <td class="cell-number">024</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Evaluation</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Anonymous contributor</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/devils-advocate-design-loop/">
                       The devil's-advocate loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Challenges a design until every high-impact objection is resolved or explicitly accepted.</p>
                   <p data-prompt>
                     Before committing to an architecture, interface, or rollout
                     plan, have a critic argue that it is wrong. Record each
@@ -1530,10 +1533,6 @@
                   <strong>No high-impact objection remains open.</strong>
                   <span>Every logged objection is verified as resolved or explicitly accepted with evidence, or the final report truthfully records a two-round stalemate.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Anonymous contributor
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1549,12 +1548,16 @@
               >
                 <td class="cell-number">025</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By 0xUmbra</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/fresh-clone-loop/">
                       The fresh-clone loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Repeats clean onboarding from the README until no hidden setup assumptions remain.</p>
                   <p data-prompt>
                     Clone [repository] into a disposable environment and follow
                     only its README to the documented ready state, such as
@@ -1572,10 +1575,6 @@
                   <strong>A clean environment reaches the documented ready state using only the README.</strong>
                   <span>The final run uses only the onboarding guide and needs no unstated dependency, configuration, or manual repair.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  0xUmbra
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1591,12 +1590,16 @@
               >
                 <td class="cell-number">026</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Design</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Design</span>
+                    <span class="loop-attribution">By @Alex_FF</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/infinite-clickbait-loop/">
                       The Infinite Clickbait thumbnail loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Iterates thumbnail concepts until one clears the quality bar without misleading viewers.</p>
                   <p data-prompt>
                     For [video], use [approved assets] to make ten thumbnail
                     concepts. Score each at real YouTube sizes against
@@ -1614,10 +1617,6 @@
                   <strong>One accurate thumbnail clears the fixed quality threshold.</strong>
                   <span>The winner outscores the alternatives under the same conditions, remains legible at realistic sizes, and represents the video accurately.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  @Alex_FF
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1633,12 +1632,16 @@
               >
                 <td class="cell-number">027</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By @inferencegod</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/autonomy-loop/">
                       The autonomy-loop builder-reviewer loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Passes code between builder and reviewer until tests prove each accepted fix.</p>
                   <p data-prompt>
                     Use autonomy-loop for [repository task] after the test,
                     build, and lint gates pass. Run
@@ -1656,10 +1659,6 @@
                   <strong>Every accepted wave passes autonomy-loop's proof-of-test gate.</strong>
                   <span>The new test fails without the change, passes with it, every configured gate passes, and protected production changes remain human-gated.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  @inferencegod
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1675,12 +1674,16 @@
               >
                 <td class="cell-number">028</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Engineering</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By 3goblack (@Dis_Trackted)</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/codex-completion-contract-loop/">
                       The Codex completion-contract loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Defines completion up front and requires evidence for every reported result.</p>
                   <p data-prompt>
                     Run $goal-planner-codex [task] for long-running Codex work
                     where partial work could be mistaken for done. Landing a PR
@@ -1698,10 +1701,6 @@
                   <strong>Every Codex Goal requirement has current, adequate proof.</strong>
                   <span>The final audit contains no weak, missing, or contradicted required item; otherwise the work remains open, blocked, or exhausted.</span>
                 </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  3goblack (@Dis_Trackted)
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
                     <span>Copy</span>
@@ -1717,12 +1716,16 @@
               >
                 <td class="cell-number">029</td>
                 <td class="cell-loop">
-                  <span class="loop-category">Evaluation</span>
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Agent Zero</span>
+                  </div>
                   <h3>
                     <a class="loop-title-link" href="./loops/revolve-self-improvement-loop/">
                       The Revolve versioned-experiment loop
                     </a>
                   </h3>
+                  <p class="loop-summary">Improves prompts, code, or configurations through comparable, checkpointed experiments.</p>
                   <p data-prompt>
                     Use Revolve to improve a support prompt, code path, or
                     testable subject. In revolve/, define the goal and [budget],
@@ -1739,10 +1742,6 @@
                   <span class="cell-label">Verify / stop</span>
                   <strong>The best Revolve checkpoint wins within one evaluation revision.</strong>
                   <span>The incumbent and candidates have comparable recorded runs, accepted changes pass every guard, rollback is available, and live promotion has approval.</span>
-                </td>
-                <td class="cell-attribution">
-                  <span class="cell-label">Attribution</span>
-                  Agent Zero
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">

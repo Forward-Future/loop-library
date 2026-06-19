@@ -290,6 +290,9 @@ for (const [index, loop] of loops.entries()) {
   assert.equal(catalogLoop.published, loop.published);
   assert.equal(catalogLoop.modified, loop.modified);
   assert.equal(catalogLoop.description, loop.description);
+  assert(wordCount(loop.summary) >= 8);
+  assert(wordCount(loop.summary) <= 15);
+  assert(/[.!?]$/.test(loop.summary));
   assert.equal(catalogLoop.useWhen, loop.useWhen);
   assert.equal(catalogLoop.prompt, loop.prompt);
   assert.equal(catalogLoop.verification.title, loop.verifyTitle);
@@ -306,6 +309,11 @@ for (const [index, loop] of loops.entries()) {
   assert(loop.related.every((relatedSlug) => slugs.has(relatedSlug)));
   assert(html.includes(loop.title));
   assert(normalizedHomepageRow.includes(loop.prompt));
+  assert(
+    homepageRow.includes(
+      `<p class="loop-summary">${escapeHtml(loop.summary)}</p>`,
+    ),
+  );
   assert(homepageRow.includes(`<td class="cell-number">${loop.number}</td>`));
   assert(homepageRow.includes(`data-category="${category.slug}"`));
   assert(
@@ -314,6 +322,11 @@ for (const [index, loop] of loops.entries()) {
     ),
   );
   assert(homepageRow.includes(loop.author));
+  assert(
+    homepageRow.includes(
+      `<span class="loop-attribution">By ${escapeHtml(loop.author)}</span>`,
+    ),
+  );
   assert(html.includes(homepageHref));
   assert(page.includes(`<title>${escapeHtml(loop.seoTitle)}</title>`));
   assert(page.includes(`<link rel="canonical" href="${url}"`));
@@ -463,7 +476,12 @@ for (const removedSlug of [
 }
 assert.equal((html.match(/class="loop-row"/g) || []).length, loops.length);
 assert.equal((html.match(/data-copy-root/g) || []).length, loops.length);
+assert.equal((html.match(/class="loop-meta"/g) || []).length, loops.length);
+assert.equal((html.match(/class="loop-summary"/g) || []).length, loops.length);
+assert.equal((html.match(/class="loop-attribution"/g) || []).length, loops.length);
 assert(html.includes('class="loop-table"'));
+assert(!html.includes('class="cell-attribution"'));
+assert(!html.includes('<th scope="col">Attribution</th>'));
 assert(!html.includes('class="loop-diagram"'));
 assert(html.includes(`Showing ${loops.length} loops`));
 assert(html.includes(`<time datetime="${siteMeta.updated}">`));
@@ -492,7 +510,7 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260619-answer-first"));
+assert(html.includes("./styles.css?v=20260619-loop-summaries"));
 assert(html.includes("./script.js?v=20260619-pagination"));
 assert(html.includes('id="library-pagination"'));
 assert(html.includes('aria-label="Loop pages"'));
@@ -570,6 +588,10 @@ assert(css.includes(".related-loop-link"));
 assert(css.includes(".category-filters"));
 assert(css.includes(".category-filter.is-active"));
 assert(css.includes(".loop-category"));
+assert(css.includes(".loop-meta"));
+assert(css.includes(".loop-summary"));
+assert(css.includes(".loop-attribution"));
+assert(!css.includes(".cell-attribution"));
 assert(css.includes(".pagination"));
 assert(css.includes(".pagination-button:disabled"));
 assert(css.includes("scroll-margin-top: 80px"));
