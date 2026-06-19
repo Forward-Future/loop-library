@@ -143,11 +143,14 @@ const requestedConceptSlugs = [
   "devils-advocate-design-loop",
   "fresh-clone-loop",
   "infinite-clickbait-loop",
+  "autonomy-loop",
+  "codex-completion-contract-loop",
+  "revolve-self-improvement-loop",
 ];
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
 assert.equal(collection.mainEntity.itemListElement.length, loops.length);
-assert.equal(loops.length, 26);
+assert.equal(loops.length, 29);
 assert.equal(slugs.size, loops.length);
 assert.equal(titles.size, loops.length);
 assert.equal(prompts.size, loops.length);
@@ -383,6 +386,9 @@ assert(html.includes("Jose C. Munoz"));
 assert(html.includes("Anonymous contributor"));
 assert(html.includes("0xUmbra"));
 assert(html.includes("@Alex_FF"));
+assert(html.includes("@inferencegod"));
+assert(html.includes("3goblack (@Dis_Trackted)"));
+assert(html.includes("Agent Zero"));
 for (const removedSlug of [
   "focused-ai-signal-brief",
   "hands-on-tool-evaluation-loop",

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-19</lastmod>
   </url>
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/loops/overnight-docs-sweep/</loc>
@@ -107,5 +107,17 @@
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/loops/infinite-clickbait-loop/</loc>
     <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/autonomy-loop/</loc>
+    <lastmod>2026-06-19</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/codex-completion-contract-loop/</loc>
+    <lastmod>2026-06-19</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/revolve-self-improvement-loop/</loc>
+    <lastmod>2026-06-19</lastmod>
   </url>
 </urlset>

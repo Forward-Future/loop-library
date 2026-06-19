@@ -6,8 +6,8 @@
   "url": "https://signals.forwardfuture.ai/loop-library/",
   "catalogUrl": "https://signals.forwardfuture.ai/loop-library/catalog.json",
   "markdownUrl": "https://signals.forwardfuture.ai/loop-library/catalog.md",
-  "updated": "2026-06-18",
-  "loopCount": 26,
+  "updated": "2026-06-19",
+  "loopCount": 29,
   "categories": [
     {
       "slug": "engineering",
@@ -1259,6 +1259,150 @@
           "url": "https://signals.forwardfuture.ai/loop-library/loops/full-product-evaluation-loop/"
         }
       ]
+    },
+    {
+      "number": "027",
+      "slug": "autonomy-loop",
+      "title": "The autonomy-loop builder-reviewer loop",
+      "url": "https://signals.forwardfuture.ai/loop-library/loops/autonomy-loop/",
+      "category": {
+        "slug": "engineering",
+        "label": "Engineering"
+      },
+      "author": "@inferencegod",
+      "published": "2026-06-19",
+      "modified": "2026-06-19",
+      "description": "A two-worktree coding loop that pairs a builder with an independent adversarial reviewer and proves each new test can catch the change it protects.",
+      "useWhen": "Use this for a repository task that benefits from continuous builder-reviewer handoffs and has strong deterministic gates plus real infrastructure-level branch protection.",
+      "prompt": "Use autonomy-loop for [task] in a repository with deterministic test, build, and lint gates. Run /autonomy-loop:autonomy-init once, configure the protected production branch, read-only control plane, builder and reviewer worktrees, maximum epochs, and no-progress limit, then approve the first task. In the builder terminal, run /autonomy-loop:builder followed by /loop 600. In the independent reviewer worktree, run /autonomy-loop:reviewer followed by /loop 600. Each wave, the builder reads LOOP-STATE.md, makes the smallest credible change, adds a falsifiable acceptance test that is red before the fix and green after it, runs the frozen-invariant gate, commits, and hands off. The reviewer independently reruns the gates, audits correctness, honesty, regressions, security, and UX, then proves the test by reverting or mutating the fix and requiring the test to fail. If the test stays green, the wave fails. Advance only when the deterministic gate and independent reviewer pass. Park for a human when an irreversible or protected path changes, an invariant drifts, the reviewer is unavailable, the trust tier is insufficient, failures repeat, or a budget is exhausted. Finish with the reviewed commit, gate evidence, test proof, trust tier, and remaining risks.",
+      "verification": {
+        "title": "Every accepted wave passes an independent proof-of-test gate.",
+        "detail": "The acceptance test fails without the change, passes with it, all configured gates pass, and protected production changes remain human- or forge-gated."
+      },
+      "steps": [
+        "Initialize the plugin, separate builder and reviewer worktrees, configure deterministic gates and frozen invariants, and verify the hardened production rails.",
+        "Have the builder implement one bounded change with a red-before-green acceptance test, run the gates, commit, and update the git-backed baton.",
+        "Have the reviewer rerun every gate, conduct the adversarial audit, and use revert-or-mutate proof to show that the new test catches the change.",
+        "Accept and continue only on independent proof; otherwise return the findings to the builder or park for a human when a circuit breaker fires."
+      ],
+      "why": "The separate worktree and reviewer reduce self-approval, while the revert-or-mutate check catches tests that execute code without proving the fix. A committed baton makes the loop resumable after process or context loss.",
+      "implementationNote": "Treat local hooks as tripwires, not a security boundary. Review and pin the plugin version, use server-enforced branch protection and separate principals for unattended promotion, and expect two continuously running agents to consume substantial tokens.",
+      "keywords": [
+        "autonomy-loop",
+        "adversarial code review",
+        "mutation testing",
+        "builder reviewer workflow",
+        "Claude Code loop"
+      ],
+      "related": [
+        {
+          "slug": "clodex-adversarial-review-loop",
+          "title": "The Clodex adversarial-review loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/"
+        },
+        {
+          "slug": "loop-harness-verification-loop",
+          "title": "The Loop Harness verification loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/loop-harness-verification-loop/"
+        }
+      ],
+      "sourceUrl": "https://github.com/inferencegod/autonomy-loop"
+    },
+    {
+      "number": "028",
+      "slug": "codex-completion-contract-loop",
+      "title": "The Codex completion-contract loop",
+      "url": "https://signals.forwardfuture.ai/loop-library/loops/codex-completion-contract-loop/",
+      "category": {
+        "slug": "engineering",
+        "label": "Engineering"
+      },
+      "author": "3goblack (@Dis_Trackted)",
+      "published": "2026-06-19",
+      "modified": "2026-06-19",
+      "description": "A Codex Goal workflow that defines completion up front, tracks proof for every requirement, and prevents partial or weak evidence from being reported as done.",
+      "useWhen": "Use this for long-running Codex work, external state changes, pull requests, runtime checks, or user-visible artifacts where a plausible-looking partial result could be mistaken for completion.",
+      "prompt": "Run $goal-planner-codex [task] when the task has a durable, verifiable end state and false completion is a real risk. Inspect the active Goal, then classify the work as simple, standard, or evidence-led. If done is fuzzy, recover the definition before acting: inspect the relevant code or documentation, test concrete edge cases, propose measurable success criteria, and ask only the next necessary question. Keep the native Goal compact. For evidence-led work, create a durable completion contract at ~/.codex/goals/[repo-slug]/[goal-slug]/contract.md with the requirements, scope, non-goals, evidence plan, decisions, and contract changes, and maintain a live plan against it. After each meaningful action, record Requirement -> Evidence -> Status using proved, weak, missing, or contradicted. Continue only while current evidence closes a requirement and the agreed budget remains. Mark the Goal complete only when every explicit requirement is proved. If work is blocked, evidence stagnates, or the budget is exhausted, keep the unproved requirements open and stop with an honest blocked or exhausted audit instead of claiming success. Do not create a native Goal unless the user explicitly requested one. Finish with the complete requirement-to-evidence table, current Goal status, and any remaining owner or next action.",
+      "verification": {
+        "title": "Every explicit requirement has current, adequate proof.",
+        "detail": "The final audit contains no weak, missing, or contradicted required item; otherwise the Goal remains open, blocked, or exhausted rather than complete."
+      },
+      "steps": [
+        "Inspect the active Goal, classify the rigor needed, and recover a measurable definition of done for any ambiguous requirement.",
+        "Create the compact Goal, optional durable contract, and live plan without expanding the user's requested scope.",
+        "Execute one bounded action at a time and attach current evidence to each affected requirement.",
+        "Audit every requirement before closure, completing only fully proved work and preserving honest blocked, exhausted, or contradicted states."
+      ],
+      "why": "A separate completion contract survives long sessions and keeps the definition of done visible. Mapping every requirement to evidence makes false completion easy to detect before the Goal is closed.",
+      "implementationNote": "Use native Codex Goal tools only after an explicit Goal request. Evidence must prove the current state, not merely show that a command once ran, and budget exhaustion never counts as successful completion.",
+      "keywords": [
+        "Codex Goal",
+        "completion contract",
+        "evidence audit",
+        "definition of done",
+        "false completion prevention"
+      ],
+      "related": [
+        {
+          "slug": "ticket-to-pr-ready-loop",
+          "title": "The ticket-to-PR-ready loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/"
+        },
+        {
+          "slug": "quality-streak-loop",
+          "title": "The quality streak loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/quality-streak-loop/"
+        }
+      ],
+      "sourceUrl": "https://github.com/ranvier2d2/skills-share/tree/main/skills/goal-planner-codex"
+    },
+    {
+      "number": "029",
+      "slug": "revolve-self-improvement-loop",
+      "title": "The Revolve self-improvement loop",
+      "url": "https://signals.forwardfuture.ai/loop-library/loops/revolve-self-improvement-loop/",
+      "category": {
+        "slug": "evaluation",
+        "label": "Evaluation"
+      },
+      "author": "Agent Zero",
+      "published": "2026-06-19",
+      "modified": "2026-06-19",
+      "description": "A revisioned research workflow that checkpoints an incumbent, evaluates comparable candidates, and promotes improvements only with reproducible evidence and rollback.",
+      "useWhen": "Use this to improve a prompt, policy, workflow, model configuration, code path, or other testable artifact when experiments need durable research state and comparable evaluation across sessions.",
+      "prompt": "Use Revolve to improve [subject] toward [objective] within [iteration, time, or cost budget]. Create or resume the local revolve/ research state and record the subject, live artifact, constraints, permissions, regressions to prevent, evaluation method, and stop directive. Freeze one evaluation revision with its cases, fixtures, scoring rules, acceptance gates, and result format. Before changing anything, make a recoverable checkpoint of the incumbent and run the baseline. In each cycle, choose one evidence-backed failure, opportunity, or uncertainty; state one testable hypothesis; create a recoverable candidate checkpoint; and evaluate it under the same revision as the incumbent. Record the run, result, validity, tradeoffs, and decision. Promote a candidate to the internal incumbent only when comparable evidence shows a meaningful improvement and every guard passes; otherwise reject, repeat, revise, or branch from the strongest checkpoint. If cases, scoring, harness behavior, evaluator rubric, objective interpretation, or acceptance gates change, create a new revision and rerun the incumbent before comparing candidates. Keep the live artifact unchanged unless the user explicitly approves external promotion. After approval, apply the chosen checkpoint, run post-promotion verification, and record the rollback path. Stop on the verified objective, budget exhaustion, no measurable progress, a documented dead end, a blocker, or an explicit user stop. Finish with the best checkpoint, comparison evidence, failed branches, current revision, live-promotion status, rollback instructions, and next action.",
+      "verification": {
+        "title": "The best checkpoint wins under one reproducible evaluation revision.",
+        "detail": "The incumbent and candidates have comparable recorded runs, no accepted guard regression, a recoverable rollback path, and no unapproved live-file promotion."
+      },
+      "steps": [
+        "Define the objective and permissions, freeze an evaluation revision, checkpoint the incumbent, and capture a baseline before editing.",
+        "Choose one evidence-backed hypothesis, create a recoverable candidate checkpoint, and run it under the unchanged revision.",
+        "Record and compare the result, promoting internally only on a meaningful guard-safe win and opening a new revision whenever evaluation comparability changes.",
+        "Stop on a named terminal state, and require explicit approval plus post-promotion verification before changing the live artifact."
+      ],
+      "why": "Revision boundaries prevent scores from different tests or rubrics from being compared as if they were equivalent. Checkpoints, branch records, and an internal-before-external promotion boundary keep long-running research resumable and reversible.",
+      "implementationNote": "Keep candidate work inside revolve/ until external promotion is explicitly approved. Set the budget and stop directive before searching, and do not improve the evaluator mid-revision to make a preferred candidate win.",
+      "keywords": [
+        "Revolve",
+        "agent self improvement",
+        "checkpoint evaluation",
+        "revisioned experiments",
+        "evidence based promotion"
+      ],
+      "related": [
+        {
+          "slug": "self-improving-champion-loop",
+          "title": "The self-improving champion loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/"
+        },
+        {
+          "slug": "full-product-evaluation-loop",
+          "title": "The full product evaluation loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/full-product-evaluation-loop/"
+        }
+      ],
+      "sourceUrl": "https://github.com/agent0ai/revolve"
     }
   ]
 }

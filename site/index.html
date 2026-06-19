@@ -58,11 +58,11 @@
     />
     <meta
       property="og:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-8.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619.png"
     />
     <meta
       property="og:image:secure_url"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-8.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta
@@ -82,7 +82,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-8.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619.png"
     />
     <meta
       name="twitter:image:alt"
@@ -149,10 +149,10 @@
             "url": "https://signals.forwardfuture.ai/loop-library/",
             "name": "Loop Library",
             "description": "A practical library of repeatable AI agent workflows with clear checks and stopping conditions.",
-            "dateModified": "2026-06-18",
+            "dateModified": "2026-06-19",
             "primaryImageOfPage": {
               "@type": "ImageObject",
-              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-8.png",
+              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260619.png",
               "width": 1200,
               "height": 630
             },
@@ -161,7 +161,7 @@
             },
             "mainEntity": {
               "@type": "ItemList",
-              "numberOfItems": 26,
+              "numberOfItems": 29,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -318,6 +318,24 @@
                   "position": 26,
                   "name": "The Infinite Clickbait loop",
                   "url": "https://signals.forwardfuture.ai/loop-library/loops/infinite-clickbait-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 27,
+                  "name": "The autonomy-loop builder-reviewer loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/autonomy-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 28,
+                  "name": "The Codex completion-contract loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/codex-completion-contract-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 29,
+                  "name": "The Revolve self-improvement loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/revolve-self-improvement-loop/"
                 }
               ]
             }
@@ -513,8 +531,8 @@
         </div>
 
         <div class="results-line">
-          <p id="results-count" aria-live="polite">Showing 26 loops</p>
-          <time datetime="2026-06-18">Updated June 18, 2026</time>
+          <p id="results-count" aria-live="polite">Showing 29 loops</p>
+          <time datetime="2026-06-19">Updated June 19, 2026</time>
         </div>
 
         <div class="table-wrap">
@@ -1583,6 +1601,179 @@
                 <td class="cell-attribution">
                   <span class="cell-label">Attribution</span>
                   @Alex_FF
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="engineering"
+                data-search="autonomy loop builder adversarial reviewer mutation testing proof test worktree frozen invariant inferencegod claude code"
+              >
+                <td class="cell-number">027</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Engineering</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/autonomy-loop/">
+                      The autonomy-loop builder-reviewer loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Use autonomy-loop for [task] in a repository with
+                    deterministic test, build, and lint gates. Run
+                    /autonomy-loop:autonomy-init once, configure the protected
+                    production branch, read-only control plane, builder and
+                    reviewer worktrees, maximum epochs, and no-progress limit,
+                    then approve the first task. In the builder terminal, run
+                    /autonomy-loop:builder followed by /loop 600. In the
+                    independent reviewer worktree, run /autonomy-loop:reviewer
+                    followed by /loop 600. Each wave, the builder reads
+                    LOOP-STATE.md, makes the smallest credible change, adds a
+                    falsifiable acceptance test that is red before the fix and
+                    green after it, runs the frozen-invariant gate, commits, and
+                    hands off. The reviewer independently reruns the gates,
+                    audits correctness, honesty, regressions, security, and UX,
+                    then proves the test by reverting or mutating the fix and
+                    requiring the test to fail. If the test stays green, the wave
+                    fails. Advance only when the deterministic gate and
+                    independent reviewer pass. Park for a human when an
+                    irreversible or protected path changes, an invariant drifts,
+                    the reviewer is unavailable, the trust tier is insufficient,
+                    failures repeat, or a budget is exhausted. Finish with the
+                    reviewed commit, gate evidence, test proof, trust tier, and
+                    remaining risks.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>Every accepted wave passes an independent proof-of-test gate.</strong>
+                  <span>The acceptance test fails without the change, passes with it, all configured gates pass, and protected production changes remain human- or forge-gated.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  @inferencegod
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="engineering"
+                data-search="codex completion contract goal proof evidence audit definition done false completion 3goblack dis trackted"
+              >
+                <td class="cell-number">028</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Engineering</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/codex-completion-contract-loop/">
+                      The Codex completion-contract loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Run $goal-planner-codex [task] when the task has a durable,
+                    verifiable end state and false completion is a real risk.
+                    Inspect the active Goal, then classify the work as simple,
+                    standard, or evidence-led. If done is fuzzy, recover the
+                    definition before acting: inspect the relevant code or
+                    documentation, test concrete edge cases, propose measurable
+                    success criteria, and ask only the next necessary question.
+                    Keep the native Goal compact. For evidence-led work, create a
+                    durable completion contract at
+                    ~/.codex/goals/[repo-slug]/[goal-slug]/contract.md with the
+                    requirements, scope, non-goals, evidence plan, decisions, and
+                    contract changes, and maintain a live plan against it. After
+                    each meaningful action, record Requirement -> Evidence ->
+                    Status using proved, weak, missing, or contradicted. Continue
+                    only while current evidence closes a requirement and the
+                    agreed budget remains. Mark the Goal complete only when every
+                    explicit requirement is proved. If work is blocked, evidence
+                    stagnates, or the budget is exhausted, keep the unproved
+                    requirements open and stop with an honest blocked or
+                    exhausted audit instead of claiming success. Do not create a
+                    native Goal unless the user explicitly requested one. Finish
+                    with the complete requirement-to-evidence table, current Goal
+                    status, and any remaining owner or next action.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>Every explicit requirement has current, adequate proof.</strong>
+                  <span>The final audit contains no weak, missing, or contradicted required item; otherwise the Goal remains open, blocked, or exhausted rather than complete.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  3goblack (@Dis_Trackted)
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="evaluation"
+                data-search="revolve self improvement checkpoint incumbent candidate revision experiment evaluation promotion rollback agent zero"
+              >
+                <td class="cell-number">029</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Evaluation</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/revolve-self-improvement-loop/">
+                      The Revolve self-improvement loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Use Revolve to improve [subject] toward [objective] within
+                    [iteration, time, or cost budget]. Create or resume the local
+                    revolve/ research state and record the subject, live artifact,
+                    constraints, permissions, regressions to prevent, evaluation
+                    method, and stop directive. Freeze one evaluation revision
+                    with its cases, fixtures, scoring rules, acceptance gates,
+                    and result format. Before changing anything, make a
+                    recoverable checkpoint of the incumbent and run the baseline.
+                    In each cycle, choose one evidence-backed failure,
+                    opportunity, or uncertainty; state one testable hypothesis;
+                    create a recoverable candidate checkpoint; and evaluate it
+                    under the same revision as the incumbent. Record the run,
+                    result, validity, tradeoffs, and decision. Promote a candidate
+                    to the internal incumbent only when comparable evidence shows
+                    a meaningful improvement and every guard passes; otherwise
+                    reject, repeat, revise, or branch from the strongest
+                    checkpoint. If cases, scoring, harness behavior, evaluator
+                    rubric, objective interpretation, or acceptance gates change,
+                    create a new revision and rerun the incumbent before comparing
+                    candidates. Keep the live artifact unchanged unless the user
+                    explicitly approves external promotion. After approval, apply
+                    the chosen checkpoint, run post-promotion verification, and
+                    record the rollback path. Stop on the verified objective,
+                    budget exhaustion, no measurable progress, a documented dead
+                    end, a blocker, or an explicit user stop. Finish with the best
+                    checkpoint, comparison evidence, failed branches, current
+                    revision, live-promotion status, rollback instructions, and
+                    next action.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The best checkpoint wins under one reproducible evaluation revision.</strong>
+                  <span>The incumbent and candidates have comparable recorded runs, no accepted guard regression, a recoverable rollback path, and no unapproved live-file promotion.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Agent Zero
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
