@@ -164,6 +164,7 @@ function suggestionBody(overrides = {}) {
       loop_title: "The verified submission loop",
       name: "Test Contributor",
       source_url: "https://example.com/source",
+      x_handle: "test_builder",
     },
     permission: true,
     turnstile_token: "suggestion-token",
@@ -249,7 +250,34 @@ test("validates Turnstile before writing a loop suggestion", async () => {
     loop_title: "The verified submission loop",
     name: "Test Contributor",
     source_url: "https://example.com/source",
+    x_handle: "@test_builder",
   });
+});
+
+test("rejects malformed optional X handles without writing", async () => {
+  const env = makeEnv();
+  const { calls, dependencies } = makeDependencies();
+  const response = await handleRequest(
+    makeRequest(
+      "/suggestions",
+      suggestionBody({
+        payload: {
+          instructions: "Run the checks until every result passes.",
+          loop_title: "The verified submission loop",
+          x_handle: "bad handle",
+        },
+      }),
+    ),
+    env,
+    undefined,
+    dependencies,
+  );
+  const body = await response.json();
+
+  assert.equal(response.status, 400);
+  assert.equal(body.code, "invalid_x_handle");
+  assert.equal(calls.turnstile.length, 0);
+  assert.equal(calls.siteData.length, 0);
 });
 
 test("rejects invalid or mismatched Turnstile tokens without writing", async () => {

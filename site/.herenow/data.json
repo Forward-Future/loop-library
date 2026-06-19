@@ -7,6 +7,11 @@
           "maxLength": 80,
           "trim": true
         },
+        "x_handle": {
+          "type": "string",
+          "maxLength": 16,
+          "trim": true
+        },
         "email": {
           "type": "string",
           "maxLength": 160,

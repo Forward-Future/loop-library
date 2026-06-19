@@ -430,10 +430,27 @@ function validateSuggestion(payload, permission) {
     ),
   };
   const name = readOptionalString(payload.name, 80);
+  const xHandle = readOptionalString(payload.x_handle, 16);
   const sourceUrl = readOptionalString(payload.source_url, 300);
 
   if (name) {
     record.name = name;
+  }
+
+  if (xHandle) {
+    const normalizedXHandle = xHandle.startsWith("@")
+      ? xHandle
+      : `@${xHandle}`;
+
+    if (!/^@[A-Za-z0-9_]{1,15}$/.test(normalizedXHandle)) {
+      throw new RequestError(
+        400,
+        "invalid_x_handle",
+        "Enter a valid X handle, such as @handle.",
+      );
+    }
+
+    record.x_handle = normalizedXHandle;
   }
 
   if (sourceUrl) {

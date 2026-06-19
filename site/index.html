@@ -289,7 +289,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260617-form-protection" defer></script>
+    <script src="./script.js?v=20260618-x-handle" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -1315,13 +1315,13 @@
             </label>
 
             <label class="field">
-              <span>Attribution <small>optional</small></span>
+              <span>Name for attribution <small>optional</small></span>
               <input
                 name="name"
                 type="text"
                 maxlength="80"
                 autocomplete="name"
-                placeholder="Name or handle"
+                placeholder="Your name"
               />
             </label>
           </div>
@@ -1337,16 +1337,33 @@
             ></textarea>
           </label>
 
-          <label class="field">
-            <span>Source link <small>optional</small></span>
-            <input
-              name="source_url"
-              type="url"
-              maxlength="300"
-              inputmode="url"
-              placeholder="https://"
-            />
-          </label>
+          <div class="field-grid">
+            <label class="field">
+              <span>X handle <small>optional</small></span>
+              <input
+                name="x_handle"
+                type="text"
+                maxlength="16"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                pattern="@?[A-Za-z0-9_]{1,15}"
+                placeholder="@handle"
+                title="Enter an X handle such as @handle."
+              />
+            </label>
+
+            <label class="field">
+              <span>Source link <small>optional</small></span>
+              <input
+                name="source_url"
+                type="url"
+                maxlength="300"
+                inputmode="url"
+                placeholder="https://"
+              />
+            </label>
+          </div>
 
           <div class="form-trap" aria-hidden="true">
             <label>

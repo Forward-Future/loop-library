@@ -72,6 +72,8 @@ weekly email form writes to `weekly_signups`.
   do not see a challenge.
 - The Worker validates the Turnstile token, expected action, hostname, origin,
   request schema, and field lengths before accepting a write.
+- Contributors can optionally provide a name and X handle for attribution. The
+  Worker normalizes valid X handles to the `@handle` form before storage.
 - Loop suggestions are limited to 3/hour and 10/day per IP. Weekly signups are
   limited to 5/hour and 10/day per IP.
 - Matching content or email submitted within 24 hours is accepted without
