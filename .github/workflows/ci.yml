@@ -49,11 +49,14 @@ jobs:
           node --check scripts/build-skill-catalog.mjs
           node --check scripts/build-loop-pages.mjs
           node --check scripts/build-social-images.mjs
+          node --check scripts/audit-seo-geo.mjs
           node --check scripts/loop-data.mjs
           node --check site/script.js
+          node scripts/audit-seo-geo.mjs
           node scripts/check.mjs
           python3 -m json.tool site/.herenow/data.json >/dev/null
           python3 -m json.tool site/catalog.json >/dev/null
+          python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
           git diff --check
 
       - name: Test form Worker

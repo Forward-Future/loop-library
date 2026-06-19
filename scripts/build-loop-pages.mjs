@@ -246,7 +246,7 @@ ${structuredData(loop)}
 
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="../../#library">All loops</a>
-        <a href="../../#tips">Best practices</a>
+        <a href="../../#what-is-an-ai-agent-loop">What is a loop?</a>
         <button
           class="theme-toggle"
           id="theme-toggle"
