@@ -116,7 +116,7 @@
       href="https://signals.forwardfuture.ai/loop-library/catalog.md"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260619-learn-page" />
+    <link rel="stylesheet" href="./styles.css?v=20260619-row-padding" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -369,7 +369,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260619-pagination" defer></script>
+    <script src="./script.js?v=20260619-no-numbering" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -389,10 +389,7 @@
       </a>
 
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#library">Loops</a>
         <a href="./learn/">Learn</a>
-        <a href="#agent-skill">Install skill</a>
-        <a href="#weekly">Weekly picks</a>
         <button
           class="theme-toggle"
           id="theme-toggle"
@@ -435,55 +432,16 @@
 
     <main id="main">
       <section class="library-section page-width" id="library">
-        <div class="library-intro" id="top">
-          <p class="eyebrow">Forward Future field guide</p>
-          <h1>Loop Library</h1>
-          <p class="hero-lede">
-            Copy prompts for engineering, research, evaluation, and operations.
-            Each one includes clear checks and tells the agent when to stop.
-          </p>
-
-        </div>
-
-        <section
-          class="skill-promo"
-          id="agent-skill"
-          aria-labelledby="agent-skill-title"
-        >
-          <div class="skill-promo-copy">
-            <p class="skill-promo-kicker">Agent skill</p>
-            <h2 id="agent-skill-title">
-              Use Loop Library in your coding agent.
-            </h2>
-            <p>
-              Find a published loop or design one directly from your agent.
+        <div class="library-hero" id="top">
+          <div class="library-intro">
+            <h1>Loop Library</h1>
+            <p class="hero-lede">
+              Copy practical AI agent prompts with clear checks and stopping
+              conditions.
             </p>
           </div>
 
-          <div class="skill-promo-actions">
-            <code class="skill-install-command" data-skill-install-command
-              >npx skills add Forward-Future/loop-library --skill loop-library
-              -g</code
-            >
-            <div class="skill-action-row">
-              <button
-                class="skill-copy-button"
-                type="button"
-                data-copy-skill-command
-              >
-                <span>Copy command</span>
-              </button>
-              <a
-                class="skill-github-link"
-                href="https://github.com/Forward-Future/loop-library"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View repository
-              </a>
-            </div>
-          </div>
-        </section>
+        </div>
 
         <div class="library-controls">
           <label class="search-control">
@@ -568,9 +526,7 @@
             </caption>
             <thead>
               <tr>
-                <th scope="col">No.</th>
                 <th scope="col">Loop</th>
-                <th scope="col">Verify / stop</th>
                 <th scope="col"><span class="sr-only">Action</span></th>
               </tr>
             </thead>
@@ -581,7 +537,6 @@
                 data-category="engineering"
                 data-search="documentation docs sweep audit maintenance anytime on-demand nightly overnight pull request pr matthew berman review codebase"
               >
-                <td class="cell-number">001</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -600,14 +555,9 @@
                     changes, then open a pull request.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Documentation matches the current implementation.</strong>
-                  <span>Finish with a reviewable pull request.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -618,7 +568,6 @@
                 data-category="engineering"
                 data-search="refactor architecture live test autoreview commit progress tmp peter steinberger"
               >
-                <td class="cell-number">002</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -640,14 +589,9 @@
                     /tmp/refactor-{projectname}.md.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The architecture is satisfactory and checks pass.</strong>
-                  <span>Live-test, autoreview, and commit each significant step.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -658,7 +602,6 @@
                 data-category="engineering"
                 data-search="performance speed page load pageload 50ms benchmark optimize profiling routes matthew berman"
               >
-                <td class="cell-number">003</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -680,14 +623,9 @@
                     Continue until every page loads in under 50 ms.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every page loads in under 50 ms.</strong>
-                  <span>Use the same benchmark and confirm there are no regressions.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -698,7 +636,6 @@
                 data-category="engineering"
                 data-search="production logs errors bugs root cause fix pull request pr matthew berman"
               >
-                <td class="cell-number">004</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -717,14 +654,9 @@
                     If no actionable errors are present, stop without making changes.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Actionable production errors are fixed and verified.</strong>
-                  <span>Finish with a PR, or stop when no actionable errors are present.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -735,7 +667,6 @@
                 data-category="engineering"
                 data-search="tests testing test coverage 100 percent full suite matthew berman"
               >
-                <td class="cell-number">005</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -754,14 +685,9 @@
                     Add tests until we have 100% test coverage.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The full test suite passes at 100% coverage.</strong>
-                  <span>Use the project's coverage report as the source of truth.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -772,7 +698,6 @@
                 data-category="content"
                 data-search="seo geo search generative engine optimization ai answer visibility crawlability indexation indexing metadata titles internal links structured data citations content benchmark matthew berman"
               >
-                <td class="cell-number">006</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Content</span>
@@ -796,14 +721,9 @@
                     high-impact gap left to fix.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Priority pages are indexable, answer-ready, and technically sound.</strong>
-                  <span>The repeatable crawl and query benchmark finds no remaining high-impact gaps.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -814,7 +734,6 @@
                 data-category="engineering"
                 data-search="logging logs observability coverage structured events important paths tests diagnostics matthew berman"
               >
-                <td class="cell-number">007</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -831,14 +750,9 @@
                     every important path produces useful, tested logs.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every important path emits useful, tested logs.</strong>
-                  <span>Representative success and failure tests prove coverage without exposing sensitive data.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -849,7 +763,6 @@
                 data-category="engineering"
                 data-search="nightly changelog previous day changes users release notes commits pull requests deployments matthew berman"
               >
-                <td class="cell-number">008</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -866,14 +779,9 @@
                     the changelog with anything users should know.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every user-relevant change from the previous day is accounted for.</strong>
-                  <span>The changelog is updated and validated, or the no-change result is recorded.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -884,7 +792,6 @@
                 data-category="evaluation"
                 data-search="quality streak realistic scenarios regression benchmark failure restart consecutive cases matthew berman"
               >
-                <td class="cell-number">009</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Evaluation</span>
@@ -902,14 +809,9 @@
                     streak. Stop after [N] successful cases in a row.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The latest [N] realistic cases pass in a row.</strong>
-                  <span>Every earlier failure is documented, fixed, and protected by regression and benchmark coverage.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -918,11 +820,12 @@
                 class="loop-row"
                 data-copy-root
                 data-category="evaluation"
+                data-featured="true"
                 data-search="full product evaluation realistic tests test cases scenarios major features capabilities score responses results outcomes success criteria pass fail scoring rubric evidence quality bar rerun matthew berman"
               >
-                <td class="cell-number">010</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
+                    <span class="loop-featured">Featured</span>
                     <span class="loop-category">Evaluation</span>
                     <span class="loop-attribution">By Matthew Berman</span>
                   </div>
@@ -944,14 +847,9 @@
                     original quality bar.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every one of the [N] scenarios meets the defined quality bar.</strong>
-                  <span>The final evaluated run covers every major capability under the original conditions.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -962,7 +860,6 @@
                 data-category="engineering"
                 data-search="test suite speed performance runtime faster ci coverage behavior optimize matthew berman"
               >
-                <td class="cell-number">011</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -979,14 +876,9 @@
                     without reducing coverage or changing behavior.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The suite is faster with no coverage or behavior regression.</strong>
-                  <span>Repeatable timing, the full passing suite, and the original coverage report prove the result.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -997,7 +889,6 @@
                 data-category="engineering"
                 data-search="repository cleanup local remote branches pull requests commits worktrees recover stale organized matthew berman"
               >
-                <td class="cell-number">012</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1015,14 +906,9 @@
                     stale until the repository is current and organized.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Valuable work is recovered and remaining repository state is intentional.</strong>
-                  <span>Branches, pull requests, commits, and worktrees are current, owned, or safely removed with evidence.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1033,7 +919,6 @@
                 data-category="operations"
                 data-search="stale safe batch release pending changes pull requests exclude unfinished combine valid release together matthew berman"
               >
-                <td class="cell-number">013</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Operations</span>
@@ -1051,14 +936,9 @@
                     together.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Only current, complete changes ship in the combined release.</strong>
-                  <span>The released revision is the latest integrated main that contains every selected change.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1069,7 +949,6 @@
                 data-category="operations"
                 data-search="production data cleanup records allowed definition classification logic verify remaining matthew berman"
               >
-                <td class="cell-number">014</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Operations</span>
@@ -1087,14 +966,9 @@
                     logic, and verify the remaining data.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every remaining record meets the allowed definition.</strong>
-                  <span>Representative classification tests and a post-cleanup audit prove the retained data is valid.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1105,7 +979,6 @@
                 data-category="operations"
                 data-search="post release baseline benchmarks standard results current releases finish record matthew berman"
               >
-                <td class="cell-number">015</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Operations</span>
@@ -1122,14 +995,9 @@
                     and record the results as the new baseline.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The new baseline belongs to the completed release.</strong>
-                  <span>Revision, environment, benchmark version, conditions, and results are recorded together.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1140,7 +1008,6 @@
                 data-category="engineering"
                 data-search="ticket bug report failing behavior customer complaint review ready patch reproduce root cause evidence hiten shah"
               >
-                <td class="cell-number">016</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1164,14 +1031,9 @@
                     before-and-after proof, risks, and pull-request summary.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The failure is fixed, verified, and ready for review.</strong>
-                  <span>The issue reproduces before the fix, no longer reproduces afterward, and relevant regression checks pass.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1182,7 +1044,6 @@
                 data-category="operations"
                 data-search="customer ai deployment priority production workflow dry run approval rollout monitor roi agentled"
               >
-                <td class="cell-number">017</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Operations</span>
@@ -1206,14 +1067,9 @@
                     update, lessons saved, and next review.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>One customer priority reaches a proven terminal state.</strong>
-                  <span>The workflow reaches its agreed rollout stage, a production issue is fixed, or a blocker is escalated with an owner and next step.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1224,7 +1080,6 @@
                 data-category="content"
                 data-search="product update podcast nightly public features repository jellypod mcp episode pierson marks"
               >
-                <td class="cell-number">018</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Content</span>
@@ -1248,14 +1103,9 @@
                     episode, sources, and review result.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The episode accurately covers every meaningful public update.</strong>
-                  <span>Finish with a review-ready three-to-five-minute episode, or a confirmed no-episode result when nothing meaningful shipped.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1266,7 +1116,6 @@
                 data-category="engineering"
                 data-search="clodex claude codex adversarial review fix findings threshold max iter pull request lukas kucinski"
               >
-                <td class="cell-number">019</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1290,14 +1139,9 @@
                     checks, verdict, and remaining findings.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The pull request reaches the configured review bar.</strong>
-                  <span>Codex approves it or only explicitly accepted findings remain; errors, stalls, and exhausted limits are reported as such.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1308,7 +1152,6 @@
                 data-category="engineering"
                 data-search="loop harness scheduled coding agent claude skill isolated git worktree second agent verify ship istasha"
               >
-                <td class="cell-number">020</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1331,14 +1174,9 @@
                     staged output, verifier result, delivery status, and next run.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Only independently verified output ships.</strong>
-                  <span>A second-agent pass releases the configured output; a failed verification preserves evidence and produces no external change.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1349,7 +1187,6 @@
                 data-category="design"
                 data-search="boeing 747 benchmark three js threejs vision self verifiable camera angles 100 percent satisfied victormustar"
               >
-                <td class="cell-number">021</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Design</span>
@@ -1373,14 +1210,9 @@
                     renders, scores, remaining gaps, and run summary.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The Boeing 747 meets the visual bar from all nine angles.</strong>
-                  <span>The same camera rig and rubric show every required view meeting the preset threshold, or the run reports stagnation, budget exhaustion, and remaining gaps.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1391,7 +1223,6 @@
                 data-category="design"
                 data-search="war loops autonomous frontend designer URL image genuine browser ground truth design spec pencil forge static motion responsive swayam"
               >
-                <td class="cell-number">022</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Design</span>
@@ -1414,14 +1245,9 @@
                     builds, spec, renders, scores, and remaining gaps.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The builds match the source across all three fidelity axes.</strong>
-                  <span>Static appearance, experiential motion, and responsive reflow pass their gates, or the run reports stagnation or a blocked capture.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1432,7 +1258,6 @@
                 data-category="evaluation"
                 data-search="self improving champion challenger genome gate working signal guard goodhart bounded optimization jose munoz"
               >
-                <td class="cell-number">023</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Evaluation</span>
@@ -1457,14 +1282,9 @@
                     remaining failures.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The best holdout-tested champion is returned.</strong>
-                  <span>Every challenger is logged, and accepted changes beat the previous champion on untouched cases without weakening a must-pass check.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1475,7 +1295,6 @@
                 data-category="evaluation"
                 data-search="devils advocate critic builder design red team objection log architecture adversarial review anonymous contributor"
               >
-                <td class="cell-number">024</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Evaluation</span>
@@ -1500,14 +1319,9 @@
                     stalemate.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>No high-impact objection remains open.</strong>
-                  <span>Every logged objection is verified as resolved or explicitly accepted with evidence, or the final report truthfully records a two-round stalemate.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1516,11 +1330,12 @@
                 class="loop-row"
                 data-copy-root
                 data-category="engineering"
+                data-featured="true"
                 data-search="fresh clone clean environment readme onboarding setup documentation hidden assumptions disposable 0xumbra"
               >
-                <td class="cell-number">025</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
+                    <span class="loop-featured">Featured</span>
                     <span class="loop-category">Engineering</span>
                     <span class="loop-attribution">By 0xUmbra</span>
                   </div>
@@ -1542,14 +1357,9 @@
                     Return exact commands, gaps closed, and remaining blockers.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>A clean environment reaches the documented ready state using only the README.</strong>
-                  <span>The final run uses only the onboarding guide and needs no unstated dependency, configuration, or manual repair.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1560,7 +1370,6 @@
                 data-category="design"
                 data-search="infinite clickbait youtube thumbnail concepts inspiration channel score iterate top three alex ff visual design"
               >
-                <td class="cell-number">026</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Design</span>
@@ -1584,14 +1393,9 @@
                     previews, final scores, and rationale.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>One accurate thumbnail clears the fixed quality threshold.</strong>
-                  <span>The winner outscores the alternatives under the same conditions, remains legible at realistic sizes, and represents the video accurately.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1602,7 +1406,6 @@
                 data-category="engineering"
                 data-search="autonomy loop builder adversarial reviewer mutation testing proof test worktree frozen invariant inferencegod claude code"
               >
-                <td class="cell-number">027</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1626,14 +1429,9 @@
                     the commit, gate evidence, test proof, trust tier, and risks.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every accepted wave passes autonomy-loop's proof-of-test gate.</strong>
-                  <span>The new test fails without the change, passes with it, every configured gate passes, and protected production changes remain human-gated.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1644,7 +1442,6 @@
                 data-category="engineering"
                 data-search="codex completion contract goal proof evidence audit definition done false completion 3goblack dis trackted"
               >
-                <td class="cell-number">028</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1668,14 +1465,9 @@
                     table, status, owner, and next action.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every Codex Goal requirement has current, adequate proof.</strong>
-                  <span>The final audit contains no weak, missing, or contradicted required item; otherwise the work remains open, blocked, or exhausted.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1686,7 +1478,6 @@
                 data-category="evaluation"
                 data-search="revolve self improvement checkpoint incumbent candidate revision experiment evaluation promotion rollback agent zero"
               >
-                <td class="cell-number">029</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Evaluation</span>
@@ -1710,14 +1501,9 @@
                     rollback, and next action.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The best Revolve checkpoint wins within one evaluation revision.</strong>
-                  <span>The incumbent and candidates have comparable recorded runs, accepted changes pass every guard, rollback is available, and live promotion has approval.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1726,11 +1512,12 @@
                 class="loop-row"
                 data-copy-root
                 data-category="engineering"
+                data-featured="true"
                 data-search="five minute repository maintainer codex orchestration triage threads autoreview live proof peter steinberger"
               >
-                <td class="cell-number">030</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
+                    <span class="loop-featured">Featured</span>
                     <span class="loop-category">Engineering</span>
                     <span class="loop-attribution">By Peter Steinberger</span>
                   </div>
@@ -1753,14 +1540,9 @@
                     no work.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>Every repository item reaches a proven handoff or terminal state.</strong>
-                  <span>Authorized autonomous work lands with evidence; other items are decision-ready, blocked with one exact ask, or recorded as a clean no-op.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1771,7 +1553,6 @@
                 data-category="engineering"
                 data-search="recent user feedback threads corrections reported issues project audit failure patterns regression prevention matthew berman coding agent"
               >
-                <td class="cell-number">031</td>
                 <td class="cell-loop">
                   <div class="loop-meta">
                     <span class="loop-category">Engineering</span>
@@ -1795,14 +1576,9 @@
                     the issues, fixes, evidence, and blockers.
                   </p>
                 </td>
-                <td class="cell-check">
-                  <span class="cell-label">Verify / stop</span>
-                  <strong>The issue inventory is closed and a fresh pattern audit is clean.</strong>
-                  <span>Every reported issue and newly found match has current proof of resolution; blocked, approval-gated, or budget-exhausted items remain explicitly open.</span>
-                </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
-                    <span>Copy</span>
+                    <span>Copy loop</span>
                   </button>
                 </td>
               </tr>
@@ -1845,6 +1621,46 @@
             Next
           </button>
         </nav>
+
+        <section
+          class="skill-promo"
+          id="agent-skill"
+          aria-labelledby="agent-skill-title"
+        >
+          <div class="skill-promo-copy">
+            <p class="skill-promo-kicker">Agent skill</p>
+            <h2 id="agent-skill-title">
+              Use Loop Library in your coding agent.
+            </h2>
+            <p>
+              Find a published loop or design one directly from your agent.
+            </p>
+          </div>
+
+          <div class="skill-promo-actions">
+            <code class="skill-install-command" data-skill-install-command
+              >npx skills add Forward-Future/loop-library --skill loop-library
+              -g</code
+            >
+            <div class="skill-action-row">
+              <button
+                class="skill-copy-button"
+                type="button"
+                data-copy-skill-command
+              >
+                <span>Copy command</span>
+              </button>
+              <a
+                class="skill-github-link"
+                href="https://github.com/Forward-Future/loop-library"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View repository
+              </a>
+            </div>
+          </div>
+        </section>
 
       </section>
 

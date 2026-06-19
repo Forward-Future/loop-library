@@ -6,6 +6,7 @@ import path from "node:path";
 
 import {
   categories,
+  featuredLoopSlugs,
   getLoopCategory,
   loops,
   site as siteMeta,
@@ -124,6 +125,8 @@ const agentLoopTerm = structuredData["@graph"].find(
 );
 const slugs = new Set(loops.map((loop) => loop.slug));
 const loopBySlug = new Map(loops.map((loop) => [loop.slug, loop]));
+const featuredLoops = featuredLoopSlugs.map((slug) => loopBySlug.get(slug));
+const featuredSlugSet = new Set(featuredLoopSlugs);
 const titles = new Set(loops.map((loop) => loop.title));
 const prompts = new Set(loops.map((loop) => loop.prompt));
 const categorySlugs = new Set(categories.map((category) => category.slug));
@@ -197,6 +200,9 @@ assert.deepEqual(agentLoopTerm.sameAs, [
 ]);
 assert.equal(loops.length, 31);
 assert.equal(slugs.size, loops.length);
+assert.equal(featuredLoopSlugs.length, 3);
+assert.equal(new Set(featuredLoopSlugs).size, featuredLoopSlugs.length);
+assert(featuredLoops.every(Boolean));
 assert.equal(titles.size, loops.length);
 assert.equal(prompts.size, loops.length);
 assert(
@@ -265,6 +271,9 @@ assert(!skillSource.includes("Add an escalation owner"));
 assert(skillInterface.includes('display_name: "Loop Library"'));
 assert(skillInterface.includes("$loop-library"));
 
+const loopTableIndex = html.indexOf('<table class="loop-table">');
+assert(loopTableIndex >= 0);
+
 for (const [index, loop] of loops.entries()) {
   const url = `${siteMeta.baseUrl}loops/${loop.slug}/`;
   const imageUrl = `${siteMeta.baseUrl}assets/social/${loop.slug}-${siteMeta.socialImageVersion}.${siteMeta.socialImageExtension}`;
@@ -272,7 +281,7 @@ for (const [index, loop] of loops.entries()) {
   const page = loopPages[index];
   const listItem = collection.mainEntity.itemListElement[index];
   const homepageHref = `href="./loops/${loop.slug}/"`;
-  const homepageHrefIndex = html.indexOf(homepageHref);
+  const homepageHrefIndex = html.indexOf(homepageHref, loopTableIndex);
   const rowStart = html.lastIndexOf("<tr", homepageHrefIndex);
   const rowEnd = html.indexOf("</tr>", homepageHrefIndex);
   const homepageRow = html.slice(rowStart, rowEnd);
@@ -322,7 +331,7 @@ for (const [index, loop] of loops.entries()) {
       `<p class="loop-summary">${escapeHtml(loop.summary)}</p>`,
     ),
   );
-  assert(homepageRow.includes(`<td class="cell-number">${loop.number}</td>`));
+  assert(!homepageRow.includes('class="cell-number"'));
   assert(homepageRow.includes(`data-category="${category.slug}"`));
   assert(
     homepageRow.includes(
@@ -330,6 +339,13 @@ for (const [index, loop] of loops.entries()) {
     ),
   );
   assert(homepageRow.includes(loop.author));
+  if (featuredSlugSet.has(loop.slug)) {
+    assert(homepageRow.includes('data-featured="true"'));
+    assert(homepageRow.includes('<span class="loop-featured">Featured</span>'));
+  } else {
+    assert(!homepageRow.includes('data-featured="true"'));
+    assert(!homepageRow.includes('class="loop-featured"'));
+  }
   assert(
     homepageRow.includes(
       `<span class="loop-attribution">By ${escapeHtml(loop.author)}</span>`,
@@ -488,6 +504,24 @@ assert.equal((html.match(/class="loop-meta"/g) || []).length, loops.length);
 assert.equal((html.match(/class="loop-summary"/g) || []).length, loops.length);
 assert.equal((html.match(/class="loop-attribution"/g) || []).length, loops.length);
 assert(html.includes('class="loop-table"'));
+assert(!html.includes('<th scope="col">ID</th>'));
+assert(!html.includes('<th scope="col">No.</th>'));
+assert(!html.includes('class="cell-number"'));
+assert(!html.includes('class="cell-check"'));
+assert(!html.includes("Verify / stop"));
+assert.equal(
+  (html.match(/<span>Copy loop<\/span>/g) || []).length,
+  loops.length,
+);
+assert.equal(
+  (html.match(/data-featured="true"/g) || []).length,
+  featuredLoops.length,
+);
+assert.equal(
+  (html.match(/class="loop-featured"/g) || []).length,
+  featuredLoops.length,
+);
+assert(!html.includes('class="featured-loops"'));
 assert(!html.includes('class="cell-attribution"'));
 assert(!html.includes('<th scope="col">Attribution</th>'));
 assert(!html.includes('class="loop-diagram"'));
@@ -518,8 +552,8 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260619-learn-page"));
-assert(html.includes("./script.js?v=20260619-pagination"));
+assert(html.includes("./styles.css?v=20260619-row-padding"));
+assert(html.includes("./script.js?v=20260619-no-numbering"));
 assert(html.includes('href="./learn/"'));
 assert(!html.includes('class="loop-guide"'));
 assert(!html.includes("A useful loop specifies:"));
@@ -626,6 +660,12 @@ assert(css.includes(".category-filter.is-active"));
 assert(css.includes(".loop-category"));
 assert(css.includes(".loop-meta"));
 assert(css.includes(".loop-summary"));
+assert(!css.includes(".cell-number"));
+assert(css.includes(".cell-loop .loop-summary {\n  display: none;\n}"));
+assert(css.includes(".loop-prompt-toggle"));
+assert(css.includes("-webkit-line-clamp: 3"));
+assert(css.includes("-webkit-line-clamp: 4"));
+assert(!css.includes(".cell-check"));
 assert(css.includes(".loop-attribution"));
 assert(!css.includes(".cell-attribution"));
 assert(css.includes(".pagination"));
@@ -633,6 +673,8 @@ assert(css.includes(".pagination-button:disabled"));
 assert(css.includes("scroll-margin-top: 80px"));
 assert(css.includes(".pagination-button,\n  .pagination-status"));
 assert(css.includes(".skill-promo"));
+assert(css.includes(".library-hero"));
+assert(css.includes(".loop-featured"));
 assert(!css.includes(".answer-capsule"));
 assert(css.includes(".skill-copy-button"));
 assert(css.includes("border-left: 5px solid var(--orange)"));
@@ -676,7 +718,20 @@ assert(script.includes("bytes[6] = (bytes[6] & 0x0f) | 0x40"));
 assert(script.includes("bytes[8] = (bytes[8] & 0x3f) | 0x80"));
 assert(!script.includes("./.herenow/data/"));
 assert(script.includes('document.querySelectorAll(".loop-row")'));
+assert(!script.includes('querySelector(".cell-number")'));
+assert(script.includes('querySelector(".loop-title-link")'));
+assert(script.includes('b.dataset.featured === "true"'));
+assert(script.includes('a.dataset.featured === "true"'));
+assert(script.includes("loopRows.forEach((row) => loopTableBody.append(row))"));
 assert(script.includes("const PAGE_SIZE = 25"));
+assert(script.includes("const defaultLabel = label?.textContent"));
+assert(script.includes("window.clearTimeout(copyLabelResetTimer)"));
+assert(script.includes("label.textContent = defaultLabel"));
+assert(script.includes('button.textContent = "Show more"'));
+assert(script.includes('button.textContent = nextExpanded ? "Show less" : "Show more"'));
+assert(script.includes('button.setAttribute("aria-controls", prompt.id)'));
+assert(script.includes('button.setAttribute("aria-expanded", "false")'));
+assert(script.includes("window.requestAnimationFrame(syncVisiblePromptToggles)"));
 assert(script.includes("Math.ceil(totalMatches / PAGE_SIZE)"));
 assert(script.includes("matchingRows.slice(pageStart, pageEnd)"));
 assert(script.includes('searchInput.addEventListener("input", resetSearchPage)'));
