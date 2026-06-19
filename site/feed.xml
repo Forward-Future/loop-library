@@ -252,4 +252,48 @@
     </author>
     <summary>A judge-gated frontend workflow that captures a reference, builds static and moving versions, measures fidelity, and surgically repairs the weakest gaps.</summary>
   </entry>
+  <entry>
+    <title>The self-improving champion loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Jose C. Munoz</name>
+    </author>
+    <summary>A bounded optimization loop that tests targeted challengers, protects an independently evaluated champion, and rejects suspiciously easy wins.</summary>
+  </entry>
+  <entry>
+    <title>The devil&#39;s-advocate loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/devils-advocate-design-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/devils-advocate-design-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Anonymous contributor</name>
+    </author>
+    <summary>A critic-and-builder workflow that attacks a design, tracks every objection, and requires evidence before an objection can be closed.</summary>
+  </entry>
+  <entry>
+    <title>The fresh-clone loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/fresh-clone-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/fresh-clone-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>0xUmbra</name>
+    </author>
+    <summary>A disposable-environment workflow that follows the README from scratch, fixes every hidden setup assumption, and restarts until onboarding works cleanly.</summary>
+  </entry>
+  <entry>
+    <title>The Infinite Clickbait loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/infinite-clickbait-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/infinite-clickbait-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>@Alex_FF</name>
+    </author>
+    <summary>A thumbnail ideation workflow that generates ten concepts, scores the strongest candidates, and iterates until the winning image is click-baity enough.</summary>
+  </entry>
 </feed>
