@@ -9,7 +9,7 @@ recommend published loops, adapt one to your situation, or interview you and
 turn an outcome into a bounded, copy-ready loop.
 
 ```bash
-npx skills add mberman84/loop-library --skill loop-library -g
+npx skills add Forward-Future/loop-library --skill loop-library -g
 ```
 
 Once installed, ask your coding agent to find a loop for a problem or help you
@@ -48,8 +48,8 @@ When adding or editing a loop:
 1. Update the table row and visible count in `site/index.html`.
 2. Update the matching entry and social-image version in
    `scripts/loop-data.mjs`.
-3. Run `node scripts/build-skill-catalog.mjs` so the installable skill can find
-   every published loop offline.
+3. Run `node scripts/build-skill-catalog.mjs` so the live machine-readable
+   catalogs and installable skill fallback include every published loop.
 4. Run `node scripts/build-loop-pages.mjs` so every page reflects the catalog.
 5. Capture 1200 × 630 light-theme screenshots of the homepage and each loop
    page using the versioned filenames in `site/assets/social/`.
@@ -59,10 +59,17 @@ When adding or editing a loop:
 The generator writes:
 
 - `skills/loop-library/references/catalog.md`
+- `site/catalog.md`
+- `site/catalog.json`
 - `site/assets/social/*.<png|jpg>`
 - `site/loops/<slug>/index.html`
 - `site/sitemap.xml`
 - `site/feed.xml`
+
+The skill reads the deployed Markdown or JSON catalog first so recommendations
+track what is actually published. The bundled Markdown copy is a dated offline
+fallback. All three catalog files are generated from `scripts/loop-data.mjs`;
+never edit them by hand.
 
 Social previews are 1200 × 630 page screenshots for large X cards and Open
 Graph embeds. The homepage uses a screenshot of the library, while every loop
@@ -146,6 +153,10 @@ replace the here.now development credentials, and run:
 npm --prefix worker run dev
 python3 -m http.server 4173 --directory site
 ```
+
+## License
+
+Loop Library is available under the [MIT License](LICENSE).
 
 ## Production
 
