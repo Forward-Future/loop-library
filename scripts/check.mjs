@@ -438,10 +438,10 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260619-skill-promo"));
-assert(html.includes("./script.js?v=20260619-skill-promo"));
+assert(html.includes("./styles.css?v=20260619-skill-promo-compact"));
+assert(html.includes("./script.js?v=20260619-skill-promo-compact"));
 assert(html.includes('id="agent-skill"'));
-assert(html.includes("Bring the Loop Library into your coding agent."));
+assert(html.includes("Use Loop Library in your coding agent."));
 assert(
   html.includes(
     "npx skills add Forward-Future/loop-library --skill loop-library",
@@ -449,6 +449,12 @@ assert(
 );
 assert(
   html.includes(
+    "https://github.com/Forward-Future/loop-library",
+  ),
+);
+assert(html.includes("<span>Copy command</span>"));
+assert(
+  !html.includes(
     "https://github.com/Forward-Future/loop-library/tree/main/skills/loop-library",
   ),
 );
@@ -501,6 +507,9 @@ assert(css.includes(".category-filter.is-active"));
 assert(css.includes(".loop-category"));
 assert(css.includes(".skill-promo"));
 assert(css.includes(".skill-copy-button"));
+assert(css.includes("border-left: 5px solid var(--orange)"));
+assert(css.includes("background: var(--surface-muted)"));
+assert(!css.includes("background: var(--orange);\n  grid-template-columns: minmax(0, 1.2fr)"));
 assert(!css.includes(".type-badge"));
 assert(!css.includes(".type-goal"));
 assert(!css.includes(".type-triggered"));
@@ -543,6 +552,7 @@ assert(script.includes("window.localStorage.setItem(THEME_STORAGE_KEY, theme)"))
 assert(script.includes('button.closest("[data-copy-root]")'));
 assert(script.includes('document.querySelector("[data-copy-skill-command]")'));
 assert(script.includes("Install command copied to clipboard."));
+assert(script.includes('label.textContent = "Copy command"'));
 assert(!script.includes("innerHTML"));
 assert(
   workerSource.includes(

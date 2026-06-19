@@ -199,7 +199,7 @@ if (skillCopyButton && skillInstallCommand) {
       label.textContent = "Copied";
       showToast("Install command copied to clipboard.");
       window.setTimeout(() => {
-        label.textContent = "Copy install command";
+        label.textContent = "Copy command";
       }, 1800);
     } catch {
       showToast("Copy failed. Select the install command instead.");

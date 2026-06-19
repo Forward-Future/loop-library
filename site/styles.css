@@ -382,94 +382,82 @@ code {
 
 .skill-promo {
   display: grid;
-  align-items: end;
-  gap: clamp(28px, 5vw, 72px);
-  margin-top: 32px;
-  padding: clamp(24px, 4vw, 44px);
-  border: 1px solid var(--charcoal);
-  color: var(--charcoal);
-  background: var(--orange);
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 32px);
+  margin-top: 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--orange);
+  color: var(--ink);
+  background: var(--surface-muted);
+  grid-template-columns: minmax(0, 0.75fr) minmax(360px, 1.25fr);
 }
 
 .skill-promo-copy h2 {
-  max-width: 760px;
-  margin-bottom: 14px;
-  font-size: clamp(2rem, 4vw, 3.65rem);
+  margin-bottom: 4px;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.98;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .skill-promo-copy > p:last-child {
-  max-width: 660px;
   margin-bottom: 0;
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
-.skill-promo-kicker,
-.skill-install-label {
+.skill-promo-kicker {
+  margin-bottom: 6px;
+  color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.skill-promo-kicker {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.skill-promo-kicker::before {
-  width: 24px;
-  height: 7px;
-  background: var(--charcoal);
-  content: "";
-}
-
-.skill-install-label {
-  margin-bottom: 8px;
+.skill-promo-actions {
+  min-width: 0;
 }
 
 .skill-install-command {
   display: block;
-  padding: 14px 16px;
-  border: 1px solid var(--charcoal);
-  color: var(--charcoal);
-  background: var(--light);
-  font-size: 0.76rem;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+  font-size: 0.7rem;
   overflow-wrap: anywhere;
 }
 
 .skill-action-row {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 8px;
 }
 
 .skill-copy-button,
 .skill-github-link {
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
 .skill-copy-button {
-  min-height: 40px;
-  padding: 9px 13px;
-  border: 1px solid var(--charcoal);
-  color: var(--light);
-  background: var(--charcoal);
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid var(--ink);
+  color: var(--solid-foreground);
+  background: var(--solid-background);
   cursor: pointer;
 }
 
 .skill-copy-button:hover,
 .skill-copy-button:focus-visible {
-  color: var(--charcoal);
-  background: var(--light);
+  color: var(--ink);
+  background: var(--canvas);
 }
 
 .skill-github-link {
@@ -483,7 +471,7 @@ code {
 }
 
 .skill-promo + .library-controls {
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .section-heading {
@@ -1422,11 +1410,12 @@ code {
 
   .skill-promo {
     align-items: start;
+    gap: 14px;
     grid-template-columns: 1fr;
   }
 
   .skill-promo-actions {
-    max-width: 720px;
+    max-width: 680px;
   }
 
   .newsletter-layout {
@@ -1633,21 +1622,7 @@ code {
   }
 
   .skill-promo {
-    padding: 22px 18px;
-  }
-
-  .skill-action-row {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .skill-copy-button {
-    width: 100%;
-  }
-
-  .skill-github-link {
-    align-self: flex-start;
+    padding: 14px 12px;
   }
 
   .newsletter-form-row {
