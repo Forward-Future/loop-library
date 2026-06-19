@@ -5,7 +5,7 @@ export const site = {
   description:
     "Practical AI agent workflows for engineering, research, editorial work, evaluation, and operations.",
   updated: "2026-06-19",
-  socialImageVersion: "20260619-5",
+  socialImageVersion: "20260619-6",
   socialImageExtension: "png",
   socialImageMimeType: "image/png",
 };
@@ -47,6 +47,8 @@ export const loops = [
     number: "001",
     slug: "overnight-docs-sweep",
     title: "The docs sweep",
+    summary:
+      "Keeps documentation aligned with the current codebase and opens a reviewable pull request.",
     seoTitle: "Documentation Sweep for Coding Agents | Loop Library",
     description:
       "A reusable AI coding-agent workflow for comparing documentation with the current codebase, fixing drift, and opening a reviewable pull request.",
@@ -83,6 +85,8 @@ export const loops = [
     number: "002",
     slug: "architecture-satisfaction-loop",
     title: "The architecture satisfaction loop",
+    summary:
+      "Refactors architecture in small, tested, independently reviewed checkpoints.",
     seoTitle:
       "Architecture Refactoring Loop for Coding Agents | Loop Library",
     description:
@@ -121,6 +125,8 @@ export const loops = [
     number: "003",
     slug: "sub-50ms-page-load-loop",
     title: "The sub-50 ms page-load loop",
+    summary:
+      "Optimizes every page until it consistently loads in under 50 ms.",
     seoTitle: "Sub-50 ms Page-Load Optimization Loop | Loop Library",
     description:
       "A performance optimization workflow for coding agents that uses one repeatable benchmark and stops only when every target page meets the threshold.",
@@ -158,6 +164,7 @@ export const loops = [
     number: "004",
     slug: "production-error-sweep",
     title: "The production error sweep",
+    summary: "Finds, fixes, and verifies actionable errors in production.",
     seoTitle: "Production Error Triage Loop for Coding Agents | Loop Library",
     description:
       "A scheduled production-log workflow that traces actionable errors to root causes, verifies fixes, opens a pull request, and stops cleanly when no action is needed.",
@@ -195,6 +202,8 @@ export const loops = [
     number: "005",
     slug: "100-percent-test-coverage-loop",
     title: "The 100% test coverage loop",
+    summary:
+      "Adds meaningful tests until the full suite reaches 100% coverage.",
     seoTitle: "100% Test Coverage Loop for Coding Agents | Loop Library",
     description:
       "A goal-based coding-agent workflow that identifies uncovered behavior, adds meaningful tests, and stops when the full suite passes at 100% coverage.",
@@ -230,6 +239,8 @@ export const loops = [
     number: "006",
     slug: "seo-geo-visibility-loop",
     title: "The SEO/GEO visibility loop",
+    summary:
+      "Fixes the highest-impact gaps in search and AI answer visibility.",
     seoTitle: "SEO and GEO Visibility Audit Loop | Loop Library",
     description:
       "A repeatable search visibility workflow that fixes the highest-impact crawl, indexation, page-intent, citation, and answer-readiness gaps first.",
@@ -268,6 +279,7 @@ export const loops = [
     number: "007",
     slug: "exhaustive-logging-coverage-loop",
     title: "The logging coverage loop",
+    summary: "Adds useful, tested logs to every important system path.",
     seoTitle: "Logging Coverage Loop for Coding Agents | Loop Library",
     description:
       "A goal-based observability workflow that audits important paths, adds useful structured logs, and verifies success and failure events with tests.",
@@ -305,6 +317,8 @@ export const loops = [
     number: "008",
     slug: "nightly-changelog-sweep",
     title: "The nightly changelog loop",
+    summary:
+      "Keeps the changelog current with meaningful changes from the previous day.",
     seoTitle: "Nightly Changelog Loop for Coding Agents | Loop Library",
     description:
       "A scheduled coding-agent workflow that reviews the previous day's changes and keeps user-facing release history complete and current.",
@@ -342,6 +356,8 @@ export const loops = [
     number: "009",
     slug: "quality-streak-loop",
     title: "The quality streak loop",
+    summary:
+      "Fixes product failures until a defined streak of realistic tests passes.",
     seoTitle: "Quality Streak Evaluation Loop for AI Products | Loop Library",
     description:
       "A realistic product-testing workflow that turns every failure into documented regression coverage and restarts the success streak after each fix.",
@@ -379,6 +395,8 @@ export const loops = [
     number: "010",
     slug: "full-product-evaluation-loop",
     title: "The full product evaluation loop",
+    summary:
+      "Tests every major product capability and fixes outcomes below the quality bar.",
     seoTitle: "Full Product Evaluation Loop for AI Systems | Loop Library",
     description:
       "A comprehensive product-quality workflow that evaluates realistic scenarios across every major capability, fixes weak outcomes, and reruns them to the defined bar.",
@@ -416,6 +434,8 @@ export const loops = [
     number: "011",
     slug: "test-suite-speed-loop",
     title: "The test-suite speed loop",
+    summary:
+      "Speeds up the test suite without weakening coverage, assertions, or isolation.",
     seoTitle: "Test-Suite Speed Optimization Loop | Loop Library",
     description:
       "A performance workflow for reducing test runtime under repeatable conditions without weakening coverage, assertions, isolation, or behavior.",
@@ -453,6 +473,8 @@ export const loops = [
     number: "012",
     slug: "repository-cleanup-loop",
     title: "The repository cleanup loop",
+    summary:
+      "Recovers valuable repository work and safely removes proven stale state.",
     seoTitle: "Repository Cleanup Loop for Coding Agents | Loop Library",
     description:
       "A repository-hygiene workflow that audits branches, pull requests, commits, and worktrees, recovers valuable changes, and removes proven stale state.",
@@ -490,6 +512,8 @@ export const loops = [
     number: "013",
     slug: "stale-safe-batch-release-loop",
     title: "The stale-safe batch release loop",
+    summary:
+      "Batches valid changes and releases complete artifacts from the latest integrated main.",
     seoTitle: "Stale-Safe Batch Release Loop | Loop Library",
     description:
       "A release-coordination workflow that excludes stale or unfinished work, combines valid changes, and ships complete artifacts from the latest integrated main.",
@@ -527,6 +551,8 @@ export const loops = [
     number: "014",
     slug: "production-data-cleanup-loop",
     title: "The production data cleanup loop",
+    summary:
+      "Removes disallowed production data and prevents the same classification errors from returning.",
     seoTitle: "Production Data Cleanup Loop for AI Systems | Loop Library",
     description:
       "A production-data quality workflow that removes disallowed records, improves classification logic, and verifies the remaining dataset against an explicit definition.",
@@ -564,6 +590,8 @@ export const loops = [
     number: "015",
     slug: "post-release-baseline-loop",
     title: "The post-release baseline loop",
+    summary:
+      "Benchmarks each completed release and records a reproducible baseline.",
     seoTitle: "Post-Release Benchmark Baseline Loop | Loop Library",
     description:
       "A triggered release workflow that runs standard benchmarks against the completed release and records a reproducible baseline for future comparisons.",
@@ -601,6 +629,8 @@ export const loops = [
     number: "016",
     slug: "ticket-to-pr-ready-loop",
     title: "The ticket-to-PR-ready loop",
+    summary:
+      "Turns a ticket or complaint into a verified, reviewer-ready pull request.",
     seoTitle: "Ticket-to-PR-Ready Loop for Coding Agents | Loop Library",
     description:
       "A bounded engineering workflow that turns a ticket, failing behavior, or customer complaint into a proven root cause, minimal patch, and reviewer-ready handoff.",
@@ -640,6 +670,8 @@ export const loops = [
     number: "017",
     slug: "customer-ai-deployment-loop",
     title: "The customer AI deployment loop",
+    summary:
+      "Moves one customer AI priority through validation, controlled rollout, and monitoring.",
     seoTitle: "Customer AI Deployment Loop | Loop Library",
     description:
       "A supervised delivery workflow that advances one customer priority into a validated, gradually released AI system with monitoring, approvals, and outcome evidence.",
@@ -679,6 +711,8 @@ export const loops = [
     number: "018",
     slug: "product-update-podcast-loop",
     title: "The product update podcast loop",
+    summary:
+      "Turns meaningful product updates into a short, source-grounded podcast episode.",
     seoTitle: "Product Update Podcast Automation Loop | Loop Library",
     description:
       "A scheduled editorial workflow that turns meaningful public product changes into a short, source-grounded podcast episode.",
@@ -717,6 +751,8 @@ export const loops = [
     number: "019",
     slug: "clodex-adversarial-review-loop",
     title: "The Clodex adversarial-review loop",
+    summary:
+      "Uses Codex to review Claude's pull request until blocking findings are resolved.",
     seoTitle: "Clodex Adversarial Code Review Loop | Loop Library",
     description:
       "A Claude-and-Codex workflow that opens a pull request, runs an independent Codex review, fixes blocking findings, and repeats.",
@@ -755,6 +791,8 @@ export const loops = [
     number: "020",
     slug: "loop-harness-verification-loop",
     title: "The Loop Harness verification loop",
+    summary:
+      "Ships scheduled agent work only after an independent verification pass.",
     seoTitle: "Loop Harness Second-Agent Verification Workflow | Loop Library",
     description:
       "A scheduled Loop Harness workflow that runs Claude in an isolated worktree and ships staged output only after a second Claude session verifies it.",
@@ -793,6 +831,8 @@ export const loops = [
     number: "021",
     slug: "boeing-747-benchmark",
     title: "The Boeing 747 benchmark",
+    summary:
+      "Builds and improves a Three.js Boeing 747 across nine repeatable views.",
     seoTitle: "Boeing 747 Three.js Vision Benchmark | Loop Library",
     description:
       "A vision benchmark in which an agent builds a Boeing 747 from Three.js primitives, renders nine repeatable angles, and fixes what each view reveals.",
@@ -831,6 +871,8 @@ export const loops = [
     number: "022",
     slug: "war-loops-frontend-designer",
     title: "War Loops: frontend reconstruction",
+    summary:
+      "Reconstructs a real interface and repairs its weakest visual and motion mismatches.",
     seoTitle: "War Loops Frontend Reconstruction Workflow | Loop Library",
     description:
       "A War Loops workflow that captures a real page, builds a static Pencil mirror and moving Forge version, then repairs the weakest fidelity signals.",
@@ -869,6 +911,8 @@ export const loops = [
     number: "023",
     slug: "self-improving-champion-loop",
     title: "The self-improving champion loop",
+    summary:
+      "Promotes prompt or policy changes only when they win on fresh holdout cases.",
     seoTitle: "Self-Improving Champion Evaluation Loop | Loop Library",
     description:
       "A prompt-optimization workflow that tests challengers on a working set, promotes only fresh holdout wins, and keeps the current champion on uncertainty.",
@@ -906,6 +950,8 @@ export const loops = [
     number: "024",
     slug: "devils-advocate-design-loop",
     title: "The devil's-advocate loop",
+    summary:
+      "Challenges a design until every high-impact objection is resolved or explicitly accepted.",
     seoTitle: "Devil's-Advocate Design Review Loop | Loop Library",
     description:
       "A critic-and-builder workflow that attacks a design, tracks every objection, and requires evidence before an objection can be closed.",
@@ -943,6 +989,8 @@ export const loops = [
     number: "025",
     slug: "fresh-clone-loop",
     title: "The fresh-clone loop",
+    summary:
+      "Repeats clean onboarding from the README until no hidden setup assumptions remain.",
     seoTitle: "Fresh Clone README Verification Loop | Loop Library",
     description:
       "A disposable-environment workflow that follows the README from scratch, fixes every hidden setup assumption, and restarts until onboarding works cleanly.",
@@ -980,6 +1028,8 @@ export const loops = [
     number: "026",
     slug: "infinite-clickbait-loop",
     title: "The Infinite Clickbait thumbnail loop",
+    summary:
+      "Iterates thumbnail concepts until one clears the quality bar without misleading viewers.",
     seoTitle: "Infinite Clickbait Thumbnail Iteration Loop | Loop Library",
     description:
       "A thumbnail workflow that creates ten concepts, scores the top three against a relevant YouTube channel, and improves the winner without misleading viewers.",
@@ -1017,6 +1067,8 @@ export const loops = [
     number: "027",
     slug: "autonomy-loop",
     title: "The autonomy-loop builder-reviewer loop",
+    summary:
+      "Passes code between builder and reviewer until tests prove each accepted fix.",
     seoTitle: "autonomy-loop Builder-Reviewer Workflow | Loop Library",
     description:
       "An autonomy-loop workflow in which a builder and adversarial reviewer pass a git baton between worktrees and prove each new test can catch its fix.",
@@ -1055,6 +1107,8 @@ export const loops = [
     number: "028",
     slug: "codex-completion-contract-loop",
     title: "The Codex completion-contract loop",
+    summary:
+      "Defines completion up front and requires evidence for every reported result.",
     seoTitle: "Codex Completion Contract and Evidence Loop | Loop Library",
     description:
       "A goal-planner-codex workflow that defines completion up front, tracks proof for every requirement, and prevents partial Codex work from being reported as done.",
@@ -1094,6 +1148,8 @@ export const loops = [
     number: "029",
     slug: "revolve-self-improvement-loop",
     title: "The Revolve versioned-experiment loop",
+    summary:
+      "Improves prompts, code, or configurations through comparable, checkpointed experiments.",
     seoTitle: "Revolve Versioned Experiment Loop | Loop Library",
     description:
       "A Revolve workflow that improves prompts, code, or configurations through checkpointed experiments whose scores remain comparable across sessions.",

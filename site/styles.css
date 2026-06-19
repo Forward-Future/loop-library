@@ -687,18 +687,10 @@ code {
 }
 
 .loop-table th:nth-child(2) {
-  width: 45%;
-}
-
-.loop-table th:nth-child(3) {
-  width: 31%;
+  width: 56%;
 }
 
 .loop-table th:nth-child(4) {
-  width: 140px;
-}
-
-.loop-table th:nth-child(5) {
   width: 72px;
 }
 
@@ -725,15 +717,34 @@ code {
   letter-spacing: -0.025em;
 }
 
-.loop-category {
-  display: block;
+.loop-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
   margin-bottom: 6px;
+}
+
+.loop-category,
+.loop-attribution {
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.6rem;
+}
+
+.loop-category {
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+.loop-attribution {
+  letter-spacing: 0.02em;
+}
+
+.loop-attribution::before {
+  margin-right: 8px;
+  content: "·";
 }
 
 .loop-title-link {
@@ -749,8 +760,7 @@ code {
 }
 
 .cell-loop p,
-.cell-check,
-.cell-attribution {
+.cell-check {
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -758,6 +768,18 @@ code {
 .cell-loop p {
   max-width: 660px;
   margin-bottom: 0;
+}
+
+.cell-loop .loop-summary {
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.cell-loop [data-prompt] {
+  font-size: 0.86rem;
 }
 
 .cell-check strong,
@@ -769,11 +791,6 @@ code {
   margin-bottom: 6px;
   color: var(--ink);
   font-size: 0.88rem;
-}
-
-.cell-attribution {
-  color: var(--ink);
-  font-weight: 700;
 }
 
 .cell-label {
@@ -1543,14 +1560,6 @@ code {
     max-width: 720px;
   }
 
-  .loop-table th:nth-child(2) {
-    width: 42%;
-  }
-
-  .loop-table th:nth-child(3) {
-    width: 34%;
-  }
-
 }
 
 @media (max-width: 760px) {
@@ -1596,8 +1605,7 @@ code {
     grid-template-areas:
       "number . action"
       "loop loop loop"
-      "check check check"
-      "attribution attribution attribution";
+      "check check check";
     padding: 18px 0;
     border-bottom: 1px solid var(--ink);
   }
@@ -1622,12 +1630,6 @@ code {
     margin-top: 8px;
     padding-top: 14px !important;
     border-top: 1px solid var(--line) !important;
-  }
-
-  .cell-attribution {
-    grid-area: attribution;
-    padding-top: 14px !important;
-    font-size: 0.8rem;
   }
 
   .cell-action {
