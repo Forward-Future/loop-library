@@ -68,6 +68,75 @@ const paginationStatus = document.querySelector("#pagination-status");
 const toast = document.querySelector("#toast");
 const PAGE_SIZE = 25;
 
+const loopTableBody = document.querySelector(".loop-table tbody");
+loopRows.sort(
+  (a, b) =>
+    Number(b.dataset.featured === "true") -
+    Number(a.dataset.featured === "true"),
+);
+
+if (loopTableBody) {
+  loopRows.forEach((row) => loopTableBody.append(row));
+}
+
+const promptPreviews = loopRows
+  .map((row, index) => {
+    const prompt = row.querySelector("[data-prompt]");
+
+    if (!prompt) {
+      return null;
+    }
+
+    const loopSlug =
+      row
+        .querySelector(".loop-title-link")
+        ?.getAttribute("href")
+        ?.split("/")
+        .filter(Boolean)
+        .at(-1) || `item-${index + 1}`;
+    const button = document.createElement("button");
+    const preview = { button, prompt, row };
+
+    prompt.id = `loop-prompt-${loopSlug}`;
+    prompt.classList.add("is-collapsible");
+    button.className = "loop-prompt-toggle";
+    button.type = "button";
+    button.hidden = true;
+    button.textContent = "Show more";
+    button.setAttribute("aria-controls", prompt.id);
+    button.setAttribute("aria-expanded", "false");
+    prompt.insertAdjacentElement("afterend", button);
+
+    button.addEventListener("click", () => {
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      const nextExpanded = !isExpanded;
+
+      button.setAttribute("aria-expanded", String(nextExpanded));
+      button.textContent = nextExpanded ? "Show less" : "Show more";
+      prompt.classList.toggle("is-expanded", nextExpanded);
+    });
+
+    return preview;
+  })
+  .filter(Boolean);
+
+function syncPromptToggle({ button, prompt, row }) {
+  if (row.hidden) {
+    return;
+  }
+
+  if (button.getAttribute("aria-expanded") === "true") {
+    button.hidden = false;
+    return;
+  }
+
+  button.hidden = prompt.scrollHeight <= prompt.clientHeight + 1;
+}
+
+function syncVisiblePromptToggles() {
+  promptPreviews.forEach(syncPromptToggle);
+}
+
 let activeCategory = "all";
 let currentPage = 1;
 let toastTimer;
@@ -124,6 +193,8 @@ function updateLibrary() {
     paginationNext.disabled = currentPage === totalPages;
     paginationStatus.textContent = `Page ${currentPage} of ${totalPages}`;
   }
+
+  window.requestAnimationFrame(syncVisiblePromptToggles);
 }
 
 function focusFirstVisibleLoop() {
@@ -188,6 +259,12 @@ if (paginationNext) {
 
 updateLibrary();
 
+let promptResizeFrame;
+window.addEventListener("resize", () => {
+  window.cancelAnimationFrame(promptResizeFrame);
+  promptResizeFrame = window.requestAnimationFrame(syncVisiblePromptToggles);
+});
+
 function showToast(message) {
   if (!toast) {
     return;
@@ -227,12 +304,15 @@ async function copyText(text) {
 }
 
 document.querySelectorAll(".copy-button").forEach((button) => {
+  const label = button.querySelector("span");
+  const defaultLabel = label?.textContent;
+  let copyLabelResetTimer;
+
   button.addEventListener("click", async () => {
     const copyRoot = button.closest("[data-copy-root]");
     const prompt = copyRoot?.querySelector("[data-prompt]")?.textContent.trim();
-    const label = button.querySelector("span");
 
-    if (!prompt || !label) {
+    if (!prompt || !label || !defaultLabel) {
       return;
     }
 
@@ -240,8 +320,9 @@ document.querySelectorAll(".copy-button").forEach((button) => {
       await copyText(prompt.replace(/\s+/g, " "));
       label.textContent = "Copied";
       showToast("Loop copied to clipboard.");
-      window.setTimeout(() => {
-        label.textContent = "Copy";
+      window.clearTimeout(copyLabelResetTimer);
+      copyLabelResetTimer = window.setTimeout(() => {
+        label.textContent = defaultLabel;
       }, 1800);
     } catch {
       showToast("Copy failed. Select the prompt text instead.");
