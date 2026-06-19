@@ -117,13 +117,16 @@ npm ci --prefix worker
 node scripts/build-skill-catalog.mjs
 node scripts/build-loop-pages.mjs
 node scripts/build-social-images.mjs
+node --check scripts/audit-seo-geo.mjs
 node --check scripts/build-social-images.mjs
 node --check site/script.js
 node --check scripts/build-loop-pages.mjs
 node --check scripts/loop-data.mjs
+node scripts/audit-seo-geo.mjs
 node scripts/check.mjs
 npm --prefix worker run check
 python3 -m json.tool site/.herenow/data.json >/dev/null
+python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
 git diff --check
 ```
 
