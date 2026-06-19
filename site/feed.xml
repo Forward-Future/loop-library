@@ -329,4 +329,15 @@
     </author>
     <summary>A Revolve workflow that improves prompts, code, or configurations through checkpointed experiments whose scores remain comparable across sessions.</summary>
   </entry>
+  <entry>
+    <title>The five-minute repository maintainer loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/five-minute-repository-maintainer-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/five-minute-repository-maintainer-loop/" />
+    <published>2026-06-19T00:00:00-07:00</published>
+    <updated>2026-06-19T00:00:00-07:00</updated>
+    <author>
+      <name>Peter Steinberger</name>
+    </author>
+    <summary>A five-minute Codex workflow that triages repositories, directs bounded maintenance to dedicated threads, and requires proof and permission before work lands.</summary>
+  </entry>
 </feed>

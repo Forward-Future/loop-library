@@ -7,7 +7,7 @@
   "catalogUrl": "https://signals.forwardfuture.ai/loop-library/catalog.json",
   "markdownUrl": "https://signals.forwardfuture.ai/loop-library/catalog.md",
   "updated": "2026-06-19",
-  "loopCount": 29,
+  "loopCount": 30,
   "categories": [
     {
       "slug": "engineering",
@@ -1403,6 +1403,54 @@
         }
       ],
       "sourceUrl": "https://github.com/agent0ai/revolve"
+    },
+    {
+      "number": "030",
+      "slug": "five-minute-repository-maintainer-loop",
+      "title": "The five-minute repository maintainer loop",
+      "url": "https://signals.forwardfuture.ai/loop-library/loops/five-minute-repository-maintainer-loop/",
+      "category": {
+        "slug": "engineering",
+        "label": "Engineering"
+      },
+      "author": "Peter Steinberger",
+      "published": "2026-06-19",
+      "modified": "2026-06-19",
+      "description": "A five-minute Codex workflow that triages repositories, directs bounded maintenance to dedicated threads, and requires proof and permission before work lands.",
+      "useWhen": "Use this when Codex may coordinate maintenance across several active repositories and you want parallel work to stay steerable without duplicating or micromanaging threads.",
+      "prompt": "While repository maintenance is active, wake every five minutes. Triage [repositories] and read each repository thread's latest state. Reuse one thread per repository; assign its highest-value bounded task only within granted permissions, and do not interrupt coherent active work. Require tests, live proof, autoreview, and green CI before work can land. Escalate product, access, security, or irreversible decisions. Record meaningful changes and stop when every item is landed, decision-ready, blocked, or has no work.",
+      "verification": {
+        "title": "Every repository item reaches a proven handoff or terminal state.",
+        "detail": "Authorized autonomous work lands with evidence; other items are decision-ready, blocked with one exact ask, or recorded as a clean no-op."
+      },
+      "steps": [
+        "Define the repository scope, exclusions, and separate permissions for triage, delegation, implementation, push, CI repair, merge, and release.",
+        "Every five minutes, refresh each repository queue and read the latest state of its existing thread before choosing the highest-value eligible item.",
+        "Reuse one thread per repository, assign one bounded task, and let coherent active work continue unless it is blocked, stalled, unsafe, or off course.",
+        "Require tests, live proof, autoreview, and green CI; record the evidence, then route the next item or present the owner with one exact decision."
+      ],
+      "why": "A five-minute heartbeat keeps the control plane current without turning polling into micromanagement. One thread per repository preserves context, while proof and authorization gates make autonomous landing auditable.",
+      "implementationNote": "The source pairs Maintainer Orchestrator with github-project-triage, autoreview, and computer use for live proof. A heartbeat automates observation, not authority: triage, delegation, implementation, push, merge, and release remain separate permissions. Read current thread state before steering, and never duplicate or interrupt active work.",
+      "keywords": [
+        "Codex repository maintenance",
+        "multi-repository orchestration",
+        "five minute agent loop",
+        "GitHub project triage",
+        "thread delegation"
+      ],
+      "related": [
+        {
+          "slug": "ticket-to-pr-ready-loop",
+          "title": "The ticket-to-PR-ready loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/"
+        },
+        {
+          "slug": "stale-safe-batch-release-loop",
+          "title": "The stale-safe batch release loop",
+          "url": "https://signals.forwardfuture.ai/loop-library/loops/stale-safe-batch-release-loop/"
+        }
+      ],
+      "sourceUrl": "https://github.com/steipete/agent-scripts/blob/main/skills/maintainer-orchestrator/SKILL.md"
     }
   ]
 }
