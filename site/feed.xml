@@ -5,7 +5,7 @@
   <id>https://signals.forwardfuture.ai/loop-library/</id>
   <link href="https://signals.forwardfuture.ai/loop-library/" />
   <link href="https://signals.forwardfuture.ai/loop-library/feed.xml" rel="self" type="application/atom+xml" />
-  <updated>2026-06-18T00:00:00-07:00</updated>
+  <updated>2026-06-19T00:00:00-07:00</updated>
   <author>
     <name>Forward Future</name>
     <uri>https://forwardfuture.ai/</uri>
@@ -295,5 +295,38 @@
       <name>@Alex_FF</name>
     </author>
     <summary>A thumbnail ideation workflow that generates ten concepts, scores the strongest candidates, and iterates until the winning image is click-baity enough.</summary>
+  </entry>
+  <entry>
+    <title>The autonomy-loop builder-reviewer loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/autonomy-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/autonomy-loop/" />
+    <published>2026-06-19T00:00:00-07:00</published>
+    <updated>2026-06-19T00:00:00-07:00</updated>
+    <author>
+      <name>@inferencegod</name>
+    </author>
+    <summary>A two-worktree coding loop that pairs a builder with an independent adversarial reviewer and proves each new test can catch the change it protects.</summary>
+  </entry>
+  <entry>
+    <title>The Codex completion-contract loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/codex-completion-contract-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/codex-completion-contract-loop/" />
+    <published>2026-06-19T00:00:00-07:00</published>
+    <updated>2026-06-19T00:00:00-07:00</updated>
+    <author>
+      <name>3goblack (@Dis_Trackted)</name>
+    </author>
+    <summary>A Codex Goal workflow that defines completion up front, tracks proof for every requirement, and prevents partial or weak evidence from being reported as done.</summary>
+  </entry>
+  <entry>
+    <title>The Revolve self-improvement loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/revolve-self-improvement-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/revolve-self-improvement-loop/" />
+    <published>2026-06-19T00:00:00-07:00</published>
+    <updated>2026-06-19T00:00:00-07:00</updated>
+    <author>
+      <name>Agent Zero</name>
+    </author>
+    <summary>A revisioned research workflow that checkpoints an incumbent, evaluates comparable candidates, and promotes improvements only with reproducible evidence and rollback.</summary>
   </entry>
 </feed>
