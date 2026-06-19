@@ -427,7 +427,10 @@ if (form && submitButton && submitButtonLabel) {
 
     if (!form.checkValidity()) {
       form.reportValidity();
-      setFormStatus("Complete the required fields before submitting.", "error");
+      setFormStatus(
+        "Check the required fields and any optional values you entered.",
+        "error",
+      );
       return;
     }
 
@@ -455,10 +458,15 @@ if (form && submitButton && submitButtonLabel) {
     };
 
     const name = optionalValue(formData, "name");
+    const xHandle = optionalValue(formData, "x_handle");
     const sourceUrl = optionalValue(formData, "source_url");
 
     if (name) {
       payload.name = name;
+    }
+
+    if (xHandle) {
+      payload.x_handle = xHandle;
     }
 
     if (sourceUrl) {

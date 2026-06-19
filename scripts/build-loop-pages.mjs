@@ -223,7 +223,7 @@ function renderLoopPage(loop) {
     <script type="application/ld+json">
 ${structuredData(loop)}
     </script>
-    <script src="../../script.js?v=20260617-form-protection" defer></script>
+    <script src="../../script.js?v=20260618-x-handle" defer></script>
     <title>${escapeHtml(loop.seoTitle)}</title>
   </head>
   <body>
