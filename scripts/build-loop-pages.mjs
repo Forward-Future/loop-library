@@ -218,6 +218,8 @@ function renderLoopPage(loop) {
     <link rel="canonical" href="${escapeHtml(url)}" />
     <link rel="sitemap" type="application/xml" href="${escapeHtml(site.baseUrl)}sitemap.xml" />
     <link rel="alternate" type="application/atom+xml" title="${escapeHtml(site.name)} updates" href="${escapeHtml(site.baseUrl)}feed.xml" />
+    <link rel="alternate" type="application/json" title="${escapeHtml(site.name)} catalog" href="${escapeHtml(site.baseUrl)}catalog.json" />
+    <link rel="alternate" type="text/markdown" title="${escapeHtml(site.name)} catalog in Markdown" href="${escapeHtml(site.baseUrl)}catalog.md" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
     <link rel="stylesheet" href="../../styles.css?v=20260617-simple-detail" />
     <script type="application/ld+json">

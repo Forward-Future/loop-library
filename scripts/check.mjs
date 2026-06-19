@@ -10,7 +10,11 @@ import {
   loops,
   site as siteMeta,
 } from "./loop-data.mjs";
-import { renderSkillCatalog } from "./build-skill-catalog.mjs";
+import {
+  catalogSchemaVersion,
+  renderCatalogJson,
+  renderCatalogMarkdown,
+} from "./build-skill-catalog.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "site");
@@ -31,6 +35,8 @@ const [
   loopPages,
   skillSource,
   skillCatalog,
+  publicCatalogMarkdown,
+  publicCatalogJsonSource,
   skillInterface,
 ] =
   await Promise.all([
@@ -54,10 +60,13 @@ const [
     ),
     readFile(path.join(skillRoot, "SKILL.md"), "utf8"),
     readFile(path.join(skillRoot, "references", "catalog.md"), "utf8"),
+    readFile(path.join(siteRoot, "catalog.md"), "utf8"),
+    readFile(path.join(siteRoot, "catalog.json"), "utf8"),
     readFile(path.join(skillRoot, "agents", "openai.yaml"), "utf8"),
   ]);
 
 const dataManifest = JSON.parse(dataSource);
+const publicCatalog = JSON.parse(publicCatalogJsonSource);
 const wranglerConfig = JSON.parse(wranglerSource);
 const suggestions = dataManifest.collections?.suggestions;
 const weeklySignups = dataManifest.collections?.weekly_signups;
@@ -157,10 +166,26 @@ assert(loops.every((loop) => !Object.hasOwn(loop, "type")));
 assert(loops.every((loop) => !Object.hasOwn(loop, "typeSlug")));
 assert(requestedConceptSlugs.every((slug) => slugs.has(slug)));
 assert.deepEqual(loopDirectories.sort(), [...slugs].sort());
-assert.equal(skillCatalog, renderSkillCatalog());
+assert.equal(skillCatalog, renderCatalogMarkdown());
+assert.equal(publicCatalogMarkdown, renderCatalogMarkdown());
+assert.equal(publicCatalogMarkdown, skillCatalog);
+assert.equal(publicCatalogJsonSource, renderCatalogJson());
+assert.equal(publicCatalog.schemaVersion, catalogSchemaVersion);
+assert.equal(publicCatalog.name, siteMeta.name);
+assert.equal(publicCatalog.publisher, siteMeta.publisher);
+assert.equal(publicCatalog.url, siteMeta.baseUrl);
+assert.equal(publicCatalog.catalogUrl, `${siteMeta.baseUrl}catalog.json`);
+assert.equal(publicCatalog.markdownUrl, `${siteMeta.baseUrl}catalog.md`);
+assert.equal(publicCatalog.updated, siteMeta.updated);
+assert.equal(publicCatalog.loopCount, loops.length);
+assert.equal(publicCatalog.loops.length, loops.length);
+assert.deepEqual(publicCatalog.categories, categories);
 assert(skillSource.startsWith("---\nname: loop-library\ndescription:"));
 assert(skillSource.includes("reuse a published Loop Library loop"));
 assert(!skillSource.includes("published Forward Future loop"));
+assert(skillSource.includes(`${siteMeta.baseUrl}catalog.md`));
+assert(skillSource.includes(`${siteMeta.baseUrl}catalog.json`));
+assert(skillSource.includes("dated offline fallback"));
 assert(skillSource.includes("## Run the design interview"));
 assert(skillSource.includes("## Deliver the loop"));
 assert(skillInterface.includes('display_name: "Loop Library"'));
@@ -179,6 +204,7 @@ for (const [index, loop] of loops.entries()) {
   const homepageRow = html.slice(rowStart, rowEnd);
   const normalizedHomepageRow = homepageRow.replace(/\s+/g, " ");
   const category = getLoopCategory(loop);
+  const catalogLoop = publicCatalog.loops[index];
   const pageStructuredDataMatch = page.match(
     /<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/,
   );
@@ -189,6 +215,28 @@ for (const [index, loop] of loops.entries()) {
   assert.equal(listItem.position, index + 1);
   assert.equal(listItem.name, loop.title);
   assert.equal(listItem.url, url);
+  assert.equal(catalogLoop.number, loop.number);
+  assert.equal(catalogLoop.slug, loop.slug);
+  assert.equal(catalogLoop.title, loop.title);
+  assert.equal(catalogLoop.url, url);
+  assert.deepEqual(catalogLoop.category, category);
+  assert.equal(catalogLoop.author, loop.author);
+  assert.equal(catalogLoop.published, loop.published);
+  assert.equal(catalogLoop.modified, loop.modified);
+  assert.equal(catalogLoop.description, loop.description);
+  assert.equal(catalogLoop.useWhen, loop.useWhen);
+  assert.equal(catalogLoop.prompt, loop.prompt);
+  assert.equal(catalogLoop.verification.title, loop.verifyTitle);
+  assert.equal(catalogLoop.verification.detail, loop.verifyDetail);
+  assert.deepEqual(catalogLoop.steps, loop.steps);
+  assert.equal(catalogLoop.why, loop.why);
+  assert.equal(catalogLoop.implementationNote, loop.note);
+  assert.deepEqual(catalogLoop.keywords, loop.keywords);
+  assert.deepEqual(
+    catalogLoop.related.map(({ slug }) => slug),
+    loop.related,
+  );
+  assert.equal(catalogLoop.sourceUrl, loop.sourceUrl);
   assert(loop.related.every((relatedSlug) => slugs.has(relatedSlug)));
   assert(html.includes(loop.title));
   assert(normalizedHomepageRow.includes(loop.prompt));
@@ -203,6 +251,16 @@ for (const [index, loop] of loops.entries()) {
   assert(html.includes(homepageHref));
   assert(page.includes(`<title>${escapeHtml(loop.seoTitle)}</title>`));
   assert(page.includes(`<link rel="canonical" href="${url}"`));
+  assert(
+    page.includes(
+      `type="application/json" title="${siteMeta.name} catalog" href="${siteMeta.baseUrl}catalog.json"`,
+    ),
+  );
+  assert(
+    page.includes(
+      `type="text/markdown" title="${siteMeta.name} catalog in Markdown" href="${siteMeta.baseUrl}catalog.md"`,
+    ),
+  );
   assert(page.includes(`<meta property="og:image" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:secure_url" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:type" content="${siteMeta.socialImageMimeType}"`));
@@ -369,12 +427,12 @@ assert(html.includes('id="agent-skill"'));
 assert(html.includes("Bring the Loop Library into your coding agent."));
 assert(
   html.includes(
-    "npx skills add mberman84/loop-library --skill loop-library",
+    "npx skills add Forward-Future/loop-library --skill loop-library",
   ),
 );
 assert(
   html.includes(
-    "https://github.com/mberman84/loop-library/tree/main/skills/loop-library",
+    "https://github.com/Forward-Future/loop-library/tree/main/skills/loop-library",
   ),
 );
 assert.equal((html.match(/data-here-now-credit/g) || []).length, 2);
@@ -385,6 +443,8 @@ assert.equal((html.match(/<strong>here\.now<\/strong>/g) || []).length, 2);
 assert.equal((html.match(/\.\/assets\/here-now-icon\.svg/g) || []).length, 2);
 assert(html.includes("Repeatable AI Agent Workflows"));
 assert(html.includes('rel="sitemap"'));
+assert(html.includes(`href="${siteMeta.baseUrl}catalog.json"`));
+assert(html.includes(`href="${siteMeta.baseUrl}catalog.md"`));
 assert(html.includes('type="application/ld+json"'));
 assert(html.includes('id="theme-toggle"'));
 assert(html.includes('document.documentElement.dataset.theme = theme'));
