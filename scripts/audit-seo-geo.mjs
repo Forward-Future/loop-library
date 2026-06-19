@@ -68,8 +68,15 @@ function normalize(value) {
 }
 
 const homepage = await readFile(path.join(siteRoot, "index.html"), "utf8");
+const learningPage = await readFile(
+  path.join(siteRoot, "learn", "index.html"),
+  "utf8",
+);
 const sitemap = await readFile(path.join(siteRoot, "sitemap.xml"), "utf8");
-const pages = new Map([["index.html", homepage]]);
+const pages = new Map([
+  ["index.html", homepage],
+  ["learn/index.html", learningPage],
+]);
 
 await Promise.all(
   loops.map(async (loop) => {
@@ -83,6 +90,7 @@ await Promise.all(
 
 const expectedUrls = [
   site.baseUrl,
+  `${site.baseUrl}learn/`,
   ...loops.map((loop) => `${site.baseUrl}loops/${loop.slug}/`),
 ];
 const siteUrl = new URL(site.baseUrl);
@@ -209,7 +217,7 @@ for (const [relativePath, html] of pages) {
     }
   }
 
-  if (!isHome) {
+  if (relativePath.startsWith("loops/")) {
     const loop = loops.find((candidate) => relativePath.includes(candidate.slug));
     const detailsIndex = html.indexOf('<details class="detail-more">');
     const ledeIndex = html.indexOf('class="detail-lede"');
