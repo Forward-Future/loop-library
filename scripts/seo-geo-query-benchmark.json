@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "recording": {
+    "locale": "en-US",
+    "location": "United States",
+    "searchEngines": ["Google Search", "DuckDuckGo", "Bing"],
+    "answerEngines": ["Google AI Overview", "ChatGPT Search", "Duck.ai"],
+    "notes": "Run the same queries without personalization where the engine supports it. Record blocked engines instead of changing the query."
+  },
+  "queries": [
+    {
+      "id": "generic-discovery",
+      "query": "AI agent loop library reusable prompts",
+      "expectedPath": "index.html",
+      "requiredPhrases": ["AI agent", "loop", "prompts"]
+    },
+    {
+      "id": "generic-definition",
+      "query": "what is an AI agent loop",
+      "expectedPath": "index.html",
+      "requiredPhrases": ["What is an AI agent loop?", "repeatable", "stop condition"]
+    },
+    {
+      "id": "detail-intent",
+      "query": "repository cleanup loop for coding agents",
+      "expectedPath": "loops/repository-cleanup-loop/index.html",
+      "requiredPhrases": ["repository cleanup loop", "coding agents"]
+    },
+    {
+      "id": "brand-entity",
+      "query": "Forward Future Loop Library",
+      "expectedPath": "index.html",
+      "requiredPhrases": ["Forward Future", "Loop Library"]
+    }
+  ]
+}

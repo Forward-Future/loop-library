@@ -117,6 +117,9 @@ const structuredData = JSON.parse(structuredDataMatch[1]);
 const collection = structuredData["@graph"].find(
   (item) => item["@type"] === "CollectionPage",
 );
+const agentLoopTerm = structuredData["@graph"].find(
+  (item) => item["@type"] === "DefinedTerm",
+);
 const slugs = new Set(loops.map((loop) => loop.slug));
 const titles = new Set(loops.map((loop) => loop.title));
 const prompts = new Set(loops.map((loop) => loop.prompt));
@@ -154,6 +157,19 @@ const requestedConceptSlugs = [
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
 assert.equal(collection.mainEntity.itemListElement.length, loops.length);
+assert.equal(
+  collection.about["@id"],
+  `${siteMeta.baseUrl}#ai-agent-loop`,
+);
+assert.equal(agentLoopTerm.name, "AI agent loop");
+assert.equal(
+  agentLoopTerm.url,
+  `${siteMeta.baseUrl}#what-is-an-ai-agent-loop`,
+);
+assert.deepEqual(agentLoopTerm.sameAs, [
+  "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+  "https://arxiv.org/abs/2210.03629",
+]);
 assert.equal(loops.length, 29);
 assert.equal(slugs.size, loops.length);
 assert.equal(titles.size, loops.length);
@@ -329,6 +345,8 @@ for (const [index, loop] of loops.entries()) {
   assert(!page.includes("<h2>Topics</h2>"));
   assert(page.includes("Related loops"));
   assert(!page.includes("<dt>Type</dt>"));
+  assert(page.includes('href="../../#what-is-an-ai-agent-loop">What is a loop?</a>'));
+  assert(!page.includes('href="../../#tips"'));
   assert(page.includes('data-copy-root'));
   assert.equal((page.match(/data-here-now-credit/g) || []).length, 2);
   assert.equal((page.match(/https:\/\/here\.now\/r\/signals/g) || []).length, 2);
@@ -446,13 +464,19 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260619-pagination"));
+assert(html.includes("./styles.css?v=20260619-answer-first"));
 assert(html.includes("./script.js?v=20260619-pagination"));
 assert(html.includes('id="library-pagination"'));
 assert(html.includes('aria-label="Loop pages"'));
 assert(html.includes('id="pagination-previous"'));
 assert(html.includes('id="pagination-status"'));
 assert(html.includes('id="pagination-next"'));
+assert(html.includes('id="what-is-an-ai-agent-loop"'));
+assert(html.includes("What is an AI agent loop?"));
+assert(html.includes("An AI agent loop is a repeatable workflow"));
+assert(html.includes("explicit success or stop condition"));
+assert(html.includes("Claude Agent SDK loop documentation"));
+assert(html.includes("the ReAct paper"));
 assert(html.includes('id="agent-skill"'));
 assert(html.includes("Use Loop Library in your coding agent."));
 assert(
@@ -523,6 +547,7 @@ assert(css.includes(".pagination-button:disabled"));
 assert(css.includes("scroll-margin-top: 80px"));
 assert(css.includes(".pagination-button,\n  .pagination-status"));
 assert(css.includes(".skill-promo"));
+assert(css.includes(".answer-capsule"));
 assert(css.includes(".skill-copy-button"));
 assert(css.includes("border-left: 5px solid var(--orange)"));
 assert(css.includes("background: var(--surface-muted)"));
