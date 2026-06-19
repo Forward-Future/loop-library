@@ -361,8 +361,20 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260618-categories"));
-assert(html.includes("./script.js?v=20260618-categories"));
+assert(html.includes("./styles.css?v=20260619-skill-promo"));
+assert(html.includes("./script.js?v=20260619-skill-promo"));
+assert(html.includes('id="agent-skill"'));
+assert(html.includes("Bring the Loop Library into your coding agent."));
+assert(
+  html.includes(
+    "npx skills add mberman84/loop-library --skill loop-library",
+  ),
+);
+assert(
+  html.includes(
+    "https://github.com/mberman84/loop-library/tree/main/skills/loop-library",
+  ),
+);
 assert.equal((html.match(/data-here-now-credit/g) || []).length, 2);
 assert.equal((html.match(/https:\/\/here\.now\/r\/signals/g) || []).length, 2);
 assert.equal((html.match(/aria-label="Hosted by here\.now"/g) || []).length, 2);
@@ -408,6 +420,8 @@ assert(css.includes(".related-loop-link"));
 assert(css.includes(".category-filters"));
 assert(css.includes(".category-filter.is-active"));
 assert(css.includes(".loop-category"));
+assert(css.includes(".skill-promo"));
+assert(css.includes(".skill-copy-button"));
 assert(!css.includes(".type-badge"));
 assert(!css.includes(".type-goal"));
 assert(!css.includes(".type-triggered"));
@@ -448,6 +462,8 @@ assert(script.includes('candidate.setAttribute("aria-pressed", String(isActive))
 assert(script.includes('themeToggle.addEventListener("click"'));
 assert(script.includes("window.localStorage.setItem(THEME_STORAGE_KEY, theme)"));
 assert(script.includes('button.closest("[data-copy-root]")'));
+assert(script.includes('document.querySelector("[data-copy-skill-command]")'));
+assert(script.includes("Install command copied to clipboard."));
 assert(!script.includes("innerHTML"));
 assert(
   workerSource.includes(

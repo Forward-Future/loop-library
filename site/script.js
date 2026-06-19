@@ -180,6 +180,33 @@ document.querySelectorAll(".copy-button").forEach((button) => {
   });
 });
 
+const skillCopyButton = document.querySelector("[data-copy-skill-command]");
+const skillInstallCommand = document.querySelector(
+  "[data-skill-install-command]",
+);
+
+if (skillCopyButton && skillInstallCommand) {
+  skillCopyButton.addEventListener("click", async () => {
+    const label = skillCopyButton.querySelector("span");
+    const command = skillInstallCommand.textContent.replace(/\s+/g, " ").trim();
+
+    if (!label || !command) {
+      return;
+    }
+
+    try {
+      await copyText(command);
+      label.textContent = "Copied";
+      showToast("Install command copied to clipboard.");
+      window.setTimeout(() => {
+        label.textContent = "Copy install command";
+      }, 1800);
+    } catch {
+      showToast("Copy failed. Select the install command instead.");
+    }
+  });
+}
+
 const form = document.querySelector("#loop-form");
 const formStatus = document.querySelector("#form-status");
 const submitButton = form?.querySelector(".submit-button");

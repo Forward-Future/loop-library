@@ -104,7 +104,7 @@
       href="https://signals.forwardfuture.ai/loop-library/feed.xml"
     />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260618-categories" />
+    <link rel="stylesheet" href="./styles.css?v=20260619-skill-promo" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -313,7 +313,7 @@
         ]
       }
     </script>
-    <script src="./script.js?v=20260618-categories" defer></script>
+    <script src="./script.js?v=20260619-skill-promo" defer></script>
     <title>Loop Library: Repeatable AI Agent Workflows | Forward Future</title>
   </head>
   <body>
@@ -334,6 +334,7 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#library">Loops</a>
+        <a href="#agent-skill">Install skill</a>
         <a href="#weekly">Weekly picks</a>
         <button
           class="theme-toggle"
@@ -385,6 +386,48 @@
             Each one includes clear checks and tells the agent when to stop.
           </p>
         </div>
+
+        <section
+          class="skill-promo"
+          id="agent-skill"
+          aria-labelledby="agent-skill-title"
+        >
+          <div class="skill-promo-copy">
+            <p class="skill-promo-kicker">Installable agent skill</p>
+            <h2 id="agent-skill-title">
+              Bring the Loop Library into your coding agent.
+            </h2>
+            <p>
+              Find the right published loop, or answer a few focused questions
+              to design one with clear checks and stopping conditions.
+            </p>
+          </div>
+
+          <div class="skill-promo-actions">
+            <p class="skill-install-label">Install globally</p>
+            <code class="skill-install-command" data-skill-install-command
+              >npx skills add mberman84/loop-library --skill loop-library
+              -g</code
+            >
+            <div class="skill-action-row">
+              <button
+                class="skill-copy-button"
+                type="button"
+                data-copy-skill-command
+              >
+                <span>Copy install command</span>
+              </button>
+              <a
+                class="skill-github-link"
+                href="https://github.com/mberman84/loop-library/tree/main/skills/loop-library"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </section>
 
         <div class="library-controls">
           <label class="search-control">
