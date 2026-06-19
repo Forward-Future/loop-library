@@ -966,6 +966,17 @@ code {
   color: var(--ink);
 }
 
+.detail-source-link {
+  color: var(--ink);
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+}
+
+.detail-source-link:hover,
+.detail-source-link:focus-visible {
+  color: var(--orange);
+}
+
 .detail-stack {
   display: grid;
   gap: 16px;

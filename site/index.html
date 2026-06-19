@@ -58,11 +58,11 @@
     />
     <meta
       property="og:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-2.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-3.png"
     />
     <meta
       property="og:image:secure_url"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-2.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-3.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta
@@ -82,7 +82,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-2.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-3.png"
     />
     <meta
       name="twitter:image:alt"
@@ -140,7 +140,7 @@
             "dateModified": "2026-06-18",
             "primaryImageOfPage": {
               "@type": "ImageObject",
-              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-2.png",
+              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-3.png",
               "width": 1200,
               "height": 630
             },
@@ -149,7 +149,7 @@
             },
             "mainEntity": {
               "@type": "ItemList",
-              "numberOfItems": 15,
+              "numberOfItems": 20,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -240,6 +240,36 @@
                   "position": 15,
                   "name": "The post-release baseline loop",
                   "url": "https://signals.forwardfuture.ai/loop-library/loops/post-release-baseline-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 16,
+                  "name": "The ticket-to-PR-ready loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 17,
+                  "name": "The customer AI deployment loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/customer-ai-deployment-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 18,
+                  "name": "The product update podcast loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/product-update-podcast-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 19,
+                  "name": "The Clodex adversarial-review loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 20,
+                  "name": "The Loop Harness verification loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/loop-harness-verification-loop/"
                 }
               ]
             }
@@ -338,7 +368,7 @@
         </div>
 
         <div class="results-line">
-          <p id="results-count" aria-live="polite">Showing 15 loops</p>
+          <p id="results-count" aria-live="polite">Showing 20 loops</p>
           <time datetime="2026-06-18">Updated June 18, 2026</time>
         </div>
 
@@ -879,6 +909,219 @@
                 <td class="cell-attribution">
                   <span class="cell-label">Attribution</span>
                   Matthew Berman
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-search="ticket bug report failing behavior customer complaint review ready patch reproduce root cause evidence hiten shah"
+              >
+                <td class="cell-number">016</td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/ticket-to-pr-ready-loop/">
+                      The ticket-to-PR-ready loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Take this ticket, bug report, failing behavior, or customer
+                    complaint and turn it into a review-ready patch. Define the
+                    failure clearly and reproduce it in the smallest possible
+                    environment. Isolate the root cause and confirm it with
+                    evidence, not inference. Implement the smallest credible
+                    fix, then verify the before-and-after behavior. If
+                    verification fails, return to the root cause and iterate. If
+                    the issue cannot be reproduced after two serious attempts,
+                    say so clearly. Do not silently expand scope; split broader
+                    refactors or separate problems into named follow-ups. Finish
+                    with the failure summary, reproduction steps, root cause, fix
+                    summary, files changed, verification proof, risks,
+                    follow-ups, suggested PR title, and PR description draft.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The failure is fixed, verified, and ready for review.</strong>
+                  <span>The same behavior reproduces before the fix, no longer reproduces afterward, and the handoff explains the evidence in under two minutes.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Hiten Shah
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-search="customer ai deployment priority production workflow dry run approval rollout monitor roi agentled"
+              >
+                <td class="cell-number">017</td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/customer-ai-deployment-loop/">
+                      The customer AI deployment loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Manage one customer AI deployment from priority to production
+                    outcome. Run this loop when a customer shares a new priority,
+                    requests an AI workflow, gives feedback, reports a failure,
+                    or reaches a scheduled AI operations review. Start from the
+                    customer's current business priority and choose one concrete
+                    workflow or improvement to advance. Define the business goal,
+                    owner, affected users, systems and APIs, input data, expected
+                    output, approval gates, risk level, success criteria, and ROI
+                    hypothesis. Build or update the deployment, run a dry run on
+                    realistic customer data, record failures and edge cases, fix
+                    the smallest underlying issue, and rerun until the dry run
+                    passes or a blocker is clear. Release gradually and monitor
+                    production. Before stopping, produce a customer-facing update
+                    and store the reusable lessons for the next run.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>One customer priority reaches a proven terminal state.</strong>
+                  <span>The workflow reaches its agreed rollout stage, a production issue is fixed, a blocker is escalated with an owner, or a healthy review records the next check.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  AgentLed.ai Agent
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-search="product update podcast nightly public features repository jellypod mcp episode pierson marks"
+              >
+                <td class="cell-number">018</td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/product-update-podcast-loop/">
+                      The product update podcast loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Each night, review any new publicly released features or
+                    changes from the repository and identify the ones most
+                    meaningful to users. Verify each selected change against the
+                    released product, documentation, or release notes. Use the
+                    Jellypod MCP to generate a short three-to-five-minute podcast
+                    episode explaining how users can take advantage of the new
+                    features, why they are important, and how to try them. Review
+                    the script and audio for accuracy, clarity, and pronunciation;
+                    fix or regenerate anything that does not match the source
+                    material. If there were no meaningful public changes, record
+                    that result instead of manufacturing an episode.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The episode accurately covers every meaningful public update.</strong>
+                  <span>Finish with a review-ready three-to-five-minute episode, or a confirmed no-episode result when nothing meaningful shipped.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Pierson Marks
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-search="clodex claude codex adversarial review fix findings threshold max iter pull request lukas kucinski"
+              >
+                <td class="cell-number">019</td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/clodex-adversarial-review-loop/">
+                      The Clodex adversarial-review loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Run /clodex [task] think hard --max-iter 5 --threshold
+                    medium. Plan the task, implement it, ship a pull request, run
+                    the Codex adversarial-review code path, fix every finding
+                    above the configured threshold, and repeat. Persist the plan,
+                    branch, pull request, findings, verdict, and iteration state
+                    so the run can resume safely. Remember that threshold names
+                    the highest acceptable severity. Stop when Codex approves,
+                    only sub-threshold findings remain, or max-iter is reached.
+                    Never report a stalled, errored, or exhausted run as approved.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The pull request reaches the configured review bar.</strong>
+                  <span>Codex approves, only explicitly acceptable findings remain, or the final report truthfully discloses that the iteration cap or an error stopped the loop.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Lukas Kucinski
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-search="loop harness scheduled coding agent claude skill isolated git worktree second agent verify ship istasha"
+              >
+                <td class="cell-number">020</td>
+                <td class="cell-loop">
+                  <h3>
+                    <a class="loop-title-link" href="./loops/loop-harness-verification-loop/">
+                      The Loop Harness verification loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    On the configured cadence, wake the due loop. Give a Claude
+                    session the task-specific skill and let it work in an isolated
+                    git worktree. Stage the resulting commits or output files
+                    without shipping them. Have a second Claude session verify the
+                    staged work against explicit acceptance criteria. If
+                    verification fails, ship nothing; preserve the findings and
+                    retry on the next cycle. If verification passes, ship the
+                    configured output—a pull request, review comments, or Slack
+                    message—and update the loop state. Finish with the source
+                    revision, staged artifacts, verifier result, delivery status,
+                    and next scheduled run.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>Only independently verified output ships.</strong>
+                  <span>A second-agent pass releases the configured output; a failed verification preserves evidence and produces no external change.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Istasha
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">

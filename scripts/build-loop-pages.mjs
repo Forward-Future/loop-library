@@ -120,6 +120,7 @@ function structuredData(loop) {
           dateModified: loop.modified,
           articleSection: loop.categoryLabel,
           keywords: loop.keywords,
+          ...(loop.sourceUrl ? { isBasedOn: loop.sourceUrl } : {}),
           image: {
             "@type": "ImageObject",
             url: imageUrl,
@@ -276,7 +277,13 @@ ${structuredData(loop)}
           <p class="eyebrow">Loop ${escapeHtml(loop.number)}</p>
           <h1>${escapeHtml(loop.title)}</h1>
           <p class="detail-lede">${escapeHtml(loop.description)}</p>
-          <p class="detail-byline">Contributed by <strong>${escapeHtml(loop.author)}</strong></p>
+          <p class="detail-byline">
+            Contributed by <strong>${escapeHtml(loop.author)}</strong>${
+              loop.sourceUrl
+                ? ` · <a class="detail-source-link" href="${escapeHtml(loop.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source</a>`
+                : ""
+            }
+          </p>
         </header>
 
         <div class="detail-stack">

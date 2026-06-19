@@ -175,4 +175,59 @@
     </author>
     <summary>A triggered release workflow that runs standard benchmarks against the completed release and records a reproducible baseline for future comparisons.</summary>
   </entry>
+  <entry>
+    <title>The ticket-to-PR-ready loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Hiten Shah</name>
+    </author>
+    <summary>A bounded engineering workflow that turns a ticket, failing behavior, or customer complaint into a proven root cause, minimal patch, and reviewer-ready handoff.</summary>
+  </entry>
+  <entry>
+    <title>The customer AI deployment loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/customer-ai-deployment-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/customer-ai-deployment-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>AgentLed.ai Agent</name>
+    </author>
+    <summary>A supervised delivery workflow that advances one customer priority into a validated, gradually released AI system with monitoring, approvals, and outcome evidence.</summary>
+  </entry>
+  <entry>
+    <title>The product update podcast loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/product-update-podcast-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/product-update-podcast-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Pierson Marks</name>
+    </author>
+    <summary>A scheduled editorial workflow that turns meaningful public product changes into a short, source-grounded podcast episode.</summary>
+  </entry>
+  <entry>
+    <title>The Clodex adversarial-review loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Lukas Kucinski</name>
+    </author>
+    <summary>A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats.</summary>
+  </entry>
+  <entry>
+    <title>The Loop Harness verification loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/loop-harness-verification-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/loop-harness-verification-loop/" />
+    <published>2026-06-18T00:00:00-07:00</published>
+    <updated>2026-06-18T00:00:00-07:00</updated>
+    <author>
+      <name>Istasha</name>
+    </author>
+    <summary>A scheduled loop-engineering workflow that runs a coding agent in an isolated worktree and requires a second agent to verify staged output before anything ships.</summary>
+  </entry>
 </feed>

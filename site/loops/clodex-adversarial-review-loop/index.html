@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A scheduled coding-agent workflow that reviews the previous day&#39;s changes and keeps user-facing release history complete and current." />
-    <meta name="author" content="Matthew Berman" />
+    <meta name="description" content="A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats." />
+    <meta name="author" content="Lukas Kucinski" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
     <meta name="theme-color" content="#faf8f7" />
     <meta name="color-scheme" content="light dark" />
@@ -35,23 +35,23 @@
     </script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Loop Library" />
-    <meta property="og:title" content="Nightly Changelog Loop for Coding Agents | Loop Library" />
-    <meta property="og:description" content="A scheduled coding-agent workflow that reviews the previous day&#39;s changes and keeps user-facing release history complete and current." />
-    <meta property="og:url" content="https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/" />
-    <meta property="og:image" content="https://signals.forwardfuture.ai/loop-library/assets/social/nightly-changelog-sweep-20260618-3.png" />
-    <meta property="og:image:secure_url" content="https://signals.forwardfuture.ai/loop-library/assets/social/nightly-changelog-sweep-20260618-3.png" />
+    <meta property="og:title" content="Clodex Adversarial Code Review Loop | Loop Library" />
+    <meta property="og:description" content="A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats." />
+    <meta property="og:url" content="https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/" />
+    <meta property="og:image" content="https://signals.forwardfuture.ai/loop-library/assets/social/clodex-adversarial-review-loop-20260618-3.png" />
+    <meta property="og:image:secure_url" content="https://signals.forwardfuture.ai/loop-library/assets/social/clodex-adversarial-review-loop-20260618-3.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="The nightly changelog loop — Forward Future Loop Library" />
-    <meta property="article:published_time" content="2026-06-16" />
-    <meta property="article:modified_time" content="2026-06-17" />
+    <meta property="og:image:alt" content="The Clodex adversarial-review loop — Forward Future Loop Library" />
+    <meta property="article:published_time" content="2026-06-18" />
+    <meta property="article:modified_time" content="2026-06-18" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nightly Changelog Loop for Coding Agents | Loop Library" />
-    <meta name="twitter:description" content="A scheduled coding-agent workflow that reviews the previous day&#39;s changes and keeps user-facing release history complete and current." />
-    <meta name="twitter:image" content="https://signals.forwardfuture.ai/loop-library/assets/social/nightly-changelog-sweep-20260618-3.png" />
-    <meta name="twitter:image:alt" content="The nightly changelog loop — Forward Future Loop Library" />
-    <link rel="canonical" href="https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/" />
+    <meta name="twitter:title" content="Clodex Adversarial Code Review Loop | Loop Library" />
+    <meta name="twitter:description" content="A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats." />
+    <meta name="twitter:image" content="https://signals.forwardfuture.ai/loop-library/assets/social/clodex-adversarial-review-loop-20260618-3.png" />
+    <meta name="twitter:image:alt" content="The Clodex adversarial-review loop — Forward Future Loop Library" />
+    <link rel="canonical" href="https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/" />
     <link rel="sitemap" type="application/xml" href="https://signals.forwardfuture.ai/loop-library/sitemap.xml" />
     <link rel="alternate" type="application/atom+xml" title="Loop Library updates" href="https://signals.forwardfuture.ai/loop-library/feed.xml" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
@@ -62,7 +62,7 @@
   "@graph": [
     {
       "@type": "BreadcrumbList",
-      "@id": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/#breadcrumbs",
+      "@id": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/#breadcrumbs",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -73,37 +73,38 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "The nightly changelog loop",
-          "item": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/"
+          "name": "The Clodex adversarial-review loop",
+          "item": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/"
         }
       ]
     },
     {
       "@type": "Article",
-      "@id": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/#article",
-      "headline": "The nightly changelog loop",
-      "description": "A scheduled coding-agent workflow that reviews the previous day's changes and keeps user-facing release history complete and current.",
-      "url": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/",
-      "mainEntityOfPage": "https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/",
-      "datePublished": "2026-06-16",
-      "dateModified": "2026-06-17",
+      "@id": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/#article",
+      "headline": "The Clodex adversarial-review loop",
+      "description": "A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats.",
+      "url": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/",
+      "mainEntityOfPage": "https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/",
+      "datePublished": "2026-06-18",
+      "dateModified": "2026-06-18",
       "articleSection": "AI coding agent workflow",
       "keywords": [
-        "AI coding agent",
-        "nightly changelog",
-        "release notes workflow",
-        "changelog automation",
-        "daily repository review"
+        "Clodex",
+        "Codex adversarial review",
+        "Claude Code plugin",
+        "review fix loop",
+        "pull request automation"
       ],
+      "isBasedOn": "https://github.com/lukaskucinski/clodex",
       "image": {
         "@type": "ImageObject",
-        "url": "https://signals.forwardfuture.ai/loop-library/assets/social/nightly-changelog-sweep-20260618-3.png",
+        "url": "https://signals.forwardfuture.ai/loop-library/assets/social/clodex-adversarial-review-loop-20260618-3.png",
         "width": 1200,
         "height": 630
       },
       "author": {
         "@type": "Person",
-        "name": "Matthew Berman"
+        "name": "Lukas Kucinski"
       },
       "publisher": {
         "@id": "https://signals.forwardfuture.ai/loop-library/#organization"
@@ -128,7 +129,7 @@
 }
     </script>
     <script src="../../script.js?v=20260617-form-protection" defer></script>
-    <title>Nightly Changelog Loop for Coding Agents | Loop Library</title>
+    <title>Clodex Adversarial Code Review Loop | Loop Library</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -196,11 +197,11 @@
 
       <article class="loop-detail">
         <header class="detail-hero">
-          <p class="eyebrow">Loop 008</p>
-          <h1>The nightly changelog loop</h1>
-          <p class="detail-lede">A scheduled coding-agent workflow that reviews the previous day&#39;s changes and keeps user-facing release history complete and current.</p>
+          <p class="eyebrow">Loop 019</p>
+          <h1>The Clodex adversarial-review loop</h1>
+          <p class="detail-lede">A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats.</p>
           <p class="detail-byline">
-            Contributed by <strong>Matthew Berman</strong>
+            Contributed by <strong>Lukas Kucinski</strong> · <a class="detail-source-link" href="https://github.com/lukaskucinski/clodex" target="_blank" rel="noopener noreferrer">Source</a>
           </p>
         </header>
 
@@ -215,14 +216,14 @@
                 <span>Copy</span>
               </button>
             </div>
-            <p data-prompt>Each night, review changes from the previous day and update the changelog with anything users should know.</p>
+            <p data-prompt>Run /clodex [task] think hard --max-iter 5 --threshold medium. Plan the task, implement it, ship a pull request, run the Codex adversarial-review code path, fix every finding above the configured threshold, and repeat. Persist the plan, branch, pull request, findings, verdict, and iteration state so the run can resume safely. Remember that threshold names the highest acceptable severity. Stop when Codex approves, only sub-threshold findings remain, or max-iter is reached. Never report a stalled, errored, or exhausted run as approved.</p>
           </section>
 
           <section class="verification-card" aria-labelledby="verify-stop">
             <p class="eyebrow">Verify / stop</p>
             <div>
-              <h2 id="verify-stop">Every user-relevant change from the previous day is accounted for.</h2>
-              <p>The changelog is updated and validated, or the no-change result is recorded.</p>
+              <h2 id="verify-stop">The pull request reaches the configured review bar.</h2>
+              <p>Codex approves, only explicitly acceptable findings remain, or the final report truthfully discloses that the iteration cap or an error stopped the loop.</p>
             </div>
           </section>
 
@@ -236,48 +237,48 @@
               <dl class="detail-meta">
                 <div>
                   <dt>Published</dt>
-                  <dd><time datetime="2026-06-16">Jun 16, 2026</time></dd>
+                  <dd><time datetime="2026-06-18">Jun 18, 2026</time></dd>
                 </div>
                 <div>
                   <dt>Updated</dt>
-                  <dd><time datetime="2026-06-17">Jun 17, 2026</time></dd>
+                  <dd><time datetime="2026-06-18">Jun 18, 2026</time></dd>
                 </div>
               </dl>
 
               <section aria-labelledby="use-when">
                 <h2 id="use-when">Use this when</h2>
-                <p>Use this when a project changes frequently enough that user-facing release notes can drift from merged pull requests, commits, deployments, and product changes.</p>
+                <p>Use this for a meaningful code change that benefits from an independent reviewer and may need several structured review-and-fix rounds.</p>
               </section>
 
               <section aria-labelledby="run-loop">
                 <h2 id="run-loop">How to run it</h2>
                 <ol class="detail-steps">
-                <li>Collect the previous day&#39;s merged pull requests, commits, deployments, and other in-scope changes.</li>
-                <li>Identify which changes affect users and compare them with the current changelog.</li>
-                <li>Add concise dated entries with useful references while preserving existing content and avoiding duplicates.</li>
-                <li>Run the relevant checks and record either the validated update or the fact that no user-facing entry was needed.</li>
+                <li>Choose the task, thinking level, maximum iterations, and highest acceptable finding severity.</li>
+                <li>Plan, implement, verify, and ship the pull request through the Clodex workflow.</li>
+                <li>Run the Codex adversarial review, fix every blocking finding, commit and push, then review again.</li>
+                <li>Persist state across rounds and finish with the verdict, remaining findings, checks, and pull-request link.</li>
                 </ol>
               </section>
 
               <section aria-labelledby="why-it-works">
                 <h2 id="why-it-works">Why it works</h2>
-                <p>A daily reconciliation makes omissions visible while the context is still fresh. Limiting entries to what users should know keeps the changelog useful instead of turning it into a raw commit feed.</p>
+                <p>Clodex separates the builder from the reviewer and turns review feedback into a bounded repair loop. Persisted state makes the work resumable without pretending an interrupted run was approved.</p>
               </section>
 
               <section class="implementation-note" aria-labelledby="implementation-note">
                 <h2 id="implementation-note">Implementation note</h2>
-                <p>Use the underlying change and product behavior as the source of truth. Commit titles alone can overstate, understate, or misclassify what users experienced.</p>
+                <p>The threshold is a ceiling for acceptable findings, not a minimum severity to inspect. Use the strict approve setting for security-sensitive or production-critical changes.</p>
               </section>
 
               <nav class="related-loops" aria-labelledby="related-heading">
                 <h2 id="related-heading">Related loops</h2>
                 <div>
 
-                <a class="related-loop-link" href="../overnight-docs-sweep/">
-                  The overnight docs sweep
+                <a class="related-loop-link" href="../architecture-satisfaction-loop/">
+                  The architecture satisfaction loop
                 </a>
-                <a class="related-loop-link" href="../repository-cleanup-loop/">
-                  The repository cleanup loop
+                <a class="related-loop-link" href="../stale-safe-batch-release-loop/">
+                  The stale-safe batch release loop
                 </a>
                 </div>
               </nav>

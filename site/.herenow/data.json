@@ -33,6 +33,24 @@
           "type": "string",
           "maxLength": 300,
           "trim": true
+        },
+        "review_status": {
+          "type": "string",
+          "maxLength": 24,
+          "trim": true
+        },
+        "review_note": {
+          "type": "string",
+          "maxLength": 500,
+          "trim": true
+        },
+        "published_slug": {
+          "type": "string",
+          "maxLength": 120,
+          "trim": true
+        },
+        "published_at": {
+          "type": "datetime"
         }
       },
       "access": {

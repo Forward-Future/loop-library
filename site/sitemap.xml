@@ -64,4 +64,24 @@
     <loc>https://signals.forwardfuture.ai/loop-library/loops/post-release-baseline-loop/</loc>
     <lastmod>2026-06-17</lastmod>
   </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/customer-ai-deployment-loop/</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/product-update-podcast-loop/</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/clodex-adversarial-review-loop/</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/loop-harness-verification-loop/</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
 </urlset>

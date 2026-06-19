@@ -5,7 +5,7 @@ export const site = {
   description:
     "Practical AI agent workflows for engineering, research, editorial work, evaluation, and operations.",
   updated: "2026-06-18",
-  socialImageVersion: "20260618-2",
+  socialImageVersion: "20260618-3",
   socialImageExtension: "png",
   socialImageMimeType: "image/png",
 };
@@ -565,5 +565,197 @@ export const loops = [
       "benchmark history",
     ],
     related: ["stale-safe-batch-release-loop", "test-suite-speed-loop"],
+  },
+  {
+    number: "016",
+    slug: "ticket-to-pr-ready-loop",
+    title: "The ticket-to-PR-ready loop",
+    seoTitle: "Ticket-to-PR-Ready Loop for Coding Agents | Loop Library",
+    description:
+      "A bounded engineering workflow that turns a ticket, failing behavior, or customer complaint into a proven root cause, minimal patch, and reviewer-ready handoff.",
+    categoryLabel: "AI coding agent workflow",
+    author: "Hiten Shah",
+    sourceUrl:
+      "https://docs.google.com/document/d/1PjkOSfGaww1k_NJjswovfCdSHl31w8sxIEzXilU92gg/edit?tab=t.0",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Take this ticket, bug report, failing behavior, or customer complaint and turn it into a review-ready patch. Define the failure clearly and reproduce it in the smallest possible environment. Isolate the root cause and confirm it with evidence, not inference. Implement the smallest credible fix, then verify the before-and-after behavior. If verification fails, return to the root cause and iterate. If the issue cannot be reproduced after two serious attempts, say so clearly. Do not silently expand scope; split broader refactors or separate problems into named follow-ups. Finish with the failure summary, reproduction steps, root cause, fix summary, files changed, verification proof, risks, follow-ups, suggested PR title, and PR description draft.",
+    verifyTitle: "The failure is fixed, verified, and ready for review.",
+    verifyDetail:
+      "The same behavior reproduces before the fix, no longer reproduces afterward, and the handoff explains the evidence in under two minutes.",
+    useWhen:
+      "Use this when a real but loosely written ticket, bug report, or customer complaint needs to become a bounded engineering change with enough proof for a fast review.",
+    steps: [
+      "State the expected and actual behavior, then reproduce the failure in the smallest representative environment.",
+      "Trace the behavior to a root cause and confirm the causal link with evidence.",
+      "Implement the smallest credible fix, avoiding unrelated cleanup or hidden refactors.",
+      "Repeat the original reproduction, run relevant regression checks, and package the result for review.",
+    ],
+    why:
+      "The loop closes the gap between something being wrong and a reviewer being able to trust the patch. Reproduction, evidence, bounded scope, and a structured handoff remove the detective work from review.",
+    note:
+      "Match the proof to the failure: screenshots or recordings for UI issues, tests or logs for backend behavior, benchmark deltas for performance, and sanitized traces for integrations.",
+    keywords: [
+      "AI coding agent",
+      "ticket to pull request",
+      "bug reproduction",
+      "root cause analysis",
+      "review-ready patch",
+    ],
+    related: ["production-error-sweep", "quality-streak-loop"],
+  },
+  {
+    number: "017",
+    slug: "customer-ai-deployment-loop",
+    title: "The customer AI deployment loop",
+    seoTitle: "Customer AI Deployment Loop | Loop Library",
+    description:
+      "A supervised delivery workflow that advances one customer priority into a validated, gradually released AI system with monitoring, approvals, and outcome evidence.",
+    categoryLabel: "AI deployment operations workflow",
+    author: "AgentLed.ai Agent",
+    sourceUrl:
+      "https://www.agentled.ai/en/blog/post/beginners-buy-ai-automations-experts-build-ai-deployment-loops",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Manage one customer AI deployment from priority to production outcome. Run this loop when a customer shares a new priority, requests an AI workflow, gives feedback, reports a failure, or reaches a scheduled AI operations review. Start from the customer's current business priority and choose one concrete workflow or improvement to advance. Define the business goal, owner, affected users, systems and APIs, input data, expected output, approval gates, risk level, success criteria, and ROI hypothesis. Build or update the deployment, run a dry run on realistic customer data, record failures and edge cases, fix the smallest underlying issue, and rerun until the dry run passes or a blocker is clear. Release gradually and monitor production. Before stopping, produce a customer-facing update and store the reusable lessons for the next run.",
+    verifyTitle: "One customer priority reaches a proven terminal state.",
+    verifyDetail:
+      "The workflow reaches its agreed rollout stage, a production issue is fixed, a blocker is escalated with an owner, or a healthy review records the next check.",
+    useWhen:
+      "Use this when an AI workflow must live inside a real customer process and needs validation, approval, gradual rollout, monitoring, and a clear business outcome.",
+    steps: [
+      "Review the current customer priority, recent feedback, workflow history, failures, approvals, usage, cost, and ROI signals.",
+      "Choose one workflow or improvement and define its owner, systems, data, risk, approval gates, success criteria, and ROI hypothesis.",
+      "Build or update it, run a dry run on realistic data, repair the smallest underlying issue, and release through controlled stages.",
+      "Monitor production, send the customer-facing update, and store preferences, rules, failures, examples, and ROI observations in shared memory.",
+    ],
+    why:
+      "The loop treats deployment as the operating system around an automation: scope, validation, approval, rollout, monitoring, learning, and accountability all stay connected to the customer's priority.",
+    note:
+      "Do not expand rollout when dry-run evidence, approval state, or monitoring is missing. Keep sensitive, irreversible, financial, and customer-facing actions behind explicit human approval.",
+    keywords: [
+      "customer AI deployment",
+      "AI workflow rollout",
+      "approval gates",
+      "production monitoring",
+      "AI ROI",
+    ],
+    related: ["full-product-evaluation-loop", "quality-streak-loop"],
+  },
+  {
+    number: "018",
+    slug: "product-update-podcast-loop",
+    title: "The product update podcast loop",
+    seoTitle: "Product Update Podcast Automation Loop | Loop Library",
+    description:
+      "A scheduled editorial workflow that turns meaningful public product changes into a short, source-grounded podcast episode.",
+    categoryLabel: "AI editorial workflow",
+    author: "Pierson Marks",
+    sourceUrl: "https://www.jellypod.com/mcp",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Each night, review any new publicly released features or changes from the repository and identify the ones most meaningful to users. Verify each selected change against the released product, documentation, or release notes. Use the Jellypod MCP to generate a short three-to-five-minute podcast episode explaining how users can take advantage of the new features, why they are important, and how to try them. Review the script and audio for accuracy, clarity, and pronunciation; fix or regenerate anything that does not match the source material. If there were no meaningful public changes, record that result instead of manufacturing an episode.",
+    verifyTitle: "The episode accurately covers every meaningful public update.",
+    verifyDetail:
+      "Finish with a review-ready three-to-five-minute episode, or a confirmed no-episode result when nothing meaningful shipped.",
+    useWhen:
+      "Use this when a product ships frequently enough that users would benefit from a short recurring audio explanation of what changed and how to use it.",
+    steps: [
+      "Collect the release window's public product changes, documentation, and release notes.",
+      "Select the changes most meaningful to users and verify what actually shipped.",
+      "Generate a three-to-five-minute Jellypod episode covering the benefit, importance, and how-to for each selected change.",
+      "Review the script and audio against the sources, then regenerate weak or unsupported passages before stopping.",
+    ],
+    why:
+      "A fixed release window keeps coverage current, while editorial selection and source verification prevent the episode from becoming an automated reading of commit titles.",
+    note:
+      "Use only publicly released information. Do not expose private repository context, customer data, security-sensitive details, or unreleased work in the generated episode.",
+    keywords: [
+      "AI podcast workflow",
+      "product update podcast",
+      "Jellypod MCP",
+      "release communication",
+      "editorial automation",
+    ],
+    related: ["nightly-changelog-sweep", "post-release-baseline-loop"],
+  },
+  {
+    number: "019",
+    slug: "clodex-adversarial-review-loop",
+    title: "The Clodex adversarial-review loop",
+    seoTitle: "Clodex Adversarial Code Review Loop | Loop Library",
+    description:
+      "A bounded development workflow that plans and ships a pull request, runs an independent Codex adversarial review, fixes blocking findings, and repeats.",
+    categoryLabel: "AI coding agent workflow",
+    author: "Lukas Kucinski",
+    sourceUrl: "https://github.com/lukaskucinski/clodex",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Run /clodex [task] think hard --max-iter 5 --threshold medium. Plan the task, implement it, ship a pull request, run the Codex adversarial-review code path, fix every finding above the configured threshold, and repeat. Persist the plan, branch, pull request, findings, verdict, and iteration state so the run can resume safely. Remember that threshold names the highest acceptable severity. Stop when Codex approves, only sub-threshold findings remain, or max-iter is reached. Never report a stalled, errored, or exhausted run as approved.",
+    verifyTitle: "The pull request reaches the configured review bar.",
+    verifyDetail:
+      "Codex approves, only explicitly acceptable findings remain, or the final report truthfully discloses that the iteration cap or an error stopped the loop.",
+    useWhen:
+      "Use this for a meaningful code change that benefits from an independent reviewer and may need several structured review-and-fix rounds.",
+    steps: [
+      "Choose the task, thinking level, maximum iterations, and highest acceptable finding severity.",
+      "Plan, implement, verify, and ship the pull request through the Clodex workflow.",
+      "Run the Codex adversarial review, fix every blocking finding, commit and push, then review again.",
+      "Persist state across rounds and finish with the verdict, remaining findings, checks, and pull-request link.",
+    ],
+    why:
+      "Clodex separates the builder from the reviewer and turns review feedback into a bounded repair loop. Persisted state makes the work resumable without pretending an interrupted run was approved.",
+    note:
+      "The threshold is a ceiling for acceptable findings, not a minimum severity to inspect. Use the strict approve setting for security-sensitive or production-critical changes.",
+    keywords: [
+      "Clodex",
+      "Codex adversarial review",
+      "Claude Code plugin",
+      "review fix loop",
+      "pull request automation",
+    ],
+    related: ["architecture-satisfaction-loop", "stale-safe-batch-release-loop"],
+  },
+  {
+    number: "020",
+    slug: "loop-harness-verification-loop",
+    title: "The Loop Harness verification loop",
+    seoTitle: "Loop Harness Second-Agent Verification Workflow | Loop Library",
+    description:
+      "A scheduled loop-engineering workflow that runs a coding agent in an isolated worktree and requires a second agent to verify staged output before anything ships.",
+    categoryLabel: "AI coding agent workflow",
+    author: "Istasha",
+    sourceUrl: "https://github.com/lSAAGl/loop-harness",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "On the configured cadence, wake the due loop. Give a Claude session the task-specific skill and let it work in an isolated git worktree. Stage the resulting commits or output files without shipping them. Have a second Claude session verify the staged work against explicit acceptance criteria. If verification fails, ship nothing; preserve the findings and retry on the next cycle. If verification passes, ship the configured output—a pull request, review comments, or Slack message—and update the loop state. Finish with the source revision, staged artifacts, verifier result, delivery status, and next scheduled run.",
+    verifyTitle: "Only independently verified output ships.",
+    verifyDetail:
+      "A second-agent pass releases the configured output; a failed verification preserves evidence and produces no external change.",
+    useWhen:
+      "Use this when a recurring repository task should run unattended but one agent must not be allowed to generate and approve the same output.",
+    steps: [
+      "Wake the due loop on its cadence and create an isolated worktree from the approved source revision.",
+      "Give the primary Claude session its task-specific skill and let it stage one bounded output.",
+      "Have a second Claude session inspect the staged work against explicit acceptance criteria.",
+      "Ship on a pass; on a failure, preserve the findings, ship nothing, and retry according to the next-cycle policy.",
+    ],
+    why:
+      "Worktree isolation limits interference, and the second-agent gate separates generation from approval. The result is a recurring loop that can wake, work, verify, and ship without relying on one session's confidence.",
+    note:
+      "This pattern runs an unattended model with shell access. Start with read-only loops, smoke-test with run-once, cap runtime and retries, and grant only the tools each loop needs.",
+    keywords: [
+      "Loop Harness",
+      "scheduled coding agent",
+      "git worktree isolation",
+      "second-agent verification",
+      "autonomous agent workflow",
+    ],
+    related: ["clodex-adversarial-review-loop", "overnight-docs-sweep"],
   },
 ];

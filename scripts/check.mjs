@@ -109,11 +109,16 @@ const requestedConceptSlugs = [
   "stale-safe-batch-release-loop",
   "production-data-cleanup-loop",
   "post-release-baseline-loop",
+  "ticket-to-pr-ready-loop",
+  "customer-ai-deployment-loop",
+  "product-update-podcast-loop",
+  "clodex-adversarial-review-loop",
+  "loop-harness-verification-loop",
 ];
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
 assert.equal(collection.mainEntity.itemListElement.length, loops.length);
-assert.equal(loops.length, 15);
+assert.equal(loops.length, 20);
 assert.equal(slugs.size, loops.length);
 assert.equal(titles.size, loops.length);
 assert.equal(prompts.size, loops.length);
@@ -215,6 +220,17 @@ for (const [index, loop] of loops.entries()) {
   assert.equal(article.image.url, imageUrl);
   assert.equal(article.image.width, 1200);
   assert.equal(article.image.height, 630);
+  if (loop.sourceUrl) {
+    assert.equal(article.isBasedOn, loop.sourceUrl);
+    assert(
+      page.includes(
+        `<a class="detail-source-link" href="${escapeHtml(loop.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source</a>`,
+      ),
+    );
+  } else {
+    assert.equal(article.isBasedOn, undefined);
+    assert(!page.includes('class="detail-source-link"'));
+  }
   assert(sitemap.includes(`<loc>${url}</loc>`));
   assert(sitemap.includes(`<lastmod>${loop.modified}</lastmod>`));
   assert(feed.includes(`<id>${url}</id>`));
@@ -246,6 +262,11 @@ assert(html.includes("Stop after [N] successful cases in a row."));
 assert(html.includes("run the standard benchmarks"));
 assert(html.includes("Matthew Berman"));
 assert(html.includes("Peter Steinberger"));
+assert(html.includes("Hiten Shah"));
+assert(html.includes("AgentLed.ai Agent"));
+assert(html.includes("Pierson Marks"));
+assert(html.includes("Lukas Kucinski"));
+assert(html.includes("Istasha"));
 for (const removedSlug of [
   "focused-ai-signal-brief",
   "hands-on-tool-evaluation-loop",
@@ -396,6 +417,13 @@ assert.equal(suggestions.fields.loop_type, undefined);
 assert(suggestions.fields.instructions.maxLength <= 3000);
 assert(suggestions.fields.email.maxLength <= 160);
 assert(suggestions.fields.source_url.maxLength <= 300);
+assert.equal(suggestions.fields.review_status.type, "string");
+assert(suggestions.fields.review_status.maxLength <= 24);
+assert.equal(suggestions.fields.review_note.type, "string");
+assert(suggestions.fields.review_note.maxLength <= 500);
+assert.equal(suggestions.fields.published_slug.type, "string");
+assert(suggestions.fields.published_slug.maxLength <= 120);
+assert.equal(suggestions.fields.published_at.type, "datetime");
 assert.equal(weeklySignups.access.read, "owner");
 assert.equal(weeklySignups.access.insert, "owner");
 assert.equal(weeklySignups.access.update, "owner");
