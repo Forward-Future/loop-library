@@ -5,7 +5,7 @@ export const site = {
   description:
     "Practical AI agent workflows for engineering, research, editorial work, evaluation, and operations.",
   updated: "2026-06-18",
-  socialImageVersion: "20260618-6",
+  socialImageVersion: "20260618-7",
   socialImageExtension: "png",
   socialImageMimeType: "image/png",
 };
@@ -864,5 +864,153 @@ export const loops = [
       "responsive motion matching",
     ],
     related: ["full-product-evaluation-loop", "sub-50ms-page-load-loop"],
+  },
+  {
+    number: "023",
+    slug: "self-improving-champion-loop",
+    title: "The self-improving champion loop",
+    seoTitle: "Self-Improving Champion Evaluation Loop | Loop Library",
+    description:
+      "A bounded optimization loop that tests targeted challengers, protects an independently evaluated champion, and rejects suspiciously easy wins.",
+    categoryLabel: "AI product evaluation workflow",
+    author: "Jose C. Munoz",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Keep three pieces of state in memory: the champion (the best current genome plus its gate score), a budget starting at [N], and a log of every tried genome and score. Each cycle, if the budget is zero, stop and return the champion. Otherwise, reduce the budget by one, read the latest failure in the log, and propose one targeted change to the champion that addresses it. Skip any change already tried. Score the challenger on a working signal: a cheap measure you may tune against. If it is not better than the champion, log it and continue. If it is better, freeze the challenger and run the gate on fresh examples you did not inspect while editing, plus the guard checks in [safety]. Accept the challenger only if its gate score beats the champion by [minimum margin] and no guard regresses; otherwise keep the champion. Log the attempt and repeat. Keep the working signal and gate separate. Treat a suspiciously easy win as Goodhart's law in action and reject it. If you are uncertain, keep the champion.",
+    verifyTitle: "The budget is exhausted and the best verified champion is returned.",
+    verifyDetail:
+      "Every challenger is logged, the final champion has the strongest accepted gate score, and no accepted change regresses a guard check.",
+    useWhen:
+      "Use this to improve a prompt, policy, configuration, or other testable artifact when cheap iteration is useful but final acceptance must use fresh evidence.",
+    steps: [
+      "Initialize the champion, independent working and gate signals, guard checks, improvement margin, budget, and experiment log.",
+      "Use the latest failure to propose one untried targeted challenger, then score it on the cheap working signal.",
+      "Freeze promising challengers and evaluate them on fresh gate examples plus every required guard check.",
+      "Promote only a meaningful, regression-free gate win; log every outcome and return the champion when the budget reaches zero.",
+    ],
+    why:
+      "Separating the tunable working signal from a fresh acceptance gate limits overfitting. The champion rule makes regression the default-safe outcome, while a fixed budget keeps the search bounded.",
+    note:
+      "Define [N], [minimum margin], the working signal, gate examples, and [safety] before starting. Do not reuse gate examples for editing or silently weaken a guard after a failed challenger.",
+    keywords: [
+      "self-improving loop",
+      "champion challenger evaluation",
+      "Goodhart prevention",
+      "independent evaluation gate",
+      "bounded optimization workflow",
+    ],
+    related: ["full-product-evaluation-loop", "quality-streak-loop"],
+  },
+  {
+    number: "024",
+    slug: "devils-advocate-design-loop",
+    title: "The devil's-advocate loop",
+    seoTitle: "Devil's-Advocate Design Review Loop | Loop Library",
+    description:
+      "A critic-and-builder workflow that attacks a design, tracks every objection, and requires evidence before an objection can be closed.",
+    categoryLabel: "AI product evaluation workflow",
+    author: "Anonymous contributor",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Argue against your own design until it survives. In each round, a critic sub-agent writes the strongest case that the current approach is wrong and records every objection in /tmp/redteam-{projectname}.md with its evidence, impact, and status. The builder must either fix the weakness and verify the result or record why accepting it is reasonable under the project's stated criteria. The critic then reviews the change or acceptance rationale and may reopen anything that is not supported. Repeat until no new high-impact objection appears and every logged objection is either verified as resolved or explicitly accepted with evidence. Merely answering an objection in the log does not resolve it. If the same unresolved objections repeat for two rounds without new evidence or progress, stop and report the stalemate instead of claiming the design survived.",
+    verifyTitle: "No high-impact objection remains open.",
+    verifyDetail:
+      "Every logged objection is verified as resolved or explicitly accepted with evidence, or the final report truthfully records a two-round stalemate.",
+    useWhen:
+      "Use this before committing to an architecture, interface, rollout plan, or other consequential design that benefits from structured adversarial review.",
+    steps: [
+      "Write the design goals and acceptance criteria, then initialize the objection log at /tmp/redteam-{projectname}.md.",
+      "Have the critic present the strongest evidence-backed case against the current design and rank each objection by impact.",
+      "Have the builder repair the weakness or document an explicit acceptance rationale, then verify the result against the stated criteria.",
+      "Let the critic reopen weak answers and repeat until the objections are closed with evidence or the loop reports a stalemate honestly.",
+    ],
+    why:
+      "Separating critic and builder roles makes disagreement explicit. A persistent objection log prevents circular debate, while evidence-based closure stops the builder from declaring success by explanation alone.",
+    note:
+      "Give the critic and builder separate context where possible. Do not let the builder rewrite the acceptance criteria mid-run simply to close a difficult objection.",
+    keywords: [
+      "devil's advocate loop",
+      "adversarial design review",
+      "critic builder workflow",
+      "architecture objection log",
+      "red team design process",
+    ],
+    related: ["architecture-satisfaction-loop", "clodex-adversarial-review-loop"],
+  },
+  {
+    number: "025",
+    slug: "fresh-clone-loop",
+    title: "The fresh-clone loop",
+    seoTitle: "Fresh Clone README Verification Loop | Loop Library",
+    description:
+      "A disposable-environment workflow that follows the README from scratch, fixes every hidden setup assumption, and restarts until onboarding works cleanly.",
+    categoryLabel: "AI repository operations workflow",
+    author: "0xUmbra",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "Clone the repository into a clean, empty environment with nothing preinstalled, then follow the README exactly as written to get the project running. Every time a step fails, is missing, or quietly assumes something the README never states, record the gap, fix the setup or documentation to remove that assumption, discard the environment, and start again from a fresh clone. Do not carry dependencies, configuration, credentials, or manual fixes from one attempt into the next. Keep a short log of each gap and how you closed it so it does not return. Stop when a brand-new environment goes from clone to running app in one uninterrupted pass using only the documented steps and no outside fix. Finish with the gaps closed and the exact commands a new contributor now runs from scratch.",
+    verifyTitle: "A clean environment reaches a running app using only the README.",
+    verifyDetail:
+      "The final from-scratch run is uninterrupted and needs no unstated step, preinstalled tool, configuration, or manual repair.",
+    useWhen:
+      "Use this to test whether a repository's onboarding instructions really work for a new contributor or a clean CI-style environment.",
+    steps: [
+      "Create a disposable environment with no project dependencies or configuration carried over from another checkout.",
+      "Fresh-clone the repository and follow only the README, recording every missing step, hidden assumption, and failure.",
+      "Fix the smallest setup or documentation gap, discard the environment completely, and begin again.",
+      "Repeat until one clean run reaches the running app without intervention, then report the final command sequence and every gap closed.",
+    ],
+    why:
+      "Destroying the environment after each repair prevents local state from hiding the next problem. The final uninterrupted run is direct evidence that the README, not the operator's memory, is sufficient.",
+    note:
+      "Use an isolated disposable environment and review the repository before executing it. Never copy personal credentials into the test environment or run untrusted setup scripts on a production host.",
+    keywords: [
+      "fresh clone loop",
+      "README verification",
+      "developer onboarding test",
+      "clean environment setup",
+      "repository documentation workflow",
+    ],
+    related: ["overnight-docs-sweep", "repository-cleanup-loop"],
+  },
+  {
+    number: "026",
+    slug: "infinite-clickbait-loop",
+    title: "The Infinite Clickbait loop",
+    seoTitle: "Infinite Clickbait Thumbnail Iteration Loop | Loop Library",
+    description:
+      "A thumbnail ideation workflow that generates ten concepts, scores the strongest candidates, and iterates until the winning image is click-baity enough.",
+    categoryLabel: "AI visual design workflow",
+    author: "@Alex_FF",
+    published: "2026-06-18",
+    modified: "2026-06-18",
+    prompt:
+      "The video is about [video subject]. Using [assets], make ten thumbnail concepts and score each one against [inspiration channel]'s YouTube thumbnails using a consistent rubric: clarity at small size, curiosity, emotional pull, visual contrast, and accuracy to the video. Select the top three, identify the weakest part of each concept, improve them, and rescore them with the same rubric. Continue iterating the strongest concept until you're satisfied it's click-baity enough without promising something the video does not deliver. Return the winning concept, two runners-up, their final scores, and the reasoning behind the choice.",
+    verifyTitle: "You are satisfied the winning thumbnail is click-baity enough.",
+    verifyDetail:
+      "The winner outperforms the alternatives on the fixed rubric, remains legible at thumbnail size, and accurately represents the video.",
+    useWhen:
+      "Use this when a video topic and asset set are ready but the thumbnail needs several structured ideation and critique rounds before production.",
+    steps: [
+      "Define the video subject, available assets, inspiration channel, and a fixed five-part scoring rubric.",
+      "Create ten distinct thumbnail concepts, inspect them at realistic YouTube sizes, and score each one.",
+      "Select the top three, improve the weakest dimension of each, and rescore them under the same conditions.",
+      "Keep iterating the strongest concept until it is click-baity enough, then return the winner, runners-up, scores, and rationale.",
+    ],
+    why:
+      "Generating a wide first set creates real options, while a fixed rubric makes later rounds comparable. Keeping accuracy in the score prevents curiosity from drifting into a promise the video cannot keep.",
+    note:
+      "Choose an inspiration channel whose audience and visual language are relevant. Evaluate the actual thumbnail crop at desktop and mobile sizes, and reject concepts that misrepresent the video's substance.",
+    keywords: [
+      "Infinite Clickbait",
+      "YouTube thumbnail loop",
+      "thumbnail iteration workflow",
+      "clickbait scoring rubric",
+      "AI visual design",
+    ],
+    related: ["boeing-747-benchmark", "full-product-evaluation-loop"],
   },
 ];

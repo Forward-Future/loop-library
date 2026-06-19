@@ -122,11 +122,15 @@ const requestedConceptSlugs = [
   "loop-harness-verification-loop",
   "boeing-747-benchmark",
   "war-loops-frontend-designer",
+  "self-improving-champion-loop",
+  "devils-advocate-design-loop",
+  "fresh-clone-loop",
+  "infinite-clickbait-loop",
 ];
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
 assert.equal(collection.mainEntity.itemListElement.length, loops.length);
-assert.equal(loops.length, 22);
+assert.equal(loops.length, 26);
 assert.equal(slugs.size, loops.length);
 assert.equal(titles.size, loops.length);
 assert.equal(prompts.size, loops.length);
@@ -181,17 +185,25 @@ for (const [index, loop] of loops.entries()) {
   );
   assert(homepageRow.includes(loop.author));
   assert(html.includes(homepageHref));
-  assert(page.includes(`<title>${loop.seoTitle}</title>`));
+  assert(page.includes(`<title>${escapeHtml(loop.seoTitle)}</title>`));
   assert(page.includes(`<link rel="canonical" href="${url}"`));
   assert(page.includes(`<meta property="og:image" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:secure_url" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:type" content="${siteMeta.socialImageMimeType}"`));
   assert(page.includes('<meta property="og:image:width" content="1200"'));
   assert(page.includes('<meta property="og:image:height" content="630"'));
-  assert(page.includes(`<meta property="og:image:alt" content="${imageAlt}"`));
+  assert(
+    page.includes(
+      `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}"`,
+    ),
+  );
   assert(page.includes('<meta name="twitter:card" content="summary_large_image"'));
   assert(page.includes(`<meta name="twitter:image" content="${imageUrl}"`));
-  assert(page.includes(`<meta name="twitter:image:alt" content="${imageAlt}"`));
+  assert(
+    page.includes(
+      `<meta name="twitter:image:alt" content="${escapeHtml(imageAlt)}"`,
+    ),
+  );
   assert(
     !page.includes(
       `<meta property="og:image" content="${siteMeta.baseUrl}assets/ff-mark.png"`,
@@ -290,6 +302,10 @@ assert(html.includes("Lukas Kucinski"));
 assert(html.includes("Istasha"));
 assert(html.includes("@victormustar"));
 assert(html.includes("Swayam"));
+assert(html.includes("Jose C. Munoz"));
+assert(html.includes("Anonymous contributor"));
+assert(html.includes("0xUmbra"));
+assert(html.includes("@Alex_FF"));
 for (const removedSlug of [
   "focused-ai-signal-brief",
   "hands-on-tool-evaluation-loop",

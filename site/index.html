@@ -58,11 +58,11 @@
     />
     <meta
       property="og:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-6.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-7.png"
     />
     <meta
       property="og:image:secure_url"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-6.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-7.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta
@@ -82,7 +82,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-6.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-7.png"
     />
     <meta
       name="twitter:image:alt"
@@ -140,7 +140,7 @@
             "dateModified": "2026-06-18",
             "primaryImageOfPage": {
               "@type": "ImageObject",
-              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-6.png",
+              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260618-7.png",
               "width": 1200,
               "height": 630
             },
@@ -149,7 +149,7 @@
             },
             "mainEntity": {
               "@type": "ItemList",
-              "numberOfItems": 22,
+              "numberOfItems": 26,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -282,6 +282,30 @@
                   "position": 22,
                   "name": "War Loops: Autonomous Frontend Designer",
                   "url": "https://signals.forwardfuture.ai/loop-library/loops/war-loops-frontend-designer/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 23,
+                  "name": "The self-improving champion loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 24,
+                  "name": "The devil's-advocate loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/devils-advocate-design-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 25,
+                  "name": "The fresh-clone loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/fresh-clone-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 26,
+                  "name": "The Infinite Clickbait loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/infinite-clickbait-loop/"
                 }
               ]
             }
@@ -434,7 +458,7 @@
         </div>
 
         <div class="results-line">
-          <p id="results-count" aria-live="polite">Showing 22 loops</p>
+          <p id="results-count" aria-live="polite">Showing 26 loops</p>
           <time datetime="2026-06-18">Updated June 18, 2026</time>
         </div>
 
@@ -1316,6 +1340,195 @@
                 <td class="cell-attribution">
                   <span class="cell-label">Attribution</span>
                   Swayam
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="evaluation"
+                data-search="self improving champion challenger genome gate working signal guard goodhart bounded optimization jose munoz"
+              >
+                <td class="cell-number">023</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Evaluation</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/self-improving-champion-loop/">
+                      The self-improving champion loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Keep three pieces of state in memory: the champion (the best
+                    current genome plus its gate score), a budget starting at
+                    [N], and a log of every tried genome and score. Each cycle,
+                    if the budget is zero, stop and return the champion.
+                    Otherwise, reduce the budget by one, read the latest failure
+                    in the log, and propose one targeted change to the champion
+                    that addresses it. Skip any change already tried. Score the
+                    challenger on a working signal: a cheap measure you may tune
+                    against. If it is not better than the champion, log it and
+                    continue. If it is better, freeze the challenger and run the
+                    gate on fresh examples you did not inspect while editing,
+                    plus the guard checks in [safety]. Accept the challenger only
+                    if its gate score beats the champion by [minimum margin] and
+                    no guard regresses; otherwise keep the champion. Log the
+                    attempt and repeat. Keep the working signal and gate separate.
+                    Treat a suspiciously easy win as Goodhart's law in action and
+                    reject it. If you are uncertain, keep the champion.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>The budget is exhausted and the best verified champion is returned.</strong>
+                  <span>Every challenger is logged, the final champion has the strongest accepted gate score, and no accepted change regresses a guard check.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Jose C. Munoz
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="evaluation"
+                data-search="devils advocate critic builder design red team objection log architecture adversarial review anonymous contributor"
+              >
+                <td class="cell-number">024</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Evaluation</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/devils-advocate-design-loop/">
+                      The devil's-advocate loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Argue against your own design until it survives. In each
+                    round, a critic sub-agent writes the strongest case that the
+                    current approach is wrong and records every objection in
+                    /tmp/redteam-{projectname}.md with its evidence, impact, and
+                    status. The builder must either fix the weakness and verify
+                    the result or record why accepting it is reasonable under the
+                    project's stated criteria. The critic then reviews the change
+                    or acceptance rationale and may reopen anything that is not
+                    supported. Repeat until no new high-impact objection appears
+                    and every logged objection is either verified as resolved or
+                    explicitly accepted with evidence. Merely answering an
+                    objection in the log does not resolve it. If the same
+                    unresolved objections repeat for two rounds without new
+                    evidence or progress, stop and report the stalemate instead
+                    of claiming the design survived.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>No high-impact objection remains open.</strong>
+                  <span>Every logged objection is verified as resolved or explicitly accepted with evidence, or the final report truthfully records a two-round stalemate.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  Anonymous contributor
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="engineering"
+                data-search="fresh clone clean environment readme onboarding setup documentation hidden assumptions disposable 0xumbra"
+              >
+                <td class="cell-number">025</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Engineering</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/fresh-clone-loop/">
+                      The fresh-clone loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    Clone the repository into a clean, empty environment with
+                    nothing preinstalled, then follow the README exactly as
+                    written to get the project running. Every time a step fails,
+                    is missing, or quietly assumes something the README never
+                    states, record the gap, fix the setup or documentation to
+                    remove that assumption, discard the environment, and start
+                    again from a fresh clone. Do not carry dependencies,
+                    configuration, credentials, or manual fixes from one attempt
+                    into the next. Keep a short log of each gap and how you closed
+                    it so it does not return. Stop when a brand-new environment
+                    goes from clone to running app in one uninterrupted pass using
+                    only the documented steps and no outside fix. Finish with the
+                    gaps closed and the exact commands a new contributor now runs
+                    from scratch.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>A clean environment reaches a running app using only the README.</strong>
+                  <span>The final from-scratch run is uninterrupted and needs no unstated step, preinstalled tool, configuration, or manual repair.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  0xUmbra
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="design"
+                data-search="infinite clickbait youtube thumbnail concepts inspiration channel score iterate top three alex ff visual design"
+              >
+                <td class="cell-number">026</td>
+                <td class="cell-loop">
+                  <span class="loop-category">Design</span>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/infinite-clickbait-loop/">
+                      The Infinite Clickbait loop
+                    </a>
+                  </h3>
+                  <p data-prompt>
+                    The video is about [video subject]. Using [assets], make ten
+                    thumbnail concepts and score each one against [inspiration
+                    channel]'s YouTube thumbnails using a consistent rubric:
+                    clarity at small size, curiosity, emotional pull, visual
+                    contrast, and accuracy to the video. Select the top three,
+                    identify the weakest part of each concept, improve them, and
+                    rescore them with the same rubric. Continue iterating the
+                    strongest concept until you're satisfied it's click-baity
+                    enough without promising something the video does not deliver.
+                    Return the winning concept, two runners-up, their final scores,
+                    and the reasoning behind the choice.
+                  </p>
+                </td>
+                <td class="cell-check">
+                  <span class="cell-label">Verify / stop</span>
+                  <strong>You are satisfied the winning thumbnail is click-baity enough.</strong>
+                  <span>The winner outperforms the alternatives on the fixed rubric, remains legible at thumbnail size, and accurately represents the video.</span>
+                </td>
+                <td class="cell-attribution">
+                  <span class="cell-label">Attribution</span>
+                  @Alex_FF
                 </td>
                 <td class="cell-action">
                   <button class="copy-button" type="button">
