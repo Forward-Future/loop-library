@@ -18,6 +18,12 @@ export const categories = [
   { slug: "design", label: "Design" },
 ];
 
+export const featuredLoopSlugs = [
+  "five-minute-repository-maintainer-loop",
+  "full-product-evaluation-loop",
+  "fresh-clone-loop",
+];
+
 const categorySlugByLabel = new Map([
   ["AI coding agent workflow", "engineering"],
   ["AI repository operations workflow", "engineering"],

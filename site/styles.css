@@ -361,6 +361,10 @@ code {
   content: "";
 }
 
+.library-hero {
+  max-width: 760px;
+}
+
 .library-intro h1 {
   max-width: 1100px;
   margin-bottom: 16px;
@@ -384,7 +388,7 @@ code {
 }
 
 .library-intro {
-  max-width: 920px;
+  max-width: 760px;
 }
 
 .skill-promo {
@@ -477,8 +481,8 @@ code {
   text-decoration-thickness: 4px;
 }
 
-.skill-promo + .library-controls {
-  margin-top: 18px;
+.pagination + .skill-promo {
+  margin-top: clamp(40px, 5vw, 64px);
 }
 
 .section-heading {
@@ -626,7 +630,7 @@ code {
 }
 
 .loop-table th {
-  padding: 11px 12px;
+  padding: 11px 18px;
   border-bottom: 1px solid var(--ink);
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -636,20 +640,12 @@ code {
   text-transform: uppercase;
 }
 
-.loop-table th:nth-child(1) {
-  width: 60px;
-}
-
 .loop-table th:nth-child(2) {
-  width: 56%;
-}
-
-.loop-table th:nth-child(4) {
-  width: 72px;
+  width: 124px;
 }
 
 .loop-table td {
-  padding: 22px 12px;
+  padding: 18px;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
@@ -658,15 +654,8 @@ code {
   display: none;
 }
 
-.cell-number {
-  color: var(--orange);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
 .cell-loop h3 {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 1.08rem;
   letter-spacing: -0.025em;
 }
@@ -701,6 +690,22 @@ code {
   content: "·";
 }
 
+.loop-featured {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  min-height: 18px;
+  padding: 2px 5px;
+  color: var(--charcoal);
+  background: var(--orange);
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .loop-title-link {
   scroll-margin-top: 80px;
   text-decoration-color: var(--orange);
@@ -713,8 +718,7 @@ code {
   text-decoration-thickness: 4px;
 }
 
-.cell-loop p,
-.cell-check {
+.cell-loop p {
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -725,30 +729,47 @@ code {
 }
 
 .cell-loop .loop-summary {
-  margin-bottom: 10px;
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.45;
+  display: none;
 }
 
 .cell-loop [data-prompt] {
+  margin-top: 8px;
+  color: var(--muted);
   font-size: 0.86rem;
+  line-height: 1.5;
 }
 
-.cell-check strong,
-.cell-check > span:not(.cell-label) {
-  display: block;
+.cell-loop [data-prompt].is-collapsible:not(.is-expanded) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
-.cell-check strong {
-  margin-bottom: 6px;
+.loop-prompt-toggle {
+  padding: 0;
+  margin-top: 8px;
+  border: 0;
   color: var(--ink);
-  font-size: 0.88rem;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
-.cell-label {
-  display: none;
+.loop-prompt-toggle:hover,
+.loop-prompt-toggle:focus-visible {
+  text-decoration-thickness: 4px;
+}
+
+.cell-action {
+  text-align: right;
 }
 
 .copy-button {
@@ -1652,50 +1673,32 @@ code {
 
   .loop-row {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "number . action"
-      "loop loop loop"
-      "check check check";
-    padding: 18px 0;
+      "loop"
+      "action";
+    padding: 14px 0;
     border-bottom: 1px solid var(--ink);
   }
 
   .loop-table td {
     display: block;
-    padding: 6px 12px;
+    padding: 6px 16px;
     border-bottom: 0;
-  }
-
-  .cell-number {
-    grid-area: number;
   }
 
   .cell-loop {
     grid-area: loop;
-    padding-top: 16px !important;
+    padding-top: 6px !important;
   }
 
-  .cell-check {
-    grid-area: check;
-    margin-top: 8px;
-    padding-top: 14px !important;
-    border-top: 1px solid var(--line) !important;
+  .cell-loop [data-prompt].is-collapsible:not(.is-expanded) {
+    -webkit-line-clamp: 4;
   }
 
   .cell-action {
     grid-area: action;
-  }
-
-  .cell-label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    text-align: left;
   }
 
   .detail-hero h1 {
