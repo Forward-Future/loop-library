@@ -757,15 +757,6 @@ code {
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-decoration: underline;
-  text-decoration-color: var(--orange);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-.loop-prompt-toggle:hover,
-.loop-prompt-toggle:focus-visible {
-  text-decoration-thickness: 4px;
 }
 
 .cell-action {
