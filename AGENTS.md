@@ -14,7 +14,8 @@
   `node scripts/build-skill-catalog.mjs` and
   `node scripts/build-loop-pages.mjs`, capture the versioned page screenshots,
   and then run `node scripts/build-social-images.mjs`. Commit the skill catalog,
-  screenshots, generated detail pages, `site/sitemap.xml`, and `site/feed.xml`.
+  public Markdown/JSON catalogs, screenshots, generated detail pages,
+  `site/sitemap.xml`, and `site/feed.xml`.
 - Run the full repository checks before committing:
 
   ```bash
@@ -32,8 +33,8 @@
   ```
 
 - Do not add a loop if the checks report drift between the homepage, source
-  catalog, installable skill catalog, generated pages, structured data,
-  sitemap, or feed.
+  catalog, live catalogs, installable skill fallback, generated pages,
+  structured data, sitemap, or feed.
 
 ## Deployment
 
