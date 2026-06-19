@@ -156,6 +156,7 @@ const requestedConceptSlugs = [
   "autonomy-loop",
   "codex-completion-contract-loop",
   "revolve-self-improvement-loop",
+  "five-minute-repository-maintainer-loop",
 ];
 const submissionPromptAnchors = new Map([
   ["ticket-to-pr-ready-loop", ["bug report", "customer complaint"]],
@@ -172,6 +173,10 @@ const submissionPromptAnchors = new Map([
   ["autonomy-loop", ["autonomy-loop", "LOOP-STATE.md", "red-before"]],
   ["codex-completion-contract-loop", ["$goal-planner-codex", "landing a PR"]],
   ["revolve-self-improvement-loop", ["Revolve", "revolve/", "support prompt"]],
+  [
+    "five-minute-repository-maintainer-loop",
+    ["every five minutes", "one thread per repository", "autoreview"],
+  ],
 ]);
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
@@ -189,7 +194,7 @@ assert.deepEqual(agentLoopTerm.sameAs, [
   "https://code.claude.com/docs/en/agent-sdk/agent-loop",
   "https://arxiv.org/abs/2210.03629",
 ]);
-assert.equal(loops.length, 29);
+assert.equal(loops.length, 30);
 assert.equal(slugs.size, loops.length);
 assert.equal(titles.size, loops.length);
 assert.equal(prompts.size, loops.length);

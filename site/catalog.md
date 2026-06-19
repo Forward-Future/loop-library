@@ -268,3 +268,12 @@ URL above.
 - Verify: The best Revolve checkpoint wins within one evaluation revision. The incumbent and candidates have comparable recorded runs, accepted changes pass every guard, rollback is available, and live promotion has approval.
 - Keywords: Revolve, agent self improvement, checkpoint evaluation, revisioned experiments, evidence based promotion
 - Related: [The self-improving champion loop](https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/), [The full product evaluation loop](https://signals.forwardfuture.ai/loop-library/loops/full-product-evaluation-loop/)
+
+## 030 — [The five-minute repository maintainer loop](https://signals.forwardfuture.ai/loop-library/loops/five-minute-repository-maintainer-loop/)
+
+- Category: Engineering
+- Use when: Use this when Codex may coordinate maintenance across several active repositories and you want parallel work to stay steerable without duplicating or micromanaging threads.
+- Prompt: While repository maintenance is active, wake every five minutes. Triage [repositories] and read each repository thread's latest state. Reuse one thread per repository; assign its highest-value bounded task only within granted permissions, and do not interrupt coherent active work. Require tests, live proof, autoreview, and green CI before work can land. Escalate product, access, security, or irreversible decisions. Record meaningful changes and stop when every item is landed, decision-ready, blocked, or has no work.
+- Verify: Every repository item reaches a proven handoff or terminal state. Authorized autonomous work lands with evidence; other items are decision-ready, blocked with one exact ask, or recorded as a clean no-op.
+- Keywords: Codex repository maintenance, multi-repository orchestration, five minute agent loop, GitHub project triage, thread delegation
+- Related: [The ticket-to-PR-ready loop](https://signals.forwardfuture.ai/loop-library/loops/ticket-to-pr-ready-loop/), [The stale-safe batch release loop](https://signals.forwardfuture.ai/loop-library/loops/stale-safe-batch-release-loop/)

@@ -5,7 +5,7 @@ export const site = {
   description:
     "Practical AI agent workflows for engineering, research, editorial work, evaluation, and operations.",
   updated: "2026-06-19",
-  socialImageVersion: "20260619-6",
+  socialImageVersion: "20260619-7",
   socialImageExtension: "png",
   socialImageMimeType: "image/png",
 };
@@ -1183,5 +1183,47 @@ export const loops = [
       "evidence based promotion",
     ],
     related: ["self-improving-champion-loop", "full-product-evaluation-loop"],
+  },
+  {
+    number: "030",
+    slug: "five-minute-repository-maintainer-loop",
+    title: "The five-minute repository maintainer loop",
+    summary:
+      "Keeps repository work moving through dedicated threads without interrupting active agents.",
+    seoTitle: "Five-Minute Repository Maintainer Loop | Loop Library",
+    description:
+      "A five-minute Codex workflow that triages repositories, directs bounded maintenance to dedicated threads, and requires proof and permission before work lands.",
+    categoryLabel: "AI repository operations workflow",
+    author: "Peter Steinberger",
+    sourceUrl:
+      "https://github.com/steipete/agent-scripts/blob/main/skills/maintainer-orchestrator/SKILL.md",
+    published: "2026-06-19",
+    modified: "2026-06-19",
+    prompt:
+      "While repository maintenance is active, wake every five minutes. Triage [repositories] and read each repository thread's latest state. Reuse one thread per repository; assign its highest-value bounded task only within granted permissions, and do not interrupt coherent active work. Require tests, live proof, autoreview, and green CI before work can land. Escalate product, access, security, or irreversible decisions. Record meaningful changes and stop when every item is landed, decision-ready, blocked, or has no work.",
+    verifyTitle:
+      "Every repository item reaches a proven handoff or terminal state.",
+    verifyDetail:
+      "Authorized autonomous work lands with evidence; other items are decision-ready, blocked with one exact ask, or recorded as a clean no-op.",
+    useWhen:
+      "Use this when Codex may coordinate maintenance across several active repositories and you want parallel work to stay steerable without duplicating or micromanaging threads.",
+    steps: [
+      "Define the repository scope, exclusions, and separate permissions for triage, delegation, implementation, push, CI repair, merge, and release.",
+      "Every five minutes, refresh each repository queue and read the latest state of its existing thread before choosing the highest-value eligible item.",
+      "Reuse one thread per repository, assign one bounded task, and let coherent active work continue unless it is blocked, stalled, unsafe, or off course.",
+      "Require tests, live proof, autoreview, and green CI; record the evidence, then route the next item or present the owner with one exact decision.",
+    ],
+    why:
+      "A five-minute heartbeat keeps the control plane current without turning polling into micromanagement. One thread per repository preserves context, while proof and authorization gates make autonomous landing auditable.",
+    note:
+      "The source pairs Maintainer Orchestrator with github-project-triage, autoreview, and computer use for live proof. A heartbeat automates observation, not authority: triage, delegation, implementation, push, merge, and release remain separate permissions. Read current thread state before steering, and never duplicate or interrupt active work.",
+    keywords: [
+      "Codex repository maintenance",
+      "multi-repository orchestration",
+      "five minute agent loop",
+      "GitHub project triage",
+      "thread delegation",
+    ],
+    related: ["ticket-to-pr-ready-loop", "stale-safe-batch-release-loop"],
   },
 ];
