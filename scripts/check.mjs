@@ -792,7 +792,7 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260620-agent-guide"));
+assert(html.includes("./styles.css?v=20260620-skill-promo-top"));
 assert(html.includes("./script.js?v=20260620-agent-guide"));
 const homepagePostText =
   "Find Loops and create your own - Loop Library";
@@ -818,6 +818,9 @@ assert(!html.includes('class="answer-capsule"'));
 assert(!html.includes("Plain-language definition"));
 assert(!html.includes("What is an AI agent loop?"));
 assert(html.includes('id="agent-skill"'));
+assert(
+  html.indexOf('id="agent-skill"') < html.indexOf('class="library-controls"'),
+);
 assert(html.includes("Use Loop Library in your coding agent."));
 assert(html.includes('href="./agents/"'));
 assert(html.includes("Send an agent to the live guide"));

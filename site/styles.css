@@ -569,8 +569,8 @@ code {
   text-decoration-thickness: 4px;
 }
 
-.pagination + .skill-promo {
-  margin-top: clamp(40px, 5vw, 64px);
+.skill-promo + .library-controls {
+  margin-top: 18px;
 }
 
 .section-heading {
