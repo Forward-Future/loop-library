@@ -79,31 +79,96 @@ behalf. Those actions still require the normal permissions and approvals.
 
 ## Install the skill
 
-Run this command in your terminal:
+You need Node.js and `npx`. Pick the platform you use:
+
+| Platform | Install command |
+| --- | --- |
+| Codex | `npx skills add Forward-Future/loop-library --skill loop-library --agent codex -g -y` |
+| Cursor | `npx skills add Forward-Future/loop-library --skill loop-library --agent cursor -g -y` |
+| Claude Code | `npx skills add Forward-Future/loop-library --skill loop-library --agent claude-code -g -y` |
+
+To install it for all three at once:
+
+```bash
+npx skills add Forward-Future/loop-library \
+  --skill loop-library \
+  --agent codex \
+  --agent cursor \
+  --agent claude-code \
+  -g -y
+```
+
+Using another agent? Run the interactive installer and choose from the agents
+it detects:
 
 ```bash
 npx skills add Forward-Future/loop-library --skill loop-library -g
 ```
 
-The `-g` flag makes the skill available across your projects.
+The command parts mean:
 
-Once it is installed, try asking your agent:
+- `Forward-Future/loop-library` is the GitHub repository to install from.
+- `--skill loop-library` selects this skill from the repository.
+- `--agent ...` selects the agent that should receive it.
+- `-g` makes it available in all your projects. Leave `-g` off to install it
+  only in the current project.
+- `-y` accepts the install prompts. Leave it off if you want to review the
+  choices interactively.
 
-> Use $loop-library to find a loop for keeping our documentation current.
+If an agent was already open and the skill does not appear, restart that agent.
 
-Or ask Loop Doctor to check a loop you already have:
+## Invoke the skill
 
-> Use $loop-library to audit this loop and repair only material problems:
-> [paste the loop]
+The slash-command experience differs slightly by platform:
 
-Or start with an outcome and let the skill help shape it:
+- **Codex:** type `/skills`, choose **Loop Library**, then enter your request.
+  You can also mention it directly with `$loop-library`.
+- **Cursor:** type `/` in Agent chat, search for `loop-library`, select it, and
+  add your request. You can also type `/loop-library` directly.
+- **Claude Code:** type `/loop-library` followed by your request.
 
-> Use $loop-library to help me design a loop that turns customer feedback into
-> verified fixes.
+You can also describe a matching task normally. These agents can load the
+skill automatically when your request clearly calls for it, but explicit
+invocation is the most predictable way to start.
 
-You do not need to know the right loop vocabulary before you begin. Describe
-what you want to get done, and the skill will ask only for the decisions it
-needs.
+## Use Loop Library
+
+You do not need to know loop terminology. Invoke the skill and say what you
+want to get done. It can take four paths:
+
+| Path | What it does | Example request |
+| --- | --- | --- |
+| **Find** | Searches the live catalog and recommends up to three published loops. It does not run them. | `Find a published loop for keeping our documentation current.` |
+| **Loop Doctor** | Audits a loop you paste or name, explains material weaknesses, and repairs only those problems. | `Audit this loop and repair only material problems: [paste loop]` |
+| **Adapt** | Tailors a useful loop to your real tools, limits, schedule, and definition of success. | `Adapt the Overnight Docs Sweep to this repository and our existing checks.` |
+| **Design** | Asks a few plain-language questions, then creates a short, bounded loop when the catalog has no good fit. | `Help me design a loop that turns customer feedback into verified fixes.` |
+
+For example, in Claude Code or Cursor:
+
+```text
+/loop-library Find a loop for improving test reliability.
+```
+
+In Codex, choose **Loop Library** from `/skills`, then send:
+
+```text
+Find a loop for improving test reliability.
+```
+
+When the skill finds or creates the right loop, it gives you a prompt to use
+with your agent. Review any placeholders, then ask the agent to run that prompt
+in the project you want it to work on. Selecting a loop does not start a
+schedule, deploy code, delete data, send messages, or grant new permissions;
+you must request those actions explicitly.
+
+Every published loop also includes a few useful parts:
+
+- **Use when** explains the problem the loop is meant to solve.
+- **Prompt** is the copy-ready instruction for your agent.
+- **Verify** defines the evidence that proves the work succeeded.
+- **Steps** show the feedback cycle in a more readable form.
+- **Notes** call out practical limits, risks, or setup details.
+- **Related loops** point to nearby workflows that may fit better.
 
 ## Explore or contribute
 
