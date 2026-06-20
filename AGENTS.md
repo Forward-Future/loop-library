@@ -79,11 +79,11 @@ deployment checkout:
 ```bash
 cd worker
 npm ci
-npx --yes wrangler@latest secret put TURNSTILE_SITE_KEY
-npx --yes wrangler@latest secret put TURNSTILE_SECRET_KEY
-npx --yes wrangler@latest secret put TURNSTILE_HOSTNAMES
-npx --yes wrangler@latest secret put HERENOW_API_KEY
-npx --yes wrangler@latest secret put HERENOW_SITE_SLUG
+npm exec -- wrangler secret put TURNSTILE_SITE_KEY
+npm exec -- wrangler secret put TURNSTILE_SECRET_KEY
+npm exec -- wrangler secret put TURNSTILE_HOSTNAMES
+npm exec -- wrangler secret put HERENOW_API_KEY
+npm exec -- wrangler secret put HERENOW_SITE_SLUG
 npm run deploy
 ```
 
@@ -118,7 +118,7 @@ curl -sS "https://here.now/api/v1/publishes/{slug}/data/weekly_signups?limit=50"
   file overlay. Publish the complete `site/` directory from a clean deployment
   checkout on latest integrated main.
 - Serialize deployments with
-  `/Users/matthewberman/.codex/deploy-locks/loop-library.lock`. Wait for an
+  `$HOME/.codex/deploy-locks/loop-library.lock`. Wait for an
   active deployment, then fetch and fast-forward again before selecting the
   deployment revision.
 - Hold the lock through here.now finalize and production verification.

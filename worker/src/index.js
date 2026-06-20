@@ -138,6 +138,19 @@ export async function handleRequest(
     const turnstileToken = readTurnstileToken(body.turnstile_token);
     const record = definition.validate(body.payload, body.permission);
     const clientIp = request.headers.get("CF-Connecting-IP") || "unknown";
+    const verificationRate = await env.TURNSTILE_RATE_LIMITER.limit({
+      key: `${definition.collection}:${clientIp}`,
+    });
+
+    if (!verificationRate.success) {
+      throw new RequestError(
+        429,
+        "rate_limited",
+        definition.rateLimitMessage,
+        { "Retry-After": "60" },
+      );
+    }
+
     const turnstileResult = await verifyTurnstile(
       env,
       turnstileToken,
@@ -330,6 +343,7 @@ function assertConfigured(env) {
     "FORM_GUARD",
     "HERENOW_API_KEY",
     "HERENOW_SITE_SLUG",
+    "TURNSTILE_RATE_LIMITER",
     "TURNSTILE_HOSTNAMES",
     "TURNSTILE_SECRET_KEY",
   ]) {
@@ -805,6 +819,61 @@ export class FormGuard {
     return jsonResponse({ error: "Not found" }, 404);
   }
 
+  async scheduleCleanup(expiresAt) {
+    const scheduledAt = await this.state.storage.getAlarm();
+
+    if (scheduledAt === null || expiresAt < scheduledAt) {
+      await this.state.storage.setAlarm(expiresAt);
+    }
+  }
+
+  async alarm() {
+    const now = Date.now();
+    let nextCleanupAt = null;
+    const includeCleanup = (expiresAt) => {
+      nextCleanupAt =
+        nextCleanupAt === null
+          ? expiresAt
+          : Math.min(nextCleanupAt, expiresAt);
+    };
+
+    const storedEvents = await this.state.storage.get("events");
+
+    if (storedEvents !== undefined) {
+      const events = Array.isArray(storedEvents)
+        ? storedEvents.filter(
+            (event) => Number.isFinite(event.at) && event.at > now - DAY_MS,
+          )
+        : [];
+
+      if (events.length > 0) {
+        await this.state.storage.put("events", events);
+        includeCleanup(
+          Math.min(...events.map((event) => event.at + DAY_MS)),
+        );
+      } else {
+        await this.state.storage.delete("events");
+      }
+    }
+
+    for (const key of ["reservation", "idempotency"]) {
+      const entry = await this.state.storage.get(key);
+
+      if (entry?.expiresAt > now) {
+        includeCleanup(entry.expiresAt);
+      } else if (entry !== undefined) {
+        await this.state.storage.delete(key);
+      }
+    }
+
+    if (nextCleanupAt === null) {
+      await this.state.storage.deleteAll();
+      await this.state.storage.deleteAlarm();
+    } else {
+      await this.state.storage.setAlarm(nextCleanupAt);
+    }
+  }
+
   async rate(body) {
     const now = Date.now();
     const hourlyLimit = Number(body.hourlyLimit);
@@ -832,6 +901,13 @@ export class FormGuard {
         typeof event.idempotencyKey === "string" &&
         typeof event.requestHash === "string",
     );
+
+    if (events.length > 0) {
+      await this.scheduleCleanup(
+        Math.min(...events.map((event) => event.at + DAY_MS)),
+      );
+    }
+
     const priorRequest = events.find(
       (event) => event.idempotencyKey === body.idempotencyKey,
     );
@@ -884,6 +960,9 @@ export class FormGuard {
       requestHash: body.requestHash,
     });
     await this.state.storage.put("events", events);
+    await this.scheduleCleanup(
+      Math.min(...events.map((event) => event.at + DAY_MS)),
+    );
 
     return jsonResponse({ allowed: true, replay: false });
   }
@@ -904,16 +983,19 @@ export class FormGuard {
     const entry = await this.state.storage.get("reservation");
 
     if (entry?.expiresAt > now) {
+      await this.scheduleCleanup(entry.expiresAt);
       return jsonResponse({
         duplicate: entry.idempotencyKey !== body.idempotencyKey,
         replay: entry.idempotencyKey === body.idempotencyKey,
       });
     }
 
+    const expiresAt = now + ttlMs;
     await this.state.storage.put("reservation", {
-      expiresAt: now + ttlMs,
+      expiresAt,
       idempotencyKey: body.idempotencyKey,
     });
+    await this.scheduleCleanup(expiresAt);
 
     return jsonResponse({ duplicate: false, replay: false });
   }
@@ -937,6 +1019,7 @@ export class FormGuard {
     const entry = await this.state.storage.get("idempotency");
 
     if (entry?.expiresAt > now) {
+      await this.scheduleCleanup(entry.expiresAt);
       const replay =
         entry.form === body.form &&
         entry.idempotencyKey === body.idempotencyKey &&
@@ -953,12 +1036,17 @@ export class FormGuard {
     }
 
     if (shouldBind) {
+      const expiresAt = now + ttlMs;
       await this.state.storage.put("idempotency", {
-        expiresAt: now + ttlMs,
+        expiresAt,
         form: body.form,
         idempotencyKey: body.idempotencyKey,
         requestHash: body.requestHash,
       });
+      await this.scheduleCleanup(expiresAt);
+    } else {
+      await this.state.storage.deleteAll();
+      await this.state.storage.deleteAlarm();
     }
 
     return jsonResponse({ conflict: false, replay: false });
@@ -968,7 +1056,8 @@ export class FormGuard {
     const entry = await this.state.storage.get("reservation");
 
     if (entry?.idempotencyKey === body.idempotencyKey) {
-      await this.state.storage.delete("reservation");
+      await this.state.storage.deleteAll();
+      await this.state.storage.deleteAlarm();
     }
 
     return jsonResponse({ released: true });

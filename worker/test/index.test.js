@@ -11,6 +11,15 @@ const WORKER_ORIGIN = "https://loop-library-forms.mberman84.workers.dev";
 
 class MemoryStorage {
   values = new Map();
+  alarmAt = null;
+
+  async deleteAll() {
+    this.values.clear();
+  }
+
+  async deleteAlarm() {
+    this.alarmAt = null;
+  }
 
   async delete(key) {
     return this.values.delete(key);
@@ -20,8 +29,16 @@ class MemoryStorage {
     return this.values.get(key);
   }
 
+  async getAlarm() {
+    return this.alarmAt;
+  }
+
   async put(key, value) {
     this.values.set(key, structuredClone(value));
+  }
+
+  async setAlarm(scheduledTime) {
+    this.alarmAt = Number(scheduledTime);
   }
 }
 
@@ -50,12 +67,18 @@ class MemoryGuardNamespace {
   }
 }
 
-function makeEnv() {
+function makeEnv(options = {}) {
   return {
     ALLOWED_ORIGINS: `${SITE_ORIGIN},http://localhost:4173`,
     FORM_GUARD: new MemoryGuardNamespace(),
     HERENOW_API_KEY: "test-here-now-key",
     HERENOW_SITE_SLUG: "test-loop-library",
+    TURNSTILE_RATE_LIMITER: {
+      async limit({ key }) {
+        options.rateLimitCalls?.push(key);
+        return { success: options.verificationAllowed !== false };
+      },
+    },
     TURNSTILE_HOSTNAMES: "signals.forwardfuture.ai,localhost",
     TURNSTILE_SECRET_KEY: "test-turnstile-secret",
     TURNSTILE_SITE_KEY: "test-turnstile-site-key",
@@ -299,6 +322,32 @@ test("rejects invalid or mismatched Turnstile tokens without writing", async () 
   }
 });
 
+test("rate limits invalid-token floods before calling Siteverify", async () => {
+  const rateLimitCalls = [];
+  const env = makeEnv({
+    rateLimitCalls,
+    verificationAllowed: false,
+  });
+  const { calls, dependencies } = makeDependencies();
+  const response = await handleRequest(
+    makeRequest(
+      "/suggestions",
+      suggestionBody({ turnstile_token: "invalid-token" }),
+    ),
+    env,
+    undefined,
+    dependencies,
+  );
+  const body = await response.json();
+
+  assert.equal(response.status, 429);
+  assert.equal(response.headers.get("Retry-After"), "60");
+  assert.equal(body.code, "rate_limited");
+  assert.deepEqual(rateLimitCalls, ["suggestions:203.0.113.10"]);
+  assert.equal(calls.turnstile.length, 0);
+  assert.equal(calls.siteData.length, 0);
+});
+
 test("normalizes and stores weekly signups only after verification", async () => {
   const env = makeEnv();
   const { calls, dependencies } = makeDependencies();
@@ -501,4 +550,71 @@ test("replays the same idempotent request across an IP change", async () => {
   assert.equal(first.status, 201);
   assert.equal(replay.status, 202);
   assert.equal(calls.siteData.length, 1);
+});
+
+test("Durable Object alarms physically remove expired guard state", async () => {
+  const originalNow = Date.now;
+  let now = 1_800_000_000_000;
+  Date.now = () => now;
+
+  try {
+    const requestHash = "a".repeat(64);
+    const cases = [
+      {
+        path: "/rate",
+        body: {
+          dailyLimit: 10,
+          form: "suggestions",
+          hourlyLimit: 3,
+          idempotencyKey: testUuid(901),
+          requestHash,
+        },
+        expiresAt: () => now + 24 * 60 * 60 * 1000,
+      },
+      {
+        path: "/dedupe/reserve",
+        body: {
+          idempotencyKey: testUuid(902),
+          ttlMs: 1000,
+        },
+        expiresAt: () => now + 1000,
+      },
+      {
+        path: "/idempotency/bind",
+        body: {
+          form: "suggestions",
+          idempotencyKey: testUuid(903),
+          requestHash,
+          ttlMs: 1000,
+        },
+        expiresAt: () => now + 1000,
+      },
+    ];
+
+    for (const entry of cases) {
+      const storage = new MemoryStorage();
+      const guard = new FormGuard({ storage });
+      const expiresAt = entry.expiresAt();
+      const response = await guard.fetch(
+        new Request(`https://form-guard${entry.path}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(entry.body),
+        }),
+      );
+
+      assert.equal(response.status, 200);
+      assert.equal(storage.alarmAt, expiresAt);
+      assert(storage.values.size > 0);
+
+      now = expiresAt + 1;
+      await guard.alarm();
+
+      assert.equal(storage.values.size, 0);
+      assert.equal(storage.alarmAt, null);
+      now += 1000;
+    }
+  } finally {
+    Date.now = originalNow;
+  }
 });

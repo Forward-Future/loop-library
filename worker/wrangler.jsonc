@@ -3,6 +3,16 @@
   "main": "src/index.js",
   "compatibility_date": "2026-06-17",
   "workers_dev": true,
+  "ratelimits": [
+    {
+      "name": "TURNSTILE_RATE_LIMITER",
+      "namespace_id": "31573134555896",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    }
+  ],
   "durable_objects": {
     "bindings": [
       {

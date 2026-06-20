@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "check": "node --check src/index.js && node --test",
-    "deploy": "npx --yes wrangler@latest deploy",
-    "dev": "npx --yes wrangler@latest dev",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
     "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "4.103.0"
   }
 }

@@ -16,6 +16,7 @@ import {
   renderCatalogJson,
   renderCatalogMarkdown,
 } from "./build-skill-catalog.mjs";
+import { escapeJsonForHtmlScript } from "./html-script-utils.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "site");
@@ -29,6 +30,7 @@ const [
   script,
   dataSource,
   workerSource,
+  workerPackageSource,
   wranglerSource,
   sitemap,
   feed,
@@ -49,6 +51,7 @@ const [
     readFile(path.join(siteRoot, "script.js"), "utf8"),
     readFile(path.join(siteRoot, ".herenow", "data.json"), "utf8"),
     readFile(path.join(workerRoot, "src", "index.js"), "utf8"),
+    readFile(path.join(workerRoot, "package.json"), "utf8"),
     readFile(path.join(workerRoot, "wrangler.jsonc"), "utf8"),
     readFile(path.join(siteRoot, "sitemap.xml"), "utf8"),
     readFile(path.join(siteRoot, "feed.xml"), "utf8"),
@@ -72,6 +75,7 @@ const [
 
 const dataManifest = JSON.parse(dataSource);
 const publicCatalog = JSON.parse(publicCatalogJsonSource);
+const workerPackage = JSON.parse(workerPackageSource);
 const wranglerConfig = JSON.parse(wranglerSource);
 const suggestions = dataManifest.collections?.suggestions;
 const weeklySignups = dataManifest.collections?.weekly_signups;
@@ -104,6 +108,15 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 }
+
+const scriptTerminationPayload = {
+  value: "</ScRiPt><script>globalThis.compromised = true</script>",
+};
+const escapedScriptJson = escapeJsonForHtmlScript(
+  JSON.stringify(scriptTerminationPayload),
+);
+assert.doesNotMatch(escapedScriptJson, /<\/script/i);
+assert.deepEqual(JSON.parse(escapedScriptJson), scriptTerminationPayload);
 
 function pngSize(buffer) {
   assert(buffer.subarray(0, pngSignature.length).equals(pngSignature));
@@ -851,9 +864,21 @@ assert(workerSource.includes("requestHash: body.requestHash"));
 assert(workerSource.includes("reserveFingerprint"));
 assert(workerSource.includes("Authorization: `Bearer ${env.HERENOW_API_KEY}`"));
 assert(workerSource.includes("export class FormGuard"));
+assert(workerSource.includes("async alarm()"));
+assert(workerSource.includes("TURNSTILE_RATE_LIMITER.limit"));
+assert.equal(workerPackage.devDependencies.wrangler, "4.103.0");
+assert.equal(workerPackage.scripts.deploy, "wrangler deploy");
+assert.equal(workerPackage.scripts.dev, "wrangler dev");
 assert.equal(wranglerConfig.name, "loop-library-forms");
 assert.equal(wranglerConfig.workers_dev, true);
 assert.equal(wranglerConfig.routes, undefined);
+assert.deepEqual(wranglerConfig.ratelimits, [
+  {
+    name: "TURNSTILE_RATE_LIMITER",
+    namespace_id: "31573134555896",
+    simple: { limit: 30, period: 60 },
+  },
+]);
 assert.equal(
   wranglerConfig.durable_objects.bindings[0].class_name,
   "FormGuard",

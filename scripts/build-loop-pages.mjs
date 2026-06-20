@@ -2,6 +2,7 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
+import { escapeJsonForHtmlScript } from "./html-script-utils.mjs";
 import { loops, site } from "./loop-data.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -108,7 +109,7 @@ function structuredData(loop) {
     };
   }
 
-  return JSON.stringify(
+  const json = JSON.stringify(
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -172,7 +173,9 @@ function structuredData(loop) {
     },
     null,
     2,
-  ).replaceAll("</script", "<\\/script");
+  );
+
+  return escapeJsonForHtmlScript(json);
 }
 
 function renderLoopPage(loop) {
