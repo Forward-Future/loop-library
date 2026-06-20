@@ -932,6 +932,12 @@ assert(html.includes('id="theme-toggle"'));
 assert(html.includes('document.documentElement.dataset.theme = theme'));
 assert(html.includes('"loop-library-theme"'));
 assert(html.includes('id="loop-form"'));
+assert(
+  html.includes(
+    "I confirm that I own this loop and grant Loop Library a\n" +
+      "              non-exclusive license to edit, reproduce, and publish it.",
+  ),
+);
 assert(html.includes('id="weekly"'));
 assert(html.includes('id="weekly-form"'));
 assert(html.includes("One useful loop, once a week."));
