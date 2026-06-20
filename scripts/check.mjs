@@ -115,6 +115,56 @@ function wordCount(value) {
   return value.trim().split(/\s+/).length;
 }
 
+function formatDate(value) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value}T00:00:00Z`));
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function attributeValue(
+  htmlSource,
+  tag,
+  attribute,
+  selectorAttribute,
+  selectorValue,
+) {
+  const tagMatches =
+    htmlSource.match(new RegExp(`<${tag}\\b[^>]*>`, "gi")) || [];
+  const selectorPattern = new RegExp(
+    `${selectorAttribute}=["']${escapeRegExp(selectorValue)}["']`,
+    "i",
+  );
+  const selected = tagMatches.find((candidate) =>
+    selectorPattern.test(candidate),
+  );
+
+  return (
+    selected?.match(new RegExp(`${attribute}=["']([^"']+)["']`, "i"))?.[1] ||
+    ""
+  );
+}
+
+function assertIsoDate(value, label) {
+  assert.match(value, /^\d{4}-\d{2}-\d{2}$/, `${label} must use YYYY-MM-DD.`);
+  assert.equal(
+    new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10),
+    value,
+    `${label} must be a valid calendar date.`,
+  );
+}
+
+function assertRequiredText(value, label) {
+  assert.equal(typeof value, "string", `${label} must be a string.`);
+  assert(value.trim().length > 0, `${label} must not be empty.`);
+}
+
 assert(structuredDataMatch);
 const structuredData = JSON.parse(structuredDataMatch[1]);
 const collection = structuredData["@graph"].find(
@@ -128,6 +178,8 @@ const loopBySlug = new Map(loops.map((loop) => [loop.slug, loop]));
 const featuredLoops = featuredLoopSlugs.map((slug) => loopBySlug.get(slug));
 const featuredSlugSet = new Set(featuredLoopSlugs);
 const titles = new Set(loops.map((loop) => loop.title));
+const summaries = new Set(loops.map((loop) => loop.summary));
+const descriptions = new Set(loops.map((loop) => loop.description));
 const prompts = new Set(loops.map((loop) => loop.prompt));
 const categorySlugs = new Set(categories.map((category) => category.slug));
 const requestedConceptSlugs = [
@@ -204,6 +256,8 @@ assert.equal(featuredLoopSlugs.length, 3);
 assert.equal(new Set(featuredLoopSlugs).size, featuredLoopSlugs.length);
 assert(featuredLoops.every(Boolean));
 assert.equal(titles.size, loops.length);
+assert.equal(summaries.size, loops.length);
+assert.equal(descriptions.size, loops.length);
 assert.equal(prompts.size, loops.length);
 assert(
   loops.every((loop) => wordCount(loop.prompt) < 80),
@@ -223,6 +277,84 @@ assert.deepEqual(
 assert(loops.every((loop) => !Object.hasOwn(loop, "type")));
 assert(loops.every((loop) => !Object.hasOwn(loop, "typeSlug")));
 assert(requestedConceptSlugs.every((slug) => slugs.has(slug)));
+loops.forEach((loop, index) => {
+  const prefix = loop.slug || `loop ${index + 1}`;
+  const requiredTextFields = [
+    "slug",
+    "title",
+    "summary",
+    "seoTitle",
+    "description",
+    "categoryLabel",
+    "author",
+    "prompt",
+    "verifyTitle",
+    "verifyDetail",
+    "useWhen",
+    "why",
+    "note",
+  ];
+
+  assert.equal(
+    loop.number,
+    String(index + 1).padStart(3, "0"),
+    `${prefix} number must match catalog order.`,
+  );
+  assert.match(loop.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+  assertRequiredText(loop.number, `${prefix}.number`);
+  for (const field of requiredTextFields) {
+    assertRequiredText(loop[field], `${prefix}.${field}`);
+  }
+  assertIsoDate(loop.published, `${prefix}.published`);
+  assertIsoDate(loop.modified, `${prefix}.modified`);
+  assert(
+    loop.modified >= loop.published,
+    `${prefix}.modified must be on or after published date.`,
+  );
+  assert(Array.isArray(loop.steps), `${prefix}.steps must be an array.`);
+  assert(
+    loop.steps.length >= 3,
+    `${prefix}.steps must include at least three steps.`,
+  );
+  loop.steps.forEach((step, stepIndex) =>
+    assertRequiredText(step, `${prefix}.steps[${stepIndex}]`),
+  );
+  assert(Array.isArray(loop.keywords), `${prefix}.keywords must be an array.`);
+  assert(
+    loop.keywords.length >= 3,
+    `${prefix}.keywords must include at least three terms.`,
+  );
+  assert.equal(
+    new Set(loop.keywords.map((keyword) => keyword.toLowerCase())).size,
+    loop.keywords.length,
+    `${prefix}.keywords must be unique.`,
+  );
+  loop.keywords.forEach((keyword, keywordIndex) =>
+    assertRequiredText(keyword, `${prefix}.keywords[${keywordIndex}]`),
+  );
+  assert(Array.isArray(loop.related), `${prefix}.related must be an array.`);
+  assert(
+    loop.related.length >= 1,
+    `${prefix}.related must include at least one loop.`,
+  );
+  assert.equal(
+    new Set(loop.related).size,
+    loop.related.length,
+    `${prefix}.related must not contain duplicates.`,
+  );
+  assert(
+    !loop.related.includes(loop.slug),
+    `${prefix}.related must not link to itself.`,
+  );
+  if (loop.sourceUrl) {
+    const sourceUrl = new URL(loop.sourceUrl);
+
+    assert(
+      ["http:", "https:"].includes(sourceUrl.protocol),
+      `${prefix}.sourceUrl must be an HTTP URL.`,
+    );
+  }
+});
 for (const [slug, anchors] of submissionPromptAnchors) {
   const prompt = loopBySlug.get(slug)?.prompt ?? "";
   const normalizedPrompt = prompt.toLowerCase();
@@ -242,6 +374,7 @@ assert.equal(publicCatalogJsonSource, renderCatalogJson());
 assert.equal(publicCatalog.schemaVersion, catalogSchemaVersion);
 assert.equal(publicCatalog.name, siteMeta.name);
 assert.equal(publicCatalog.publisher, siteMeta.publisher);
+assert.equal(publicCatalog.description, siteMeta.description);
 assert.equal(publicCatalog.url, siteMeta.baseUrl);
 assert.equal(publicCatalog.catalogUrl, `${siteMeta.baseUrl}catalog.json`);
 assert.equal(publicCatalog.markdownUrl, `${siteMeta.baseUrl}catalog.md`);
@@ -322,6 +455,16 @@ for (const [index, loop] of loops.entries()) {
     catalogLoop.related.map(({ slug }) => slug),
     loop.related,
   );
+  assert.deepEqual(
+    catalogLoop.related.map(({ title }) => title),
+    loop.related.map((relatedSlug) => loopBySlug.get(relatedSlug).title),
+  );
+  assert.deepEqual(
+    catalogLoop.related.map(({ url }) => url),
+    loop.related.map(
+      (relatedSlug) => `${siteMeta.baseUrl}loops/${relatedSlug}/`,
+    ),
+  );
   assert.equal(catalogLoop.sourceUrl, loop.sourceUrl);
   assert(loop.related.every((relatedSlug) => slugs.has(relatedSlug)));
   assert(html.includes(loop.title));
@@ -353,6 +496,14 @@ for (const [index, loop] of loops.entries()) {
   );
   assert(html.includes(homepageHref));
   assert(page.includes(`<title>${escapeHtml(loop.seoTitle)}</title>`));
+  assert.equal(
+    attributeValue(page, "meta", "content", "name", "description"),
+    escapeHtml(loop.description),
+  );
+  assert.equal(
+    attributeValue(page, "meta", "content", "name", "author"),
+    escapeHtml(loop.author),
+  );
   assert(page.includes(`<link rel="canonical" href="${url}"`));
   assert(
     page.includes(
@@ -373,6 +524,26 @@ for (const [index, loop] of loops.entries()) {
     page.includes(
       `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}"`,
     ),
+  );
+  assert.equal(
+    attributeValue(
+      page,
+      "meta",
+      "content",
+      "property",
+      "article:published_time",
+    ),
+    escapeHtml(loop.published),
+  );
+  assert.equal(
+    attributeValue(
+      page,
+      "meta",
+      "content",
+      "property",
+      "article:modified_time",
+    ),
+    escapeHtml(loop.modified),
   );
   assert(page.includes('<meta name="twitter:card" content="summary_large_image"'));
   assert(page.includes(`<meta name="twitter:image" content="${imageUrl}"`));
@@ -403,6 +574,16 @@ for (const [index, loop] of loops.entries()) {
   assert(!page.includes(`<p class="eyebrow">${loop.categoryLabel}</p>`));
   assert(page.includes("<dt>Published</dt>"));
   assert(page.includes("<dt>Updated</dt>"));
+  assert(
+    page.includes(
+      `<time datetime="${escapeHtml(loop.published)}">${escapeHtml(formatDate(loop.published))}</time>`,
+    ),
+  );
+  assert(
+    page.includes(
+      `<time datetime="${escapeHtml(loop.modified)}">${escapeHtml(formatDate(loop.modified))}</time>`,
+    ),
+  );
   assert(page.includes("Use this when"));
   assert(page.includes("How to run it"));
   assert(page.includes("Why it works"));
@@ -425,13 +606,45 @@ for (const [index, loop] of loops.entries()) {
   const article = pageStructuredData["@graph"].find(
     (item) => item["@type"] === "Article",
   );
+  const author = article.author;
+  const publisher = article.publisher;
+  const collectionReference = article.isPartOf;
+  const relatedLinkMatches = [
+    ...page.matchAll(
+      /<a class="related-loop-link" href="\.\.\/([^/]+)\/">\s*([^<]+?)\s*<\/a>/g,
+    ),
+  ];
 
   assert.equal(article.url, url);
   assert.equal(article.headline, loop.title);
+  assert.equal(article.description, loop.description);
+  assert.equal(article.mainEntityOfPage, url);
+  assert.equal(article.datePublished, loop.published);
   assert.equal(article.dateModified, loop.modified);
+  assert.equal(article.articleSection, loop.categoryLabel);
+  assert.deepEqual(article.keywords, loop.keywords);
   assert.equal(article.image.url, imageUrl);
   assert.equal(article.image.width, 1200);
   assert.equal(article.image.height, 630);
+  assert.equal(author["@type"], "Person");
+  assert.equal(author.name, loop.author.split(" / ")[0]);
+  if (loop.author.includes(" / ")) {
+    assert.deepEqual(author.affiliation, {
+      "@id": `${siteMeta.baseUrl}#organization`,
+    });
+  } else {
+    assert.equal(author.affiliation, undefined);
+  }
+  assert.deepEqual(publisher, { "@id": `${siteMeta.baseUrl}#organization` });
+  assert.deepEqual(collectionReference, { "@id": `${siteMeta.baseUrl}#collection` });
+  assert.deepEqual(
+    relatedLinkMatches.map((match) => match[1]),
+    loop.related,
+  );
+  assert.deepEqual(
+    relatedLinkMatches.map((match) => match[2].trim()),
+    loop.related.map((relatedSlug) => loopBySlug.get(relatedSlug).title),
+  );
   if (loop.sourceUrl) {
     assert.equal(article.isBasedOn, loop.sourceUrl);
     assert(
