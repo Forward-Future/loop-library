@@ -303,6 +303,38 @@ async function copyText(text) {
   }
 }
 
+function showCopyFallback(button, text) {
+  const shareActions = button.closest(".share-actions");
+
+  if (!shareActions) {
+    showToast("Copy failed. Copying is unavailable in this browser.");
+    return;
+  }
+
+  let fallback = shareActions.querySelector(".copy-fallback");
+
+  if (!fallback) {
+    fallback = document.createElement("label");
+    fallback.className = "copy-fallback";
+
+    const label = document.createElement("span");
+    label.textContent = "Copy this post manually";
+
+    const textArea = document.createElement("textarea");
+    textArea.setAttribute("readonly", "");
+    textArea.rows = 4;
+
+    fallback.append(label, textArea);
+    shareActions.append(fallback);
+  }
+
+  const textArea = fallback.querySelector("textarea");
+  textArea.value = text;
+  textArea.focus();
+  textArea.select();
+  showToast("Copy failed. The post is selected below.");
+}
+
 document.querySelectorAll(".copy-button").forEach((button) => {
   const label = button.querySelector("span");
   const defaultLabel = label?.textContent;
@@ -326,6 +358,36 @@ document.querySelectorAll(".copy-button").forEach((button) => {
       }, 1800);
     } catch {
       showToast("Copy failed. Select the prompt text instead.");
+    }
+  });
+});
+
+document.querySelectorAll("[data-copy-social-post]").forEach((button) => {
+  const label = button.querySelector("span");
+  const postText = button.dataset.postText;
+  const postUrl = button.dataset.postUrl;
+  const defaultLabel = label?.textContent;
+  let copyLabelResetTimer;
+
+  button.addEventListener("click", async () => {
+    if (!label || !postText || !postUrl || !defaultLabel) {
+      return;
+    }
+
+    const socialPost = `${postText}\n\n${postUrl}`;
+
+    try {
+      await copyText(socialPost);
+      label.textContent = "Copied!";
+      button.classList.add("is-copied");
+      showToast("Social post copied to clipboard.");
+      window.clearTimeout(copyLabelResetTimer);
+      copyLabelResetTimer = window.setTimeout(() => {
+        label.textContent = defaultLabel;
+        button.classList.remove("is-copied");
+      }, 1800);
+    } catch {
+      showCopyFallback(button, socialPost);
     }
   });
 });

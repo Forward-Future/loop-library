@@ -37,6 +37,27 @@ function socialImageUrl(loop) {
   return `${site.baseUrl}assets/social/${loop.slug}-${site.socialImageVersion}.${site.socialImageExtension}`;
 }
 
+function shareActions(loop, url) {
+  const postText = `Try "${loop.title}" from the Loop Library: ${loop.summary}`;
+
+  return `<div class="share-actions" aria-label="Share this loop">
+            <button
+              class="share-action share-action-primary"
+              type="button"
+              data-copy-social-post
+              data-post-text="${escapeHtml(postText)}"
+              data-post-url="${escapeHtml(url)}"
+              aria-label="Copy a social post about ${escapeHtml(loop.title)}"
+            >
+              <svg class="share-copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="11" height="11"></rect>
+                <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path>
+              </svg>
+              <span>Copy social post</span>
+            </button>
+          </div>`;
+}
+
 function relatedLinks(loop) {
   return loop.related
     .map((slug) => loops.find((candidate) => candidate.slug === slug))
@@ -221,11 +242,11 @@ function renderLoopPage(loop) {
     <link rel="alternate" type="application/json" title="${escapeHtml(site.name)} catalog" href="${escapeHtml(site.baseUrl)}catalog.json" />
     <link rel="alternate" type="text/markdown" title="${escapeHtml(site.name)} catalog in Markdown" href="${escapeHtml(site.baseUrl)}catalog.md" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
-    <link rel="stylesheet" href="../../styles.css?v=20260617-simple-detail" />
+    <link rel="stylesheet" href="../../styles.css?v=20260620-social-copy" />
     <script type="application/ld+json">
 ${structuredData(loop)}
     </script>
-    <script src="../../script.js?v=20260618-x-handle" defer></script>
+    <script src="../../script.js?v=20260620-social-copy" defer></script>
     <title>${escapeHtml(loop.seoTitle)}</title>
   </head>
   <body>
@@ -286,6 +307,7 @@ ${structuredData(loop)}
                 : ""
             }
           </p>
+          ${shareActions(loop, url)}
         </header>
 
         <div class="detail-stack">
