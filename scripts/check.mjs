@@ -869,7 +869,7 @@ assert.equal(
   (learnHtml.match(/href="https:\/\/here\.now\/r\/signals"/g) || []).length,
   2,
 );
-assert(learnHtml.includes("../styles.css?v=20260620-primary-nav"));
+assert(learnHtml.includes("../styles.css?v=20260620-article-layout"));
 assert(learnHtml.includes("../script.js?v=20260620-primary-nav"));
 assert(learnHtml.includes("How agent loops work"));
 assert(learnHtml.includes('<meta name="robots" content="index, follow"'));
@@ -918,7 +918,7 @@ assert(agentHtml.includes("npx skills add Forward-Future/loop-library --skill lo
 assert(agentHtml.includes('<meta name="robots" content="index, follow"'));
 assert(agentHtml.includes(`href="${siteMeta.baseUrl}catalog.json"`));
 assert(agentHtml.includes(`href="${siteMeta.baseUrl}llms.txt"`));
-assert(agentHtml.includes("../styles.css?v=20260620-primary-nav"));
+assert(agentHtml.includes("../styles.css?v=20260620-article-layout"));
 assert(agentHtml.includes("../script.js?v=20260620-primary-nav"));
 assert(html.includes("Repeatable AI Agent Workflows"));
 assert(html.includes('rel="sitemap"'));
@@ -1016,6 +1016,8 @@ assert(css.includes(".agent-resource-grid"));
 assert(css.includes(".agent-install-block"));
 assert(css.includes(".article-guide"));
 assert(css.includes(".article-header"));
+assert(css.includes("width: min(100%, 1180px)"));
+assert(css.includes(".article-header + .article-section"));
 assert(css.includes(".article-section"));
 assert(css.includes(".section-icon"));
 assert(!css.includes(".learning-hero"));
