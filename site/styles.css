@@ -391,6 +391,94 @@ code {
   max-width: 760px;
 }
 
+.share-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.share-action {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.share-action-primary {
+  color: var(--solid-foreground);
+  background: var(--solid-background);
+}
+
+.share-action:hover,
+.share-action:focus-visible,
+.share-action.is-copied {
+  color: var(--charcoal);
+  background: var(--orange);
+}
+
+.share-action:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.share-copy-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.8;
+}
+
+.copy-fallback {
+  display: grid;
+  width: min(100%, 720px);
+  flex: 1 0 100%;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.copy-fallback span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.copy-fallback textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: 12px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.copy-fallback textarea:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 .skill-promo {
   display: grid;
   align-items: center;
