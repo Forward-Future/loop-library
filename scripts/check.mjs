@@ -206,6 +206,11 @@ const requestedConceptSlugs = [
   "axelrod-subagent-arena-loop",
   "prepare-new-project-loop",
   "test-stabilizer-loop",
+  "artifact-to-skill-loop",
+  "strip-miner-loop",
+  "living-story-loop",
+  "groundtruth-audit-loop",
+  "recovery-proof-loop",
 ];
 const submissionPromptAnchors = new Map([
   ["ticket-to-pr-ready-loop", ["bug report", "customer complaint"]],
@@ -246,6 +251,22 @@ const submissionPromptAnchors = new Map([
     "artifact-to-skill-loop",
     ["evidence that the artifact succeeded", "fresh real second case", "not generalizable"],
   ],
+  [
+    "strip-miner-loop",
+    ["explicitly authorized", "three high-confidence independent successes", "fresh-replay"],
+  ],
+  [
+    "living-story-loop",
+    ["STORY.md", "never silently drop one", "STALE/NEEDS-REVIEW"],
+  ],
+  [
+    "groundtruth-audit-loop",
+    ["actual code and configuration", "ask before changing code", "area-to-evidence table"],
+  ],
+  [
+    "recovery-proof-loop",
+    ["disposable, isolated clean-room", "actual RPO and RTO", "never overwrite production"],
+  ],
 ]);
 const beginnerClarityAnchors = new Map([
   ["promise-to-proof-loop", ["marketing", "current product behavior", "customer trust"]],
@@ -265,6 +286,22 @@ const beginnerClarityAnchors = new Map([
     "artifact-to-skill-loop",
     ["surface style", "hypothetical", "hidden context"],
   ],
+  [
+    "strip-miner-loop",
+    ["private code", "root tasks", "clean replay"],
+  ],
+  [
+    "living-story-loop",
+    ["recent wins", "previous open thread", "thinner or blocked"],
+  ],
+  [
+    "groundtruth-audit-loop",
+    ["plain-language", "missing access", "read-only"],
+  ],
+  [
+    "recovery-proof-loop",
+    ["real recovery point", "representative business reads and writes", "restored production data"],
+  ],
 ]);
 
 assert.equal(collection.mainEntity.numberOfItems, loops.length);
@@ -282,7 +319,7 @@ assert.deepEqual(agentLoopTerm.sameAs, [
   "https://code.claude.com/docs/en/agent-sdk/agent-loop",
   "https://arxiv.org/abs/2210.03629",
 ]);
-assert.equal(loops.length, 45);
+assert.equal(loops.length, 49);
 assert.equal(slugs.size, loops.length);
 assert.equal(featuredLoopSlugs.length, 3);
 assert.equal(new Set(featuredLoopSlugs).size, featuredLoopSlugs.length);
@@ -764,6 +801,10 @@ assert(html.includes("@Alex_FF"));
 assert(html.includes("@inferencegod"));
 assert(html.includes("3goblack (@Dis_Trackted)"));
 assert(html.includes("Agent Zero"));
+assert(html.includes("Alex Burkhart (@neuralwhisperer)"));
+assert(html.includes("Buddy Hadry (@buddyhadry)"));
+assert(html.includes("Mohamed (@aivibecode)"));
+assert(html.includes("Eric Lott"));
 for (const removedSlug of [
   "focused-ai-signal-brief",
   "hands-on-tool-evaluation-loop",

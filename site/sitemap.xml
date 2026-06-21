@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
   </url>
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/learn/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
   </url>
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/agents/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
   </url>
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/loops/overnight-docs-sweep/</loc>
@@ -191,5 +191,21 @@
   <url>
     <loc>https://signals.forwardfuture.ai/loop-library/loops/artifact-to-skill-loop/</loc>
     <lastmod>2026-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/strip-miner-loop/</loc>
+    <lastmod>2026-06-21</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/living-story-loop/</loc>
+    <lastmod>2026-06-21</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/groundtruth-audit-loop/</loc>
+    <lastmod>2026-06-21</lastmod>
+  </url>
+  <url>
+    <loc>https://signals.forwardfuture.ai/loop-library/loops/recovery-proof-loop/</loc>
+    <lastmod>2026-06-21</lastmod>
   </url>
 </urlset>

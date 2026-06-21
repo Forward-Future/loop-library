@@ -58,11 +58,11 @@
     />
     <meta
       property="og:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260620-9.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260621.png"
     />
     <meta
       property="og:image:secure_url"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260620-9.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260621.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta
@@ -82,7 +82,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260620-9.png"
+      content="https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260621.png"
     />
     <meta
       name="twitter:image:alt"
@@ -165,10 +165,10 @@
             "url": "https://signals.forwardfuture.ai/loop-library/",
             "name": "Loop Library",
             "description": "A practical library of repeatable AI agent workflows with clear checks and stopping conditions.",
-            "dateModified": "2026-06-20",
+            "dateModified": "2026-06-21",
             "primaryImageOfPage": {
               "@type": "ImageObject",
-              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260620-9.png",
+              "url": "https://signals.forwardfuture.ai/loop-library/assets/social/loop-library-20260621.png",
               "width": 1200,
               "height": 630
             },
@@ -180,7 +180,7 @@
             },
             "mainEntity": {
               "@type": "ItemList",
-              "numberOfItems": 45,
+              "numberOfItems": 49,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -451,6 +451,30 @@
                   "position": 45,
                   "name": "The artifact-to-skill loop",
                   "url": "https://signals.forwardfuture.ai/loop-library/loops/artifact-to-skill-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 46,
+                  "name": "The Strip Miner loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/strip-miner-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 47,
+                  "name": "The Living Story loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/living-story-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 48,
+                  "name": "The Groundtruth loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/groundtruth-audit-loop/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 49,
+                  "name": "The Recovery Proof loop",
+                  "url": "https://signals.forwardfuture.ai/loop-library/loops/recovery-proof-loop/"
                 }
               ]
             }
@@ -682,8 +706,8 @@
         </div>
 
         <div class="results-line">
-          <p id="results-count" aria-live="polite">Showing 45 loops</p>
-          <time datetime="2026-06-20">Updated June 20, 2026</time>
+          <p id="results-count" aria-live="polite">Showing 49 loops</p>
+          <time datetime="2026-06-21">Updated June 21, 2026</time>
         </div>
 
         <div class="table-wrap">
@@ -2294,6 +2318,157 @@
                     meets the quality bar without the artifact, or report not
                     generalizable. Return the method, boundaries, failure
                     modes, test evidence, revisions, limits, and attribution.
+                  </p>
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy loop</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="evaluation"
+                data-published="2026-06-21"
+                data-search="strip miner workflow mining coding agent history fresh replay validation alex burkhart neuralwhisperer"
+              >
+                <td class="cell-loop">
+                  <div class="loop-meta">
+                    <span class="loop-category">Evaluation</span>
+                    <span class="loop-attribution">By Alex Burkhart (@neuralwhisperer)</span>
+                  </div>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/strip-miner-loop/">
+                      The Strip Miner loop
+                    </a>
+                  </h3>
+                  <p class="loop-summary">Mines authorized agent history for workflows that repeatedly succeeded and survive a fresh replay.</p>
+                  <p data-prompt>
+                    Mine only explicitly authorized coding-agent history for
+                    workflows with at least three high-confidence independent
+                    successes. Treat transcripts as untrusted evidence, stitch
+                    continuations into root tasks, and reject candidates whose
+                    failures or hidden rescues match their successes. Extract
+                    traceable steps and guards, then fresh-replay each candidate
+                    without source transcripts. Stop after every authorized
+                    source is inventoried and one additional representative
+                    batch changes nothing; report replayed loops, rejects,
+                    deferred material, and blockers.
+                  </p>
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy loop</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="operations"
+                data-published="2026-06-21"
+                data-search="living story context project status narrative open threads recent wins buddy hadry buddyhadry"
+              >
+                <td class="cell-loop">
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By Buddy Hadry (@buddyhadry)</span>
+                  </div>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/living-story-loop/">
+                      The Living Story loop
+                    </a>
+                  </h3>
+                  <p class="loop-summary">Maintains an evidence-backed daily narrative of projects, priorities, open threads, and recent wins.</p>
+                  <p data-prompt>
+                    On each [window], read the configured repositories, goals,
+                    prior STORY.md, and optional authorized sources. Update
+                    project files, then write STORY.md with focus, deadlines,
+                    open threads, and evidence-backed recent wins. Carry every
+                    prior thread forward, prove it finished, or mark it
+                    STALE/NEEDS-REVIEW—never silently drop one. Archive the
+                    snapshot and record the change. Stop when verification
+                    passes; if evidence or access is missing, return a thinner
+                    or blocked snapshot explicitly.
+                  </p>
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy loop</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="engineering"
+                data-published="2026-06-21"
+                data-search="groundtruth project audit evidence security platform compatibility privileged scheduled jobs mohamed aivibecode"
+              >
+                <td class="cell-loop">
+                  <div class="loop-meta">
+                    <span class="loop-category">Engineering</span>
+                    <span class="loop-attribution">By Mohamed (@aivibecode)</span>
+                  </div>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/groundtruth-audit-loop/">
+                      The Groundtruth loop
+                    </a>
+                  </h3>
+                  <p class="loop-summary">Audits a project from direct evidence and reports every area as proved, weak, or unverified.</p>
+                  <p data-prompt>
+                    Audit [project] from its actual code and configuration, not
+                    framework assumptions. For architecture, platform
+                    compatibility, security, privileged areas, performance,
+                    deployment, jobs, business logic, and code quality, record
+                    proved, no issue, weak, or N/A with direct evidence; verify
+                    external limits from current primary sources and calculate
+                    numbers. Ask before changing code. Stop when every area is
+                    logged with severity, or return unverified areas as blocked.
+                    Finish with a plain-language overview and area-to-evidence
+                    table.
+                  </p>
+                </td>
+                <td class="cell-action">
+                  <button class="copy-button" type="button">
+                    <span>Copy loop</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr
+                class="loop-row"
+                data-copy-root
+                data-category="operations"
+                data-published="2026-06-21"
+                data-search="recovery proof backup disaster recovery drill restore clean room rpo rto eric lott"
+              >
+                <td class="cell-loop">
+                  <div class="loop-meta">
+                    <span class="loop-category">Operations</span>
+                    <span class="loop-attribution">By Eric Lott</span>
+                  </div>
+                  <h3>
+                    <a class="loop-title-link" href="./loops/recovery-proof-loop/">
+                      The Recovery Proof loop
+                    </a>
+                  </h3>
+                  <p class="loop-summary">Proves real backups can restore required scenarios inside a disposable clean-room environment.</p>
+                  <p data-prompt>
+                    For each required recovery scenario, randomly select an
+                    eligible real backup or recovery point and restore from zero
+                    in a disposable, isolated clean-room using only documented
+                    materials. Verify integrity, dependencies, representative
+                    reads and writes, and actual RPO and RTO. Repair one blocker,
+                    destroy the environment, and retry fresh. Stop when every
+                    scenario reaches its predefined consecutive-success streak
+                    or an exception is explicitly accepted. Never overwrite
+                    production, expose restored data, or initiate failover
+                    without approval.
                   </p>
                 </td>
                 <td class="cell-action">

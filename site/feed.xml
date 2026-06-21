@@ -5,7 +5,7 @@
   <id>https://signals.forwardfuture.ai/loop-library/</id>
   <link href="https://signals.forwardfuture.ai/loop-library/" />
   <link href="https://signals.forwardfuture.ai/loop-library/feed.xml" rel="self" type="application/atom+xml" />
-  <updated>2026-06-20T00:00:00-07:00</updated>
+  <updated>2026-06-21T00:00:00-07:00</updated>
   <author>
     <name>Forward Future</name>
     <uri>https://forwardfuture.ai/</uri>
@@ -504,5 +504,49 @@
       <name>Hiten Shah (@hnshah)</name>
     </author>
     <summary>A reusable workflow for turning one proven artifact into a transferable skill, playbook, or procedure and validating it on a second case.</summary>
+  </entry>
+  <entry>
+    <title>The Strip Miner loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/strip-miner-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/strip-miner-loop/" />
+    <published>2026-06-21T00:00:00-07:00</published>
+    <updated>2026-06-21T00:00:00-07:00</updated>
+    <author>
+      <name>Alex Burkhart (@neuralwhisperer)</name>
+    </author>
+    <summary>An evidence-driven workflow-mining loop that finds repeated successes in authorized coding-agent history, rejects contradicted candidates, and validates extracted loops with fresh replay.</summary>
+  </entry>
+  <entry>
+    <title>The Living Story loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/living-story-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/living-story-loop/" />
+    <published>2026-06-21T00:00:00-07:00</published>
+    <updated>2026-06-21T00:00:00-07:00</updated>
+    <author>
+      <name>Buddy Hadry (@buddyhadry)</name>
+    </author>
+    <summary>A recurring context-maintenance workflow that turns repository activity, goals, and prior open threads into a verified daily story for future agents.</summary>
+  </entry>
+  <entry>
+    <title>The Groundtruth loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/groundtruth-audit-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/groundtruth-audit-loop/" />
+    <published>2026-06-21T00:00:00-07:00</published>
+    <updated>2026-06-21T00:00:00-07:00</updated>
+    <author>
+      <name>Mohamed (@aivibecode)</name>
+    </author>
+    <summary>A read-only project-audit workflow that verifies architecture, security, platform behavior, operations, and business logic from current evidence rather than assumptions.</summary>
+  </entry>
+  <entry>
+    <title>The Recovery Proof loop</title>
+    <id>https://signals.forwardfuture.ai/loop-library/loops/recovery-proof-loop/</id>
+    <link href="https://signals.forwardfuture.ai/loop-library/loops/recovery-proof-loop/" />
+    <published>2026-06-21T00:00:00-07:00</published>
+    <updated>2026-06-21T00:00:00-07:00</updated>
+    <author>
+      <name>Eric Lott</name>
+    </author>
+    <summary>A disaster-recovery validation workflow that restores randomly selected real recovery points, verifies integrity and RPO/RTO, and preserves failures as regression drills.</summary>
   </entry>
 </feed>

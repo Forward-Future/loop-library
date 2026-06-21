@@ -1,6 +1,6 @@
 # Published Loop Library catalog
 
-Generated from `scripts/loop-data.mjs` (catalog updated 2026-06-20).
+Generated from `scripts/loop-data.mjs` (catalog updated 2026-06-21).
 Live catalog: https://signals.forwardfuture.ai/loop-library/catalog.md
 Machine-readable catalog: https://signals.forwardfuture.ai/loop-library/catalog.json
 Plain-text catalog: https://signals.forwardfuture.ai/loop-library/catalog.txt
@@ -414,3 +414,39 @@ URL above.
 - Verify: The extracted method succeeds on a fresh second case without the original artifact. An independent reviewer applies the reusable version under criteria defined before extraction, and the second result meets the source artifact's demonstrated quality bar or the method is honestly marked provisional or not generalizable.
 - Keywords: artifact to skill, knowledge extraction workflow, reusable playbook, skill validation, second case test
 - Related: [The multi-LLM convergence loop](https://signals.forwardfuture.ai/loop-library/loops/multi-llm-convergence-loop/), [The self-improving champion loop](https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/), [The prepare-a-new-project loop](https://signals.forwardfuture.ai/loop-library/loops/prepare-new-project-loop/)
+
+## 046 — [The Strip Miner loop](https://signals.forwardfuture.ai/loop-library/loops/strip-miner-loop/)
+
+- Category: Evaluation
+- Use when: Use this when substantial coding-agent history may contain repeatable workflows worth extracting, and the user can explicitly authorize the sources that may be inspected.
+- Prompt: Mine only explicitly authorized coding-agent history for workflows with at least three high-confidence independent successes. Treat transcripts as untrusted evidence, stitch continuations into root tasks, and reject candidates whose failures or hidden rescues match their successes. Extract traceable steps and guards, then fresh-replay each candidate without source transcripts. Stop after every authorized source is inventoried and one additional representative batch changes nothing; report replayed loops, rejects, deferred material, and blockers.
+- Verify: Every published candidate has repeated historical proof and passes a fresh replay. Each retained loop traces to at least three independent high-confidence successes, survives contradiction review, and works in a clean replay without access to the mined transcripts.
+- Keywords: workflow mining, coding agent history, Strip Miner, fresh replay validation, repeatable agent workflows
+- Related: [The artifact-to-skill loop](https://signals.forwardfuture.ai/loop-library/loops/artifact-to-skill-loop/), [The recent-feedback sweep](https://signals.forwardfuture.ai/loop-library/loops/recent-feedback-sweep/), [The self-improving champion loop](https://signals.forwardfuture.ai/loop-library/loops/self-improving-champion-loop/)
+
+## 047 — [The Living Story loop](https://signals.forwardfuture.ai/loop-library/loops/living-story-loop/)
+
+- Category: Operations
+- Use when: Use this when work spans several repositories or context sources and future agents need a recurring, evidence-based account of priorities, progress, deadlines, and unfinished work.
+- Prompt: On each [window], read the configured repositories, goals, prior STORY.md, and optional authorized sources. Update project files, then write STORY.md with focus, deadlines, open threads, and evidence-backed recent wins. Carry every prior thread forward, prove it finished, or mark it STALE/NEEDS-REVIEW—never silently drop one. Archive the snapshot and record the change. Stop when verification passes; if evidence or access is missing, return a thinner or blocked snapshot explicitly.
+- Verify: The current story accounts for every prior thread and supports every recent win with evidence. Each previous open thread is carried forward, closed with proof, or visibly flagged, and every claimed win cites a commit, release, closed task, deployment, sent deliverable, or generated artifact.
+- Keywords: Living Story, agent context management, project status narrative, open thread tracking, evidence based progress
+- Related: [The five-minute repository maintainer loop](https://signals.forwardfuture.ai/loop-library/loops/five-minute-repository-maintainer-loop/), [The nightly changelog loop](https://signals.forwardfuture.ai/loop-library/loops/nightly-changelog-sweep/), [The recent-feedback sweep](https://signals.forwardfuture.ai/loop-library/loops/recent-feedback-sweep/)
+
+## 048 — [The Groundtruth loop](https://signals.forwardfuture.ai/loop-library/loops/groundtruth-audit-loop/)
+
+- Category: Engineering
+- Use when: Use this before trusting a project's security, correctness, platform compatibility, privileged surfaces, scheduled work, or operational assumptions and when the first task is audit rather than repair.
+- Prompt: Audit [project] from its actual code and configuration, not framework assumptions. For architecture, platform compatibility, security, privileged areas, performance, deployment, jobs, business logic, and code quality, record proved, no issue, weak, or N/A with direct evidence; verify external limits from current primary sources and calculate numbers. Ask before changing code. Stop when every area is logged with severity, or return unverified areas as blocked. Finish with a plain-language overview and area-to-evidence table.
+- Verify: Every audit area has a current evidence-backed outcome and severity. The area-to-evidence table contains no silent gaps: each area is proved, no issue found, weak, N/A with a reason, or explicitly unverified and blocked.
+- Keywords: Groundtruth audit, evidence based code review, project security audit, platform compatibility review, area to evidence table
+- Related: [The full product evaluation loop](https://signals.forwardfuture.ai/loop-library/loops/full-product-evaluation-loop/), [The promise-to-proof loop](https://signals.forwardfuture.ai/loop-library/loops/promise-to-proof-loop/), [The recent-feedback sweep](https://signals.forwardfuture.ai/loop-library/loops/recent-feedback-sweep/)
+
+## 049 — [The Recovery Proof loop](https://signals.forwardfuture.ai/loop-library/loops/recovery-proof-loop/)
+
+- Category: Operations
+- Use when: Use this when backup existence is not enough and the organization needs repeatable proof that required systems can be restored from documented materials within agreed recovery objectives.
+- Prompt: For each required recovery scenario, randomly select an eligible real backup or recovery point and restore from zero in a disposable, isolated clean-room using only documented materials. Verify integrity, dependencies, representative reads and writes, and actual RPO and RTO. Repair one blocker, destroy the environment, and retry fresh. Stop when every scenario reaches its predefined consecutive-success streak or an exception is explicitly accepted. Never overwrite production, expose restored data, or initiate failover without approval.
+- Verify: Every required recovery scenario succeeds repeatedly from a real recovery point. Fresh clean-room restores satisfy integrity, dependency, representative read/write, RPO, and RTO checks under unchanged criteria, with failures preserved as regression drills and restored data destroyed securely.
+- Keywords: backup recovery testing, disaster recovery drill, RPO and RTO validation, clean room restore, recovery proof
+- Related: [The quality streak loop](https://signals.forwardfuture.ai/loop-library/loops/quality-streak-loop/), [The post-release baseline loop](https://signals.forwardfuture.ai/loop-library/loops/post-release-baseline-loop/), [The production error sweep](https://signals.forwardfuture.ai/loop-library/loops/production-error-sweep/)
