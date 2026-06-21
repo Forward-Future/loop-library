@@ -128,6 +128,14 @@ function makeDependencies(options = {}) {
             });
           }
 
+          if (token === "wrong-hostname-token") {
+            return Response.json({
+              success: true,
+              action,
+              hostname: "phishing.example.com",
+            });
+          }
+
           return Response.json({
             success: true,
             action,
@@ -320,6 +328,26 @@ test("rejects invalid or mismatched Turnstile tokens without writing", async () 
     assert.equal(response.status, 400);
     assert.equal(calls.siteData.length, 0);
   }
+});
+
+test("rejects Turnstile tokens verified for an unlisted hostname", async () => {
+  const env = makeEnv();
+  const { calls, dependencies } = makeDependencies();
+  const response = await handleRequest(
+    makeRequest(
+      "/suggestions",
+      suggestionBody({ turnstile_token: "wrong-hostname-token" }),
+    ),
+    env,
+    undefined,
+    dependencies,
+  );
+  const body = await response.json();
+
+  assert.equal(response.status, 400);
+  assert.equal(body.code, "verification_failed");
+  assert.equal(calls.turnstile.length, 1);
+  assert.equal(calls.siteData.length, 0);
 });
 
 test("rate limits invalid-token floods before calling Siteverify", async () => {
