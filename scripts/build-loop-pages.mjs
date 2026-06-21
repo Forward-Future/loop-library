@@ -339,11 +339,11 @@ function renderLoopPage(loop) {
     <link rel="alternate" type="text/plain" title="${escapeHtml(site.name)} plain-text catalog" href="${escapeHtml(site.baseUrl)}catalog.txt" />
     <link rel="help" href="${escapeHtml(site.baseUrl)}agents/" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
-    <link rel="stylesheet" href="../../styles.css?v=20260620-newest-first" />
+    <link rel="stylesheet" href="../../styles.css?v=20260621-author-byline" />
     <script type="application/ld+json">
 ${structuredData(loop)}
     </script>
-    <script src="../../script.js?v=20260620-newest-first" defer></script>
+    <script src="../../script.js?v=20260621-author-byline" defer></script>
     <title>${escapeHtml(loop.seoTitle)}</title>
   </head>
   <body>

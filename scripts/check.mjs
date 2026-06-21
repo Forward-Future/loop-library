@@ -593,8 +593,8 @@ for (const [index, loop] of loops.entries()) {
     ),
   );
   assert(page.includes(`rel="help" href="${siteMeta.baseUrl}agents/"`));
-  assert(page.includes("../../styles.css?v=20260620-newest-first"));
-  assert(page.includes("../../script.js?v=20260620-newest-first"));
+  assert(page.includes("../../styles.css?v=20260621-author-byline"));
+  assert(page.includes("../../script.js?v=20260621-author-byline"));
   assert(page.includes(`<meta property="og:image" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:secure_url" content="${imageUrl}"`));
   assert(page.includes(`<meta property="og:image:type" content="${siteMeta.socialImageMimeType}"`));
@@ -869,8 +869,8 @@ assert(!html.includes('data-type='));
 assert(!html.includes('class="cell-type"'));
 assert(!html.includes("type-badge"));
 assert(!html.includes('<th scope="col">Type</th>'));
-assert(html.includes("./styles.css?v=20260620-newest-first"));
-assert(html.includes("./script.js?v=20260620-newest-first"));
+assert(html.includes("./styles.css?v=20260621-author-byline"));
+assert(html.includes("./script.js?v=20260621-author-byline"));
 assert(script.includes("const publishedDifference = b.dataset.published.localeCompare("));
 assert(script.includes("return loopRowPositions.get(b) - loopRowPositions.get(a);"));
 const homepagePostText =
@@ -933,8 +933,8 @@ assert.equal(
   (learnHtml.match(/href="https:\/\/here\.now\/r\/signals"/g) || []).length,
   2,
 );
-assert(learnHtml.includes("../styles.css?v=20260620-newest-first"));
-assert(learnHtml.includes("../script.js?v=20260620-newest-first"));
+assert(learnHtml.includes("../styles.css?v=20260621-author-byline"));
+assert(learnHtml.includes("../script.js?v=20260621-author-byline"));
 assert(learnHtml.includes("How agent loops work"));
 assert(learnHtml.includes('<meta name="robots" content="index, follow"'));
 assert(learnHtml.includes("What makes a loop useful"));
@@ -982,8 +982,8 @@ assert(agentHtml.includes("npx skills add Forward-Future/loop-library --skill lo
 assert(agentHtml.includes('<meta name="robots" content="index, follow"'));
 assert(agentHtml.includes(`href="${siteMeta.baseUrl}catalog.json"`));
 assert(agentHtml.includes(`href="${siteMeta.baseUrl}llms.txt"`));
-assert(agentHtml.includes("../styles.css?v=20260620-newest-first"));
-assert(agentHtml.includes("../script.js?v=20260620-newest-first"));
+assert(agentHtml.includes("../styles.css?v=20260621-author-byline"));
+assert(agentHtml.includes("../script.js?v=20260621-author-byline"));
 assert(html.includes("Repeatable AI Agent Workflows"));
 assert(html.includes('rel="sitemap"'));
 assert(html.includes(`href="${siteMeta.baseUrl}catalog.json"`));
