@@ -2,6 +2,7 @@
 /.herenow/
 site/.herenow/state.json
 node_modules/
+.wrangler/
 __pycache__/
 *.py[cod]
 /.playwright-mcp/

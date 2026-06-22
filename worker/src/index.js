@@ -1,3 +1,10 @@
+import {
+  handleLoopRoute,
+  publicOriginRequest,
+} from "./loop-routes.js";
+
+export { LoopCatalog } from "./catalog-store.js";
+
 const TURNSTILE_VERIFY_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const HERENOW_API_BASE = "https://here.now/api/v1/publishes";
@@ -57,8 +64,32 @@ export async function handleRequest(
   request,
   env,
   _ctx,
-  dependencies = { fetch: globalThis.fetch },
+  dependencies = { fetch: (...args) => globalThis.fetch(...args) },
 ) {
+  const loopResponse = await handleLoopRoute(request, env, dependencies);
+
+  if (loopResponse) {
+    return loopResponse;
+  }
+
+  const requestUrl = new URL(request.url);
+  const publicSiteHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai";
+  const publicSitePath = env.PUBLIC_SITE_PATH || "/loop-library";
+
+  if (
+    requestUrl.hostname === publicSiteHostname &&
+    (requestUrl.pathname === publicSitePath ||
+      requestUrl.pathname.startsWith(`${publicSitePath}/`))
+  ) {
+    if (!["GET", "HEAD"].includes(request.method)) {
+      return new Response("Method not allowed\n", {
+        status: 405,
+        headers: { Allow: "GET, HEAD" },
+      });
+    }
+    return dependencies.fetch(publicOriginRequest(request, env));
+  }
+
   const origin = request.headers.get("Origin");
   const corsHeaders = getCorsHeaders(origin, env);
 

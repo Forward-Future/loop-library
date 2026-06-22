@@ -3,9 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/index.js && node --test",
+    "check": "node --check src/index.js && node --check bin/publish-loop.mjs && node --check bin/import-bootstrap.mjs && node --check bin/export-catalog.mjs && node --check bin/restore-catalog.mjs && node --test",
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
+    "loop:publish": "node bin/publish-loop.mjs",
+    "loops:import": "node bin/import-bootstrap.mjs",
+    "loops:export": "node bin/export-catalog.mjs",
+    "loops:restore": "node bin/restore-catalog.mjs",
     "test": "node --test"
   },
   "devDependencies": {

@@ -1,0 +1,33 @@
+{
+  "number": "051",
+  "slug": "example-loop",
+  "title": "The example loop",
+  "summary": "Shows the complete record needed to publish a loop.",
+  "seoTitle": "Example AI Agent Loop | Loop Library",
+  "description": "A complete example record for the database-backed Loop Library publisher.",
+  "category": "engineering",
+  "featured": false,
+  "categoryLabel": "AI agent workflow",
+  "author": "Example Contributor",
+  "published": "2026-06-21",
+  "modified": "2026-06-21",
+  "prompt": "Do the bounded task, verify the result, and continue only while the evidence improves. Stop when the goal is met or another pass makes no measurable progress.",
+  "verifyTitle": "The stated goal is met with reproducible evidence.",
+  "verifyDetail": "Run the same acceptance check after each change and preserve the final result.",
+  "useWhen": "Use this record as a template when preparing a new Loop Library entry.",
+  "steps": [
+    "Record the current state and the acceptance check.",
+    "Make one bounded change and run the same check again.",
+    "Keep improvements and stop at success or no measurable progress."
+  ],
+  "why": "The record includes the content needed for the page, catalog, search, and agent-facing formats.",
+  "note": "Replace every example value and verify related slugs before publishing.",
+  "keywords": [
+    "example loop",
+    "agent workflow",
+    "content publishing"
+  ],
+  "related": [
+    "overnight-docs-sweep"
+  ]
+}
