@@ -38,6 +38,7 @@ jobs:
           node --check site/script.js
           node scripts/check.mjs
           python3 -m json.tool site/.herenow/data.json >/dev/null
+          python3 -m json.tool site/.herenow/proxy.json >/dev/null
           python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
           git diff --check
 

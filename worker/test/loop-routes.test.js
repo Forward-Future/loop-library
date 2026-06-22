@@ -200,6 +200,7 @@ function makeEnv(options = {}) {
     BOOTSTRAP_CATALOG_DIGEST: options.bootstrapDigest || "test-bootstrap-digest",
     BOOTSTRAP_LOOP_COUNT: String(options.bootstrapLoopCount ?? 50),
     PUBLIC_ORIGIN_URL: "https://calm-mortar-jtek.here.now/",
+    PUBLIC_SHELL_URL: "https://calm-mortar-jtek.here.now/index.html",
     PUBLIC_SITE_HOSTNAME: "signals.forwardfuture.ai",
     PUBLIC_SITE_PATH: "/loop-library",
   };
@@ -428,6 +429,7 @@ test("renders homepage headers for HEAD by fetching the origin shell with GET", 
     undefined,
     {
       async fetch(request) {
+        assert.equal(request.url, "https://calm-mortar-jtek.here.now/index.html");
         assert.equal(request.method, "GET");
         assert.equal(request.headers.get("If-Modified-Since"), null);
         assert.equal(request.headers.get("If-None-Match"), null);
@@ -446,6 +448,51 @@ test("renders homepage headers for HEAD by fetching the origin shell with GET", 
   assert.equal(await response.text(), "");
   assert.equal(response.headers.get("Cache-Control"), "no-store");
   assert.equal(response.headers.get("Last-Modified"), null);
+});
+
+test("renders the mounted homepage through a here.now proxy", async () => {
+  const env = makeEnv();
+  await handleRequest(adminRequest(exampleLoop()), env);
+  const shell = `<!doctype html><p id="results-count" aria-live="polite">Showing 50 loops</p><time datetime="2026-06-20">Updated June 20, 2026</time><tbody><!-- LOOP_DATABASE_ROWS_START --><!-- LOOP_DATABASE_ROWS_END --></tbody>`;
+  const response = await handleRequest(
+    new Request(`${WORKER_ORIGIN}/loop-library/`),
+    env,
+    undefined,
+    {
+      async fetch(request) {
+        assert.equal(request.url, "https://calm-mortar-jtek.here.now/index.html");
+        return new Response(shell, {
+          headers: { "Content-Type": "text/html; charset=utf-8" },
+        });
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.match(await response.text(), /The database publishing loop/);
+});
+
+test("does not recurse through the here.now proxy before activation", async () => {
+  const env = makeEnv({ active: false });
+  let originFetches = 0;
+  const dependencies = {
+    async fetch() {
+      originFetches += 1;
+      throw new Error("The proxied request must not fetch its origin again.");
+    },
+  };
+
+  for (const path of ["/", "/catalog.json", "/loops/database-publishing-loop/"]) {
+    const response = await handleRequest(
+      new Request(`${WORKER_ORIGIN}/loop-library${path}`),
+      env,
+      undefined,
+      dependencies,
+    );
+    assert.equal(response.status, 503);
+    assert.equal((await response.json()).code, "catalog_not_active");
+  }
+  assert.equal(originFetches, 0);
 });
 
 test("replaces legacy static rows before the content-free shell is deployed", async () => {

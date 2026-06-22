@@ -39,7 +39,12 @@ export async function handleLoopRoute(
   const isPublicData = path === "/api/loops" || /^\/api\/loops\/[a-z0-9-]+$/.test(path);
   const isCatalog = ["/catalog.json", "/catalog.md", "/catalog.txt", "/llms.txt", "/sitemap.xml", "/feed.xml"].includes(path);
   const publicHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai";
-  const isPublicSite = url.hostname === publicHostname;
+  const publicBasePath = env.PUBLIC_SITE_PATH || "/loop-library";
+  const normalizedBasePath = `/${String(publicBasePath).split("/").filter(Boolean).join("/")}`;
+  const isCanonicalHostname = url.hostname === publicHostname;
+  const isPublicSite = isCanonicalHostname ||
+    url.pathname === normalizedBasePath ||
+    url.pathname.startsWith(`${normalizedBasePath}/`);
   const detailMatch = path.match(/^\/loops\/([a-z0-9-]+)\/?$/);
   const isHomepage = isPublicSite && path === "/";
 
@@ -68,7 +73,10 @@ export async function handleLoopRoute(
   const loops = catalog.loops;
 
   if (!catalog.initialized) {
-    if (isPublicSite && (isHomepage || isCatalog || detailMatch)) {
+    // A direct canonical route can safely read the legacy origin during a
+    // cutover. Mounted here.now requests already came through that origin's
+    // proxy manifest, so fetching it again would recurse back into the Worker.
+    if (isCanonicalHostname && (isHomepage || isCatalog || detailMatch)) {
       return dependencies.fetch(publicOriginRequest(request, env));
     }
 
@@ -181,13 +189,16 @@ export async function handleLoopRoute(
 }
 
 export function publicOriginRequest(request, env, overrides = {}) {
-  const originBase = new URL(env.PUBLIC_ORIGIN_URL);
   const incoming = new URL(request.url);
   const path = stripBasePath(
     incoming.pathname,
     env.PUBLIC_SITE_PATH || "/loop-library",
   );
-  originBase.pathname = `${originBase.pathname.replace(/\/$/, "")}${path}`;
+  const shellUrl = path === "/" ? env.PUBLIC_SHELL_URL : null;
+  const originBase = new URL(shellUrl || env.PUBLIC_ORIGIN_URL);
+  if (!shellUrl) {
+    originBase.pathname = `${originBase.pathname.replace(/\/$/, "")}${path}`;
+  }
   originBase.search = incoming.search;
   const method = overrides.method || request.method;
 

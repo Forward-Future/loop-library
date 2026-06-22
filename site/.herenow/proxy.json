@@ -1,0 +1,44 @@
+{
+  "proxies": {
+    "/": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/",
+      "rateLimit": "600/hour/ip"
+    },
+    "/loops/*": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/loops",
+      "rateLimit": "600/hour/ip"
+    },
+    "/catalog.json": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/catalog.json",
+      "rateLimit": "600/hour/ip"
+    },
+    "/catalog.md": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/catalog.md",
+      "rateLimit": "600/hour/ip"
+    },
+    "/catalog.txt": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/catalog.txt",
+      "rateLimit": "600/hour/ip"
+    },
+    "/feed.xml": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/feed.xml",
+      "rateLimit": "600/hour/ip"
+    },
+    "/sitemap.xml": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/sitemap.xml",
+      "rateLimit": "600/hour/ip"
+    },
+    "/llms.txt": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/llms.txt",
+      "rateLimit": "600/hour/ip"
+    },
+    "/api/loops": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/api/loops",
+      "rateLimit": "600/hour/ip"
+    },
+    "/api/loops/*": {
+      "upstream": "https://loop-library-forms.mberman84.workers.dev/loop-library/api/loops",
+      "rateLimit": "600/hour/ip"
+    }
+  }
+}

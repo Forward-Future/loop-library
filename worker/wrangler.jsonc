@@ -3,16 +3,6 @@
   "main": "src/index.js",
   "compatibility_date": "2026-06-17",
   "workers_dev": true,
-  "routes": [
-    {
-      "pattern": "signals.forwardfuture.ai/loop-library",
-      "zone_name": "forwardfuture.ai"
-    },
-    {
-      "pattern": "signals.forwardfuture.ai/loop-library/*",
-      "zone_name": "forwardfuture.ai"
-    }
-  ],
   "ratelimits": [
     {
       "name": "TURNSTILE_RATE_LIMITER",
@@ -54,6 +44,7 @@
     "BOOTSTRAP_CATALOG_DIGEST": "d87c8012d25a8563418a820718ef911b01e0ad5e6cb27544cfde9a833a4aba18",
     "BOOTSTRAP_LOOP_COUNT": "50",
     "PUBLIC_ORIGIN_URL": "https://calm-mortar-jtek.here.now/",
+    "PUBLIC_SHELL_URL": "https://calm-mortar-jtek.here.now/index.html",
     "PUBLIC_SITE_HOSTNAME": "signals.forwardfuture.ai",
     "PUBLIC_SITE_PATH": "/loop-library"
   }

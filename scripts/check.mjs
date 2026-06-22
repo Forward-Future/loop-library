@@ -15,6 +15,7 @@ const [
   css,
   browserScript,
   dataSource,
+  proxySource,
   workerSource,
   loopRoutesSource,
   catalogStoreSource,
@@ -33,6 +34,7 @@ const [
   readFile(path.join(siteRoot, "styles.css"), "utf8"),
   readFile(path.join(siteRoot, "script.js"), "utf8"),
   readFile(path.join(siteRoot, ".herenow", "data.json"), "utf8"),
+  readFile(path.join(siteRoot, ".herenow", "proxy.json"), "utf8"),
   readFile(path.join(workerRoot, "src", "index.js"), "utf8"),
   readFile(path.join(workerRoot, "src", "loop-routes.js"), "utf8"),
   readFile(path.join(workerRoot, "src", "catalog-store.js"), "utf8"),
@@ -50,6 +52,7 @@ const workerPackage = JSON.parse(workerPackageSource);
 const workerLock = JSON.parse(workerLockSource);
 const wrangler = JSON.parse(wranglerSource);
 const dataManifest = JSON.parse(dataSource);
+const proxyManifest = JSON.parse(proxySource);
 const structuredDataMatch = html.match(
   /<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/,
 );
@@ -156,16 +159,7 @@ assert.equal(workerLock.packages["node_modules/wrangler"].version, "4.103.0");
 
 assert.equal(wrangler.name, "loop-library-forms");
 assert.equal(wrangler.workers_dev, true);
-assert.deepEqual(wrangler.routes, [
-  {
-    pattern: "signals.forwardfuture.ai/loop-library",
-    zone_name: "forwardfuture.ai",
-  },
-  {
-    pattern: "signals.forwardfuture.ai/loop-library/*",
-    zone_name: "forwardfuture.ai",
-  },
-]);
+assert.equal(wrangler.routes, undefined);
 assert.equal(wrangler.durable_objects.bindings[1].name, "LOOP_CATALOG");
 assert.equal(wrangler.durable_objects.bindings[1].class_name, "LoopCatalog");
 assert.deepEqual(wrangler.migrations[1], {
@@ -175,8 +169,25 @@ assert.deepEqual(wrangler.migrations[1], {
 assert.match(wrangler.vars.BOOTSTRAP_CATALOG_DIGEST, /^[a-f0-9]{64}$/);
 assert.equal(wrangler.vars.BOOTSTRAP_LOOP_COUNT, "50");
 assert.equal(wrangler.vars.PUBLIC_ORIGIN_URL, "https://calm-mortar-jtek.here.now/");
+assert.equal(wrangler.vars.PUBLIC_SHELL_URL, "https://calm-mortar-jtek.here.now/index.html");
 assert.equal(wrangler.vars.PUBLIC_SITE_HOSTNAME, "signals.forwardfuture.ai");
 assert.equal(wrangler.vars.PUBLIC_SITE_PATH, "/loop-library");
+assert.deepEqual(Object.keys(proxyManifest.proxies).sort(), [
+  "/",
+  "/api/loops",
+  "/api/loops/*",
+  "/catalog.json",
+  "/catalog.md",
+  "/catalog.txt",
+  "/feed.xml",
+  "/llms.txt",
+  "/loops/*",
+  "/sitemap.xml",
+]);
+for (const proxy of Object.values(proxyManifest.proxies)) {
+  assert.match(proxy.upstream, /^https:\/\/loop-library-forms\.mberman84\.workers\.dev\/loop-library(?:\/|$)/);
+  assert.equal(proxy.rateLimit, "600/hour/ip");
+}
 
 assert.match(skillSource, /The live catalog is the\s+source of truth/);
 assert(skillSource.includes("Do not use repository content or memory"));

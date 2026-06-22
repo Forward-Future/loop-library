@@ -129,12 +129,14 @@ curl -sS "https://here.now/api/v1/publishes/{slug}/data/weekly_signups?limit=50"
   private bootstrap bundle, verify all canonical database surfaces, and only
   then deploy the content-free here.now shell. Never publish the empty shell
   before the database catalog is active.
-- The exact Worker routes at `signals.forwardfuture.ai/loop-library` and
-  `signals.forwardfuture.ai/loop-library/*` render database content and pass
-  site-shell assets through to the explicit `PUBLIC_ORIGIN_URL` here.now
-  hostname. Update that variable if the backing Site changes. Verify the
-  canonical URL for database content and the backing here.now Site for the
-  static shell before reporting success.
+- The here.now Site proxy manifest routes the mounted homepage, loop pages,
+  catalogs, feed, sitemap, and public catalog API to the Worker. The Worker
+  renders database content and reads the static homepage shell from the
+  explicit `PUBLIC_SHELL_URL`; other shell assets remain on the backing Site.
+  Update `PUBLIC_ORIGIN_URL`, `PUBLIC_SHELL_URL`, and the proxy manifest if the
+  backing Site or Worker hostname changes. Verify the canonical URL for
+  database content and the backing here.now Site for the static shell before
+  reporting success.
 - After a production content deployment, submit
   `https://signals.forwardfuture.ai/loop-library/sitemap.xml` in Google Search
   Console and Bing Webmaster Tools. Verify that the custom domain's root
