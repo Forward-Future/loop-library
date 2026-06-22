@@ -228,6 +228,65 @@ function updateLibrary() {
   window.requestAnimationFrame(syncVisiblePromptToggles);
 }
 
+// Keep the library's state shareable without discarding tracking or other
+// query parameters owned by the surrounding site.
+function syncUrlState(method = "replace") {
+  if (typeof window.history?.replaceState !== "function") {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const query = searchInput?.value.trim() ?? "";
+
+  if (query) {
+    params.set("q", query);
+  } else {
+    params.delete("q");
+  }
+
+  if (activeCategory && activeCategory !== "all") {
+    params.set("category", activeCategory);
+  } else {
+    params.delete("category");
+  }
+
+  if (currentPage > 1) {
+    params.set("page", String(currentPage));
+  } else {
+    params.delete("page");
+  }
+
+  const search = params.toString();
+  const nextUrl = `${window.location.pathname}${search ? `?${search}` : ""}${
+    window.location.hash
+  }`;
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+  if (nextUrl === currentUrl) {
+    return;
+  }
+
+  if (method === "push" && typeof window.history.pushState === "function") {
+    window.history.pushState(null, "", nextUrl);
+  } else {
+    window.history.replaceState(null, "", nextUrl);
+  }
+}
+
+function readUrlState() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (searchInput) {
+    searchInput.value = params.get("q") ?? "";
+  }
+
+  applyCategory(params.get("category") ?? "all");
+
+  const requestedPage = Number.parseInt(params.get("page") ?? "1", 10);
+  currentPage =
+    Number.isInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+}
+
 function focusFirstVisibleLoop() {
   const firstVisibleTitle = loopRows
     .find((row) => !row.hidden)
@@ -249,24 +308,32 @@ if (searchInput) {
   const resetSearchPage = () => {
     currentPage = 1;
     updateLibrary();
+    syncUrlState("replace");
   };
 
   searchInput.addEventListener("input", resetSearchPage);
   searchInput.addEventListener("search", resetSearchPage);
 }
 
+function applyCategory(category) {
+  const known = categoryFilters.some(
+    (filter) => filter.dataset.categoryFilter === category,
+  );
+  activeCategory = known ? category : "all";
+
+  categoryFilters.forEach((candidate) => {
+    const isActive = candidate.dataset.categoryFilter === activeCategory;
+    candidate.classList.toggle("is-active", isActive);
+    candidate.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
 categoryFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
-    activeCategory = filter.dataset.categoryFilter;
+    applyCategory(filter.dataset.categoryFilter);
     currentPage = 1;
-
-    categoryFilters.forEach((candidate) => {
-      const isActive = candidate === filter;
-      candidate.classList.toggle("is-active", isActive);
-      candidate.setAttribute("aria-pressed", String(isActive));
-    });
-
     updateLibrary();
+    syncUrlState("push");
   });
 });
 
@@ -278,16 +345,10 @@ if (clearFiltersButton) {
       searchInput.value = "";
     }
 
-    activeCategory = "all";
+    applyCategory("all");
     currentPage = 1;
-
-    categoryFilters.forEach((candidate) => {
-      const isActive = candidate.dataset.categoryFilter === "all";
-      candidate.classList.toggle("is-active", isActive);
-      candidate.setAttribute("aria-pressed", String(isActive));
-    });
-
     updateLibrary();
+    syncUrlState("push");
     searchInput?.focus();
   });
 }
@@ -297,6 +358,7 @@ if (paginationPrevious) {
     if (currentPage > 1) {
       currentPage -= 1;
       updateLibrary();
+      syncUrlState("push");
       focusFirstVisibleLoop();
     }
   });
@@ -306,11 +368,19 @@ if (paginationNext) {
   paginationNext.addEventListener("click", () => {
     currentPage += 1;
     updateLibrary();
+    syncUrlState("push");
     focusFirstVisibleLoop();
   });
 }
 
+readUrlState();
 updateLibrary();
+syncUrlState("replace");
+
+window.addEventListener("popstate", () => {
+  readUrlState();
+  updateLibrary();
+});
 
 let promptResizeFrame;
 window.addEventListener("resize", () => {
