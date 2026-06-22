@@ -3,6 +3,16 @@
   "main": "src/index.js",
   "compatibility_date": "2026-06-17",
   "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "signals.forwardfuture.ai/loop-library",
+      "zone_name": "forwardfuture.ai"
+    },
+    {
+      "pattern": "signals.forwardfuture.ai/loop-library/*",
+      "zone_name": "forwardfuture.ai"
+    }
+  ],
   "ratelimits": [
     {
       "name": "TURNSTILE_RATE_LIMITER",
@@ -18,6 +28,10 @@
       {
         "name": "FORM_GUARD",
         "class_name": "FormGuard"
+      },
+      {
+        "name": "LOOP_CATALOG",
+        "class_name": "LoopCatalog"
       }
     ]
   },
@@ -25,6 +39,10 @@
     {
       "tag": "v1",
       "new_sqlite_classes": ["FormGuard"]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": ["LoopCatalog"]
     }
   ],
   "observability": {
@@ -32,6 +50,11 @@
   },
   "vars": {
     "ALLOWED_ORIGINS": "https://signals.forwardfuture.ai,http://localhost:4173,http://127.0.0.1:4173",
-    "ALLOWED_ORIGIN_SUFFIXES": ".here.now"
+    "ALLOWED_ORIGIN_SUFFIXES": ".here.now",
+    "BOOTSTRAP_CATALOG_DIGEST": "d87c8012d25a8563418a820718ef911b01e0ad5e6cb27544cfde9a833a4aba18",
+    "BOOTSTRAP_LOOP_COUNT": "50",
+    "PUBLIC_ORIGIN_URL": "https://calm-mortar-jtek.here.now/",
+    "PUBLIC_SITE_HOSTNAME": "signals.forwardfuture.ai",
+    "PUBLIC_SITE_PATH": "/loop-library"
   }
 }

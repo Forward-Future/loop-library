@@ -4,7 +4,7 @@ Loop Library has two separate but related parts in this repository:
 
 | Part | What it is | Where it lives |
 | --- | --- | --- |
-| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.ai/loop-library/) · source in [`site/`](site/) and [`scripts/loop-data.mjs`](scripts/loop-data.mjs) |
+| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.ai/loop-library/) · shell in [`site/`](site/), database and rendering in [`worker/`](worker/) |
 | **Loop Library skill** | An optional installable guide that helps an AI agent find, audit, repair, adapt, or design loops through conversation. It uses the website's live catalog when recommending published loops. | source in [`skills/loop-library/`](skills/loop-library/) |
 
 The website is the library; the skill is a companion way to work with it. You
@@ -185,6 +185,63 @@ available under the [MIT License](LICENSE).
 <details>
 <summary>Notes for maintainers</summary>
 
+### Publish a loop
+
+Public loops are stored in the catalog database attached to the Cloudflare
+Worker. Publishing a reviewed loop does not require a GitHub commit or a static
+site deployment.
+
+Copy `worker/examples/loop.json` somewhere outside the repository, fill in the
+record, and run:
+
+```bash
+LOOP_PUBLISH_TOKEN=... \
+  npm --prefix worker run loop:publish -- /path/to/loop.json
+```
+
+The command validates the record and publishes the homepage row, detail page,
+JSON/Markdown/plain-text catalogs, feed, and sitemap from the same database
+write. Use `--draft` to save a non-public record or `--archive` to remove a
+record from public responses without deleting its revision history.
+
+The first database-backed release needs one import from the private migration
+bundle. Loop records and bootstrap data are intentionally not committed to
+GitHub:
+
+```bash
+LOOP_PUBLISH_TOKEN=... \
+  npm --prefix worker run loops:import -- /private/path/bootstrap.json
+```
+
+Set a long random `LOOP_PUBLISH_TOKEN` as a Worker secret. The catalog uses a
+SQLite-backed Durable Object and keeps an append-only revision for every
+publish. The reviewed bootstrap digest is enforced before the database can be
+activated.
+
+Create a private backup of the current database with:
+
+```bash
+LOOP_PUBLISH_TOKEN=... \
+  npm --prefix worker run loops:export -- /private/path/catalog-backup.ndjson
+```
+
+Restore that snapshot only into a fresh, empty catalog database:
+
+```bash
+LOOP_PUBLISH_TOKEN=... \
+  npm --prefix worker run loops:restore -- /private/path/catalog-backup.ndjson
+```
+
+Bootstrap and backup files must be owner-only (`chmod 600`). Exports include
+drafts, archived records, and complete revision history; keep them outside the
+repository.
+
+The current Git tree contains the site shell and rendering code, but no
+published loop records, generated loop pages, catalogs, feed, sitemap, or
+offline catalog fallback. The legacy catalog and source-attribution metadata
+were already public and intentionally remain in pre-migration Git history;
+this migration does not rewrite repository history or disrupt existing clones.
+
 ### Preview locally
 
 ```bash
@@ -197,16 +254,7 @@ Then open `http://localhost:4173`.
 
 ```bash
 npm ci --prefix worker
-node scripts/build-skill-catalog.mjs
-node scripts/build-loop-pages.mjs
-node scripts/build-social-images.mjs
-node --check scripts/audit-seo-geo.mjs
-node --check scripts/build-social-images.mjs
 node --check site/script.js
-node --check scripts/build-loop-pages.mjs
-node --check scripts/loop-data.mjs
-node --check scripts/validate-loop-data.mjs
-node scripts/audit-seo-geo.mjs
 node scripts/check.mjs
 npm --prefix worker run check
 python3 -m json.tool site/.herenow/data.json >/dev/null
@@ -215,7 +263,7 @@ git diff --check
 ```
 
 Read [AGENTS.md](AGENTS.md) before editing loops or publishing the site. It
-contains the source-of-truth rules for generated files, form security, and
-clean-main deployments.
+contains the source-of-truth rules for database publishing, generated
+responses, form security, and clean-main deployments.
 
 </details>
