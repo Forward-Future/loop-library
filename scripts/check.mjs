@@ -125,7 +125,7 @@ for (const value of [
 assert(html.includes("Search the library"));
 assert(html.includes("Search by title, task, or contributor"));
 assert(html.includes('class="search-field"'));
-assert(html.includes("styles.css?v=20260623-row-background"));
+assert(html.includes("styles.css?v=20260623-row-background-v2"));
 assert(html.includes("script.js?v=20260623-proxy-auth"));
 assert(css.includes(".search-control-label"));
 assert(css.includes(".search-control:hover .search-field"));
@@ -134,7 +134,7 @@ assert.match(css, /\.loop-row\s*\{[^}]*background:\s*var\(--surface\);[^}]*\}/);
 assert.match(css, /\.loop-table td\s*\{[^}]*background:\s*transparent;[^}]*\}/);
 assert.equal((html.match(/data-here-now-credit/g) || []).length, 2);
 for (const page of [learnHtml, agentHtml]) {
-  assert(page.includes("styles.css?v=20260623-row-background"));
+  assert(page.includes("styles.css?v=20260623-row-background-v2"));
   assert(page.includes("script.js?v=20260623-proxy-auth"));
 }
 for (const page of [html, learnHtml, agentHtml]) {
