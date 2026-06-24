@@ -472,6 +472,33 @@ test("renders the mounted homepage through a here.now proxy", async () => {
   assert.match(await response.text(), /The database publishing loop/);
 });
 
+test("normalizes legacy Forward Future domains on every public catalog surface", async () => {
+  const env = makeEnv();
+  await handleRequest(
+    adminRequest(exampleLoop({
+      prompt: "Read https://signals.forwardfuture.ai/loop-library/api/loops before continuing.",
+    })),
+    env,
+  );
+  const shell = `<!doctype html><p id="results-count" aria-live="polite">Showing 0 loops</p><time datetime="2026-06-20">Updated June 20, 2026</time><tbody><!-- LOOP_DATABASE_ROWS_START --><!-- LOOP_DATABASE_ROWS_END --></tbody>`;
+  const responses = await Promise.all([
+    handleRequest(
+      new Request(`${SITE_ORIGIN}/loop-library/`),
+      env,
+      undefined,
+      { async fetch() { return new Response(shell, { headers: { "Content-Type": "text/html" } }); } },
+    ),
+    handleRequest(new Request(`${SITE_ORIGIN}/loop-library/catalog.json`), env),
+    handleRequest(new Request(`${SITE_ORIGIN}/loop-library/api/loops`), env),
+  ]);
+
+  for (const response of responses) {
+    const body = await response.text();
+    assert.doesNotMatch(body, /forwardfuture\.ai/);
+    assert.match(body, /signals\.forwardfuture\.com\/loop-library\/api\/loops/);
+  }
+});
+
 test("does not recurse through the here.now proxy before activation", async () => {
   const env = makeEnv({ active: false });
   let originFetches = 0;

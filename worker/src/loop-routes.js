@@ -16,6 +16,8 @@ import {
 const MAX_ADMIN_BYTES = 512 * 1024;
 const MAX_RESTORE_START_BYTES = 20 * 1024 * 1024;
 const MAX_RESTORE_CHUNK_BYTES = 4 * 1024 * 1024;
+const LEGACY_PUBLIC_DOMAIN = "forwardfuture.ai";
+const CURRENT_PUBLIC_DOMAIN = "forwardfuture.com";
 const CACHE_HEADERS = {
   // Publishing is expected to be immediately visible on every generated surface.
   // Reintroduce CDN caching only with catalog-revision cache keys or explicit purge.
@@ -70,7 +72,7 @@ export async function handleLoopRoute(
   }
 
   const catalog = await readPublishedCatalog(env);
-  const loops = catalog.loops;
+  const loops = catalog.loops.map(normalizePublishedDomain);
 
   if (!catalog.initialized) {
     // A direct canonical route can safely read the legacy origin during a
@@ -599,6 +601,21 @@ async function readPublishedCatalog(env) {
   const response = await catalogFetch(env, "/published");
   if (!response.ok) throw new Error(`Loop catalog returned ${response.status}`);
   return response.json();
+}
+
+function normalizePublishedDomain(value) {
+  if (typeof value === "string") {
+    return value.replaceAll(LEGACY_PUBLIC_DOMAIN, CURRENT_PUBLIC_DOMAIN);
+  }
+  if (Array.isArray(value)) {
+    return value.map(normalizePublishedDomain);
+  }
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, normalizePublishedDomain(item)]),
+    );
+  }
+  return value;
 }
 
 function catalogFetch(env, path, init) {
