@@ -68,7 +68,7 @@
   duplicate.
 
 Create the Cloudflare Turnstile widget in Managed mode and allow both
-`signals.forwardfuture.ai` and the current backing `*.here.now` hostname. Keep
+`signals.forwardfuture.com` and the current backing `*.here.now` hostname. Keep
 the site's Turnstile appearance set to `interaction-only` so most visitors do
 not see a challenge.
 
@@ -89,7 +89,7 @@ npm run deploy
 ```
 
 `TURNSTILE_HOSTNAMES` is a comma-separated exact allowlist containing
-`signals.forwardfuture.ai` and the current backing `*.here.now` hostname.
+`signals.forwardfuture.com` and the current backing `*.here.now` hostname.
 
 ## Authenticated voting
 
@@ -119,7 +119,7 @@ npm run deploy
   ```
 
 - Register this exact provider callback:
-  `https://signals.forwardfuture.ai/loop-library/auth/callback/github`.
+  `https://signals.forwardfuture.com/loop-library/auth/callback/github`.
 - For auth or proxy changes, set `VOTING_UI_ENABLED` to the exact string
   `false` for the staged production release. Vote controls render hidden and
   disabled, then appear only when `/api/votes` returns `uiEnabled: true`;
@@ -179,6 +179,6 @@ curl -sS "https://here.now/api/v1/publishes/{slug}/data/weekly_signups?limit=50"
   database content and the backing here.now Site for the static shell before
   reporting success.
 - After a production content deployment, submit
-  `https://signals.forwardfuture.ai/loop-library/sitemap.xml` in Google Search
+  `https://signals.forwardfuture.com/loop-library/sitemap.xml` in Google Search
   Console and Bing Webmaster Tools. Verify that the custom domain's root
   `robots.txt` still allows Googlebot, Bingbot, and `OAI-SearchBot`.

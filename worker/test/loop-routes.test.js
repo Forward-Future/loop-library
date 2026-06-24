@@ -9,7 +9,7 @@ import {
 import { handleRequest } from "../src/index.js";
 
 const WORKER_ORIGIN = "https://loop-library-forms.mberman84.workers.dev";
-const SITE_ORIGIN = "https://signals.forwardfuture.ai";
+const SITE_ORIGIN = "https://signals.forwardfuture.com";
 
 class MemoryLoopCatalogNamespace {
   loops = new Map();
@@ -201,7 +201,7 @@ function makeEnv(options = {}) {
     BOOTSTRAP_LOOP_COUNT: String(options.bootstrapLoopCount ?? 50),
     PUBLIC_ORIGIN_URL: "https://calm-mortar-jtek.here.now/",
     PUBLIC_SHELL_URL: "https://calm-mortar-jtek.here.now/index.html",
-    PUBLIC_SITE_HOSTNAME: "signals.forwardfuture.ai",
+    PUBLIC_SITE_HOSTNAME: "signals.forwardfuture.com",
     PUBLIC_SITE_PATH: "/loop-library",
   };
 }

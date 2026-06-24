@@ -85,7 +85,7 @@ export async function handleRequest(
   }
 
   const requestUrl = new URL(request.url);
-  const publicSiteHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai";
+  const publicSiteHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.com";
   const publicSitePath = env.PUBLIC_SITE_PATH || "/loop-library";
 
   if (

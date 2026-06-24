@@ -433,7 +433,7 @@ function isTrustedMutationOrigin(request, env) {
   // explicit, untrusted Origin so direct cross-site requests still fail.
   if (!origin) return true;
   const allowed = new Set([
-    `https://${env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai"}`,
+    `https://${env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.com"}`,
     "http://localhost:4173",
     "http://127.0.0.1:4173",
   ]);
@@ -471,7 +471,7 @@ function authErrorUrl(returnTo, code, env) {
 
 function canonicalOrigin(env) {
   return env.OAUTH_CALLBACK_ORIGIN ||
-    `https://${env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai"}`;
+    `https://${env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.com"}`;
 }
 
 function normalizeBasePath(value) {

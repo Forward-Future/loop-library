@@ -4,7 +4,7 @@ Loop Library has two separate but related parts in this repository:
 
 | Part | What it is | Where it lives |
 | --- | --- | --- |
-| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.ai/loop-library/) · shell in [`site/`](site/), database and rendering in [`worker/`](worker/) |
+| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.com/loop-library/) · shell in [`site/`](site/), database and rendering in [`worker/`](worker/) |
 | **Loop Library skill** | An optional installable guide that helps an AI agent discover, find, audit, repair, adapt, or design loops through conversation. It uses the website's live catalog when recommending published loops. | source in [`skills/loop-library/`](skills/loop-library/) |
 
 The website is the library; the skill is a companion way to work with it. You
@@ -12,10 +12,10 @@ can browse or give an agent the website without installing the skill. Installing
 the skill adds the guided workflow, but it does not install or host the website.
 
 Agents that do not have the skill can use the published
-[agent guide](https://signals.forwardfuture.ai/loop-library/agents/),
-[agent instructions](https://signals.forwardfuture.ai/loop-library/llms.txt),
-[JSON catalog](https://signals.forwardfuture.ai/loop-library/catalog.json), or
-[plain-text catalog](https://signals.forwardfuture.ai/loop-library/catalog.txt)
+[agent guide](https://signals.forwardfuture.com/loop-library/agents/),
+[agent instructions](https://signals.forwardfuture.com/loop-library/llms.txt),
+[JSON catalog](https://signals.forwardfuture.com/loop-library/catalog.json), or
+[plain-text catalog](https://signals.forwardfuture.com/loop-library/catalog.txt)
 directly.
 
 Each published loop tells an agent what to do, how to check its work, what to
@@ -206,11 +206,11 @@ Every published loop also includes a few useful parts:
 
 ## Explore or contribute
 
-Visit the [Loop Library](https://signals.forwardfuture.ai/loop-library/) to
+Visit the [Loop Library](https://signals.forwardfuture.com/loop-library/) to
 browse published loops, copy one into your own workflow, or submit a loop that
 has worked well for you.
 
-Loop Library is a [Forward Future](https://www.forwardfuture.ai/) project and is
+Loop Library is a [Forward Future](https://www.forwardfuture.com/) project and is
 available under the [MIT License](LICENSE).
 
 <details>

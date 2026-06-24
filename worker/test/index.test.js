@@ -6,7 +6,7 @@ import {
   handleRequest,
 } from "../src/index.js";
 
-const SITE_ORIGIN = "https://signals.forwardfuture.ai";
+const SITE_ORIGIN = "https://signals.forwardfuture.com";
 const WORKER_ORIGIN = "https://loop-library-forms.mberman84.workers.dev";
 
 class MemoryStorage {
@@ -79,7 +79,7 @@ function makeEnv(options = {}) {
         return { success: options.verificationAllowed !== false };
       },
     },
-    TURNSTILE_HOSTNAMES: "signals.forwardfuture.ai,localhost",
+    TURNSTILE_HOSTNAMES: "signals.forwardfuture.com,localhost",
     TURNSTILE_SECRET_KEY: "test-turnstile-secret",
     TURNSTILE_SITE_KEY: "test-turnstile-site-key",
   };
@@ -124,7 +124,7 @@ function makeDependencies(options = {}) {
             return Response.json({
               success: true,
               action: "wrong_action",
-              hostname: "signals.forwardfuture.ai",
+              hostname: "signals.forwardfuture.com",
             });
           }
 
@@ -139,7 +139,7 @@ function makeDependencies(options = {}) {
           return Response.json({
             success: true,
             action,
-            hostname: "signals.forwardfuture.ai",
+            hostname: "signals.forwardfuture.com",
           });
         }
 

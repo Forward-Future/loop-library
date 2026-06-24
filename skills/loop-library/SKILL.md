@@ -50,8 +50,8 @@ feedback-cycle rules below before recommending or crafting it.
 ## Find a published loop
 
 1. When web access is available, read the live
-   [catalog.md](https://signals.forwardfuture.ai/loop-library/catalog.md).
-   Use [catalog.json](https://signals.forwardfuture.ai/loop-library/catalog.json)
+   [catalog.md](https://signals.forwardfuture.com/loop-library/catalog.md).
+   Use [catalog.json](https://signals.forwardfuture.com/loop-library/catalog.json)
    instead when a tool can ingest structured data. The live catalog is the
    source of truth for which loops are published.
 2. If the live catalog is unavailable, say that published-loop discovery is

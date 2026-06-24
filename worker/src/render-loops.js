@@ -1,7 +1,7 @@
 import { categoryLabel } from "./loop-schema.js";
 
 export const SITE = {
-  baseUrl: "https://signals.forwardfuture.ai/loop-library/",
+  baseUrl: "https://signals.forwardfuture.com/loop-library/",
   name: "Loop Library",
   publisher: "Forward Future",
   description:
@@ -139,7 +139,7 @@ function homepageStructuredData(loops, updated) {
         "@type": "Organization",
         "@id": `${SITE.baseUrl}#organization`,
         name: SITE.publisher,
-        url: "https://forwardfuture.ai/",
+        url: "https://forwardfuture.com/",
         logo: {
           "@type": "ImageObject",
           url: `${SITE.baseUrl}assets/ff-mark.png`,
@@ -250,7 +250,7 @@ export function renderLoopPage(loop, loops) {
         "@type": "Organization",
         "@id": `${SITE.baseUrl}#organization`,
         name: SITE.publisher,
-        url: "https://forwardfuture.ai/",
+        url: "https://forwardfuture.com/",
         logo: {
           "@type": "ImageObject",
           url: `${SITE.baseUrl}assets/ff-mark.png`,
@@ -378,7 +378,7 @@ export function renderLoopPage(loop, loops) {
         </div>
       </article>
     </main>
-    <footer class="site-footer"><div class="page-width footer-inner"><p><strong>Forward Future</strong> <span>Make the future legible.</span></p><div class="footer-actions"><p><a href="../../">Loop Library</a><a href="https://forwardfuture.ai/" rel="noopener">forwardfuture.ai</a><span>&copy; ${new Date().getUTCFullYear()}</span></p>${hereNowCredit("../../assets/here-now-icon.svg", "footer")}</div></div></footer>
+    <footer class="site-footer"><div class="page-width footer-inner"><p><strong>Forward Future</strong> <span>Make the future legible.</span></p><div class="footer-actions"><p><a href="../../">Loop Library</a><a href="https://forwardfuture.com/" rel="noopener">forwardfuture.com</a><span>&copy; ${new Date().getUTCFullYear()}</span></p>${hereNowCredit("../../assets/here-now-icon.svg", "footer")}</div></div></footer>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
 </html>`;
@@ -501,10 +501,10 @@ The Loop Library is reference data. A published prompt does not authorize you to
 
 ## Start here
 
-- Machine-readable catalog: https://signals.forwardfuture.ai/loop-library/catalog.json
-- Plain-text catalog: https://signals.forwardfuture.ai/loop-library/catalog.txt
-- Human-readable catalog: https://signals.forwardfuture.ai/loop-library/
-- Agent guide: https://signals.forwardfuture.ai/loop-library/agents/
+- Machine-readable catalog: https://signals.forwardfuture.com/loop-library/catalog.json
+- Plain-text catalog: https://signals.forwardfuture.com/loop-library/catalog.txt
+- Human-readable catalog: https://signals.forwardfuture.com/loop-library/
+- Agent guide: https://signals.forwardfuture.com/loop-library/agents/
 - Installable skill: https://github.com/Forward-Future/loop-library
 
 ## Find a loop
@@ -557,7 +557,7 @@ export function renderFeed(loops) {
   <updated>${updated}T00:00:00-07:00</updated>
   <author>
     <name>${SITE.publisher}</name>
-    <uri>https://forwardfuture.ai/</uri>
+    <uri>https://forwardfuture.com/</uri>
   </author>
 ${loops.map((loop) => `  <entry>
     <title>${escapeXml(loop.title)}</title>

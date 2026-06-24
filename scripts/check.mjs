@@ -115,9 +115,9 @@ for (const value of [
   'id="loop-sort"',
   'id="library-pagination"',
   'name="loop-library-form-api"',
-  "https://signals.forwardfuture.ai/loop-library/catalog.json",
-  "https://signals.forwardfuture.ai/loop-library/sitemap.xml",
-  "https://signals.forwardfuture.ai/loop-library/feed.xml",
+  "https://signals.forwardfuture.com/loop-library/catalog.json",
+  "https://signals.forwardfuture.com/loop-library/sitemap.xml",
+  "https://signals.forwardfuture.com/loop-library/feed.xml",
   "https://here.now/r/signals",
 ]) {
   assert(html.includes(value), value);
@@ -246,9 +246,9 @@ assert.match(wrangler.vars.BOOTSTRAP_CATALOG_DIGEST, /^[a-f0-9]{64}$/);
 assert.equal(wrangler.vars.BOOTSTRAP_LOOP_COUNT, "50");
 assert.equal(wrangler.vars.PUBLIC_ORIGIN_URL, "https://calm-mortar-jtek.here.now/");
 assert.equal(wrangler.vars.PUBLIC_SHELL_URL, "https://calm-mortar-jtek.here.now/index.html");
-assert.equal(wrangler.vars.PUBLIC_SITE_HOSTNAME, "signals.forwardfuture.ai");
+assert.equal(wrangler.vars.PUBLIC_SITE_HOSTNAME, "signals.forwardfuture.com");
 assert.equal(wrangler.vars.PUBLIC_SITE_PATH, "/loop-library");
-assert.equal(wrangler.vars.VOTING_UI_ENABLED, "true");
+assert.equal(wrangler.vars.VOTING_UI_ENABLED, "false");
 assert.deepEqual(Object.keys(proxyManifest.proxies).sort(), [
   "/",
   "/api/loops",

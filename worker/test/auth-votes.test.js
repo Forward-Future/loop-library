@@ -3,7 +3,7 @@ import test from "node:test";
 
 import { handleAuthVoteRoute } from "../src/auth-votes.js";
 
-const ORIGIN = "https://signals.forwardfuture.ai";
+const ORIGIN = "https://signals.forwardfuture.com";
 const BASE = `${ORIGIN}/loop-library`;
 
 class MemoryVoteNamespace {
@@ -81,7 +81,7 @@ function makeEnv() {
     GITHUB_OAUTH_CLIENT_SECRET: "github-client-secret",
     LOOP_CATALOG: new MemoryCatalogNamespace(),
     OAUTH_CALLBACK_ORIGIN: ORIGIN,
-    PUBLIC_SITE_HOSTNAME: "signals.forwardfuture.ai",
+    PUBLIC_SITE_HOSTNAME: "signals.forwardfuture.com",
     PUBLIC_SITE_PATH: "/loop-library",
     SESSION_SECRET: "test-session-secret-that-is-more-than-32-characters",
     VOTING_UI_ENABLED: "true",

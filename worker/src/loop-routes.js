@@ -38,7 +38,7 @@ export async function handleLoopRoute(
   ].includes(path) || /^\/admin\/loops\/[a-z0-9-]+(?:\/revisions)?$/.test(path);
   const isPublicData = path === "/api/loops" || /^\/api\/loops\/[a-z0-9-]+$/.test(path);
   const isCatalog = ["/catalog.json", "/catalog.md", "/catalog.txt", "/llms.txt", "/sitemap.xml", "/feed.xml"].includes(path);
-  const publicHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.ai";
+  const publicHostname = env.PUBLIC_SITE_HOSTNAME || "signals.forwardfuture.com";
   const publicBasePath = env.PUBLIC_SITE_PATH || "/loop-library";
   const normalizedBasePath = `/${String(publicBasePath).split("/").filter(Boolean).join("/")}`;
   const isCanonicalHostname = url.hostname === publicHostname;

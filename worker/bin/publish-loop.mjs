@@ -62,4 +62,4 @@ if (!response.ok) {
 }
 
 const verb = status === "published" ? "Published" : status === "draft" ? "Saved draft" : "Archived";
-console.log(`${verb}: https://signals.forwardfuture.ai/loop-library/loops/${loop.slug}/`);
+console.log(`${verb}: https://signals.forwardfuture.com/loop-library/loops/${loop.slug}/`);
