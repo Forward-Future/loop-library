@@ -126,7 +126,7 @@ assert(html.includes("Search the library"));
 assert(html.includes("Search by title, task, or contributor"));
 assert(html.includes('class="search-field"'));
 assert(html.includes("styles.css?v=20260623-row-background-v2"));
-assert(html.includes("script.js?v=20260623-proxy-auth"));
+assert(html.includes("script.js?v=20260625-form-protection"));
 assert(css.includes(".search-control-label"));
 assert(css.includes(".search-control:hover .search-field"));
 assert(css.includes(".search-control:focus-within .search-field"));
@@ -135,7 +135,7 @@ assert.match(css, /\.loop-table td\s*\{[^}]*background:\s*transparent;[^}]*\}/);
 assert.equal((html.match(/data-here-now-credit/g) || []).length, 2);
 for (const page of [learnHtml, agentHtml]) {
   assert(page.includes("styles.css?v=20260623-row-background-v2"));
-  assert(page.includes("script.js?v=20260623-proxy-auth"));
+  assert(page.includes("script.js?v=20260625-form-protection"));
 }
 for (const page of [html, learnHtml, agentHtml]) {
   const brandPosition = page.indexOf('class="brand-lockup"');
@@ -181,6 +181,20 @@ for (const collectionConfig of [suggestions, weeklySignups]) {
 }
 assert(workerSource.includes("TURNSTILE_RATE_LIMITER.limit"));
 assert(workerSource.includes("https://challenges.cloudflare.com/turnstile/v0/siteverify"));
+assert(browserScript.includes("function setTurnstileUnavailable"));
+assert(browserScript.includes("setTurnstileReady(widget, token)"));
+assert(
+  browserScript.includes(
+    "weeklyButton.disabled = !turnstileWidgets.weeklySignups.token",
+  ),
+);
+assert(
+  browserScript.includes(
+    "submitButton.disabled = !turnstileWidgets.suggestions.token",
+  ),
+);
+assert(!browserScript.includes("Complete the verification check before signing up."));
+assert(!browserScript.includes("Complete the verification check before submitting."));
 assert(workerSource.includes("handleLoopRoute"));
 assert(workerSource.includes("handleAuthVoteRoute"));
 assert(browserScript.includes('document.querySelectorAll("[data-vote-controls]")'));

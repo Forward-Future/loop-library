@@ -983,14 +983,28 @@ let turnstileLoadPromise;
 const turnstileWidgets = {
   suggestions: {
     action: "",
+    button: submitButton,
     container: document.querySelector("#loop-turnstile"),
+    failureMessage:
+      "Spam protection is temporarily unavailable. Refresh and try again.",
     id: null,
+    pendingMessage:
+      "Spam protection is still loading. Wait a moment and try again.",
+    setStatus: setFormStatus,
+    statusElement: formStatus,
     token: "",
   },
   weeklySignups: {
     action: "",
+    button: weeklyButton,
     container: document.querySelector("#weekly-turnstile"),
+    failureMessage:
+      "Signups are temporarily unavailable. Refresh and try again.",
     id: null,
+    pendingMessage:
+      "Spam protection is still loading. Wait a moment and try again.",
+    setStatus: setWeeklyStatus,
+    statusElement: weeklyStatus,
     token: "",
   },
 };
@@ -1061,6 +1075,36 @@ function setProtectedButtonsDisabled(disabled) {
   }
 }
 
+function setTurnstilePending(widget) {
+  widget.token = "";
+
+  if (widget.button) {
+    widget.button.disabled = true;
+  }
+}
+
+function setTurnstileReady(widget, token) {
+  widget.token = token;
+
+  if (
+    widget.statusElement &&
+    [widget.failureMessage, widget.pendingMessage].includes(
+      widget.statusElement.textContent,
+    )
+  ) {
+    widget.setStatus("");
+  }
+
+  if (widget.button) {
+    widget.button.disabled = false;
+  }
+}
+
+function setTurnstileUnavailable(widget) {
+  setTurnstilePending(widget);
+  widget.setStatus(widget.failureMessage, "error");
+}
+
 function loadTurnstile() {
   if (window.turnstile) {
     return Promise.resolve(window.turnstile);
@@ -1113,19 +1157,19 @@ function renderTurnstile(turnstile, widget, siteKey) {
     theme:
       document.documentElement.dataset.theme === "dark" ? "dark" : "light",
     callback(token) {
-      widget.token = token;
+      setTurnstileReady(widget, token);
     },
     "expired-callback"() {
-      widget.token = "";
+      setTurnstilePending(widget);
     },
     "error-callback"() {
-      widget.token = "";
+      setTurnstileUnavailable(widget);
     },
   });
 }
 
 function resetTurnstile(widget) {
-  widget.token = "";
+  setTurnstilePending(widget);
 
   if (window.turnstile && widget.id !== null) {
     window.turnstile.reset(widget.id);
@@ -1178,7 +1222,6 @@ async function initializeFormProtection() {
       config.turnstileSiteKey,
     );
     formProtectionReady = true;
-    setProtectedButtonsDisabled(false);
   } catch {
     setFormStatus(
       "Submissions are temporarily unavailable. Refresh and try again.",
@@ -1257,9 +1300,17 @@ if (form && submitButton && submitButtonLabel) {
       return;
     }
 
-    if (!formProtectionReady || !turnstileWidgets.suggestions.token) {
+    if (!formProtectionReady) {
       setFormStatus(
-        "Complete the verification check before submitting.",
+        "Submissions are temporarily unavailable. Refresh and try again.",
+        "error",
+      );
+      return;
+    }
+
+    if (!turnstileWidgets.suggestions.token) {
+      setFormStatus(
+        turnstileWidgets.suggestions.pendingMessage,
         "error",
       );
       return;
@@ -1317,7 +1368,7 @@ if (form && submitButton && submitButtonLabel) {
         "error",
       );
     } finally {
-      submitButton.disabled = false;
+      submitButton.disabled = !turnstileWidgets.suggestions.token;
       submitButtonLabel.textContent = "Submit loop";
     }
   });
@@ -1341,9 +1392,17 @@ if (weeklyForm && weeklyButton && weeklyButtonLabel) {
       return;
     }
 
-    if (!formProtectionReady || !turnstileWidgets.weeklySignups.token) {
+    if (!formProtectionReady) {
       setWeeklyStatus(
-        "Complete the verification check before signing up.",
+        "Signups are temporarily unavailable. Refresh and try again.",
+        "error",
+      );
+      return;
+    }
+
+    if (!turnstileWidgets.weeklySignups.token) {
+      setWeeklyStatus(
+        turnstileWidgets.weeklySignups.pendingMessage,
         "error",
       );
       return;
@@ -1380,7 +1439,7 @@ if (weeklyForm && weeklyButton && weeklyButtonLabel) {
         "error",
       );
     } finally {
-      weeklyButton.disabled = false;
+      weeklyButton.disabled = !turnstileWidgets.weeklySignups.token;
       weeklyButtonLabel.textContent = "Notify me weekly";
     }
   });
