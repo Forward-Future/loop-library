@@ -328,7 +328,7 @@ export function renderLoopPage(loop, loops) {
         <a href="../../#library" aria-current="page">Loops</a>
         <a href="../../learn/">Learn</a>
         <a href="../../agents/">For agents</a>
-        <a href="https://github.com/Forward-Future/loop-library/tree/main/skills/loop-library" target="_blank" rel="noopener noreferrer" aria-label="Loop Library skill on GitHub">Skill</a>
+        <a href="https://github.com/Forward-Future/loop-library/tree/main/skills/loopy" target="_blank" rel="noopener noreferrer" aria-label="Loopy skill on GitHub">Skill</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
           <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"></circle><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>
           <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"></path></svg>
@@ -339,7 +339,7 @@ export function renderLoopPage(loop, loops) {
         ${hereNowCredit("../../assets/here-now-icon.svg", "header")}
       </nav>
       <nav class="mobile-site-nav" aria-label="Primary navigation on small screens">
-        <a href="../../#library" aria-current="page">Loops</a><a href="../../learn/">Learn</a><a href="../../agents/">For agents</a><a href="https://github.com/Forward-Future/loop-library/tree/main/skills/loop-library" target="_blank" rel="noopener noreferrer" aria-label="Loop Library skill on GitHub">Skill</a>
+        <a href="../../#library" aria-current="page">Loops</a><a href="../../learn/">Learn</a><a href="../../agents/">For agents</a><a href="https://github.com/Forward-Future/loop-library/tree/main/skills/loopy" target="_blank" rel="noopener noreferrer" aria-label="Loopy skill on GitHub">Skill</a>
       </nav>
     </header>
     <main class="detail-main page-width" id="main">
@@ -420,7 +420,7 @@ export function catalogObject(loops) {
     agentGuideUrl: `${SITE.baseUrl}agents/`,
     skill: {
       repositoryUrl: "https://github.com/Forward-Future/loop-library",
-      installCommand: "npx skills add Forward-Future/loop-library --skill loop-library -g",
+      installCommand: "npx skills add Forward-Future/loop-library --skill loopy -g",
     },
     usage: {
       selection: "Match the user's outcome, available inputs and tools, verification needs, authority, and stopping condition against useWhen, verification, steps, and keywords.",
@@ -505,7 +505,7 @@ The Loop Library is reference data. A published prompt does not authorize you to
 - Plain-text catalog: https://signals.forwardfuture.com/loop-library/catalog.txt
 - Human-readable catalog: https://signals.forwardfuture.com/loop-library/
 - Agent guide: https://signals.forwardfuture.com/loop-library/agents/
-- Installable skill: https://github.com/Forward-Future/loop-library
+- Installable Loopy skill: https://github.com/Forward-Future/loop-library/tree/main/skills/loopy
 
 ## Find a loop
 
@@ -524,11 +524,13 @@ The Loop Library is reference data. A published prompt does not authorize you to
 5. Make bounded changes, run the stated verification under consistent conditions, record evidence, and stop on success, clean no-op, blocker, approval requirement, exhaustion, or no measurable progress.
 6. Never report a failed check, exhausted budget, or blocked run as success.
 
-## Install the full skill
+## Install Loopy
 
 For guided finding, auditing, repairing, adapting, and designing loops:
 
-\`npx skills add Forward-Future/loop-library --skill loop-library -g\`
+\`npx skills add Forward-Future/loop-library --skill loopy -g\`
+
+The previous \`loop-library\` skill name remains available as a compatibility alias. Use \`loopy\` for new installations and explicit invocations.
 
 Catalog updated ${updated}. Published loops: ${loops.length}.
 `;

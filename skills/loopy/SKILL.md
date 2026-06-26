@@ -1,13 +1,9 @@
 ---
-name: loop-library
-description: Compatibility alias for Loopy. Use only when an existing installation or older instruction explicitly invokes loop-library; use Loopy for new installations and requests. Provides the same discovery, recommendation, audit, repair, adaptation, and bounded loop-design workflows.
+name: loopy
+description: Discover, find, compare, audit, repair, adapt, and design repeatable AI-agent loops with explicit triggers, actions, verification, stopping conditions, guardrails, and handoffs. Use when a user asks to analyze a codebase for potential loops, mine coding-thread history for work done more than once, turn repeated engineering work into a loop, find or recommend a published loop, create a recurring agent workflow or automation cadence, turn an outcome into a bounded copy-ready loop, or review an existing loop for weak checks, unsafe authority, unbounded repetition, stale state, or unclear stopping behavior.
 ---
 
-# Loop Library (legacy alias)
-
-`loop-library` is the compatibility name for Loopy. Complete the user's request
-with this workflow. Use `loopy`, `$loopy`, or `/loopy` for new installations
-and explicit invocations.
+# Loopy
 
 Help the user discover loop opportunities in existing engineering work, reuse a
 published Loop Library loop when one fits, audit or repair an existing loop, or

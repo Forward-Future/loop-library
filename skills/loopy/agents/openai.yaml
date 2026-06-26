@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loopy"
+  short_description: "Discover and design reliable agent loops"
+  default_prompt: "Use $loopy to find repeated work in my codebase or coding threads and turn the best candidate into a reliable loop."

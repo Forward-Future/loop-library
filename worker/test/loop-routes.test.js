@@ -389,7 +389,7 @@ test("renders database content into the canonical homepage and detail page", asy
   assert.equal(article.articleSection, "AI agent workflow");
   assert.deepEqual(article.keywords, exampleLoop().keywords);
   assert.equal(
-    detailHtml.match(/aria-label="Loop Library skill on GitHub"/g)?.length,
+    detailHtml.match(/aria-label="Loopy skill on GitHub"/g)?.length,
     2,
   );
   for (const href of [
@@ -583,6 +583,15 @@ test("generates catalogs, sitemap, and feed from the same record", async () => {
   assert.match(markdown, /Agent instructions: .*llms\.txt/);
   assert.match(markdown, /Generated from the production catalog database/);
   assert.match(markdown, /Search by outcome, trigger, artifact/);
+
+  const agentInstructions = await handleRequest(
+    new Request(`${SITE_ORIGIN}/loop-library/llms.txt`),
+    env,
+  ).then((response) => response.text());
+  assert.match(agentInstructions, /## Install Loopy/);
+  assert.match(agentInstructions, /--skill loopy -g/);
+  assert.match(agentInstructions, /compatibility alias/);
+  assert.doesNotMatch(agentInstructions, /--skill loop-library/);
 
   const feed = await handleRequest(
     new Request(`${SITE_ORIGIN}/loop-library/feed.xml`),

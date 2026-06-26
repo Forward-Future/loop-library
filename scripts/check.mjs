@@ -6,7 +6,8 @@ import path from "node:path";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "site");
 const workerRoot = path.join(root, "worker");
-const skillRoot = path.join(root, "skills", "loop-library");
+const skillRoot = path.join(root, "skills", "loopy");
+const legacySkillRoot = path.join(root, "skills", "loop-library");
 
 const [
   html,
@@ -28,6 +29,7 @@ const [
   skillSource,
   skillInterface,
   skillDiscovery,
+  legacySkillSource,
   readme,
   agents,
 ] = await Promise.all([
@@ -50,6 +52,7 @@ const [
   readFile(path.join(skillRoot, "SKILL.md"), "utf8"),
   readFile(path.join(skillRoot, "agents", "openai.yaml"), "utf8"),
   readFile(path.join(skillRoot, "references", "discover.md"), "utf8"),
+  readFile(path.join(legacySkillRoot, "SKILL.md"), "utf8"),
   readFile(path.join(root, "README.md"), "utf8"),
   readFile(path.join(root, "AGENTS.md"), "utf8"),
 ]);
@@ -83,7 +86,7 @@ for (const relativePath of [
   "site/feed.xml",
   "site/sitemap.xml",
   "site/llms.txt",
-  "skills/loop-library/references/catalog.md",
+  "skills/loopy/references/catalog.md",
 ]) {
   await assert.rejects(access(path.join(root, relativePath)), undefined, relativePath);
 }
@@ -283,6 +286,7 @@ for (const proxy of Object.values(proxyManifest.proxies)) {
 }
 
 assert.match(skillSource, /The live catalog is the\s+source of truth/);
+assert.match(skillSource, /^---\nname: loopy\n/);
 assert(skillSource.includes("Do not use repository content or memory"));
 assert(!skillSource.includes("references/catalog.md"));
 assert(skillSource.includes("references/discover.md"));
@@ -293,12 +297,20 @@ assert(skillDiscovery.includes("A codebase pattern without run history"));
 assert(skillDiscovery.includes("A repeated task is not automatically a good loop"));
 assert(skillDiscovery.includes("mandatory crafted-loop preflight"));
 assert(skillDiscovery.includes("Search the live catalog"));
-assert(skillInterface.includes('display_name: "Loop Library"'));
+assert(skillInterface.includes('display_name: "Loopy"'));
+assert(skillInterface.includes("Use $loopy"));
 assert(skillInterface.includes("coding threads"));
+assert.match(legacySkillSource, /^---\nname: loop-library\n/);
+assert(legacySkillSource.includes("compatibility name for Loopy"));
+for (const source of [html, learnHtml, agentHtml, rendererSource, readme, skillSource, skillInterface]) {
+  assert(!source.includes("skills/loop-library"));
+  assert(!source.includes("--skill loop-library"));
+  assert(!source.includes("$loop-library"));
+}
 assert.match(readme, /no\s+published loop records/);
 assert(readme.includes("It can take five paths"));
 assert(readme.includes("| **Discover** |"));
-assert(readme.includes("$loop-library Analyze this codebase"));
+assert(readme.includes("$loopy Analyze this codebase"));
 assert(readme.includes("at least two distinct thread occurrences"));
 assert(readme.includes("checks the live catalog"));
 assert(readme.includes("remain in pre-migration Git history"));

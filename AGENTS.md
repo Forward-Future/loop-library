@@ -21,9 +21,9 @@
   description, contributor attribution, published and modified dates,
   practical context, verification criteria, category, keywords, and valid
   related-loop slugs.
-- Do not hand-edit the homepage, detail pages, catalogs, feed, sitemap, or skill
-  content when publishing a database record. The Worker renders those public
-  surfaces from the same record. New loops use the shared social card unless a
+- Do not hand-edit the homepage, detail pages, catalogs, feed, sitemap, or
+  Loopy skill content when publishing a database record. The Worker renders
+  those public surfaces from the same record. New loops use the shared social card unless a
   reviewed HTTPS `socialImageUrl` is supplied.
 - Keep bootstrap and backup exports outside the repository with owner-only
   permissions. The one-time bootstrap command requires an explicit private
