@@ -472,6 +472,53 @@ test("renders the mounted homepage through a here.now proxy", async () => {
   assert.match(await response.text(), /The database publishing loop/);
 });
 
+test("serves a branded fallback homepage when the here.now shell errors", async () => {
+  const env = makeEnv();
+  await handleRequest(adminRequest(exampleLoop()), env);
+  const response = await handleRequest(
+    new Request(`${SITE_ORIGIN}/loop-library/`),
+    env,
+    undefined,
+    {
+      async fetch() {
+        return new Response("upstream is down", { status: 503 });
+      },
+    },
+  );
+  const html = await response.text();
+
+  // Preserves the real failure status instead of masking it as 200.
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get("Cache-Control"), "no-store");
+  // Branded fallback that still lists every loop, not the upstream error body.
+  assert.doesNotMatch(html, /upstream is down/);
+  assert.match(html, /briefly unavailable/);
+  assert.match(html, /The database publishing loop/);
+  assert.match(html, /loops\/database-publishing-loop\//);
+  assert.match(html, /catalog\.json/);
+  assert.match(html, /<meta name="robots" content="noindex"/);
+});
+
+test("serves the fallback homepage when the here.now shell is unreachable", async () => {
+  const env = makeEnv();
+  await handleRequest(adminRequest(exampleLoop()), env);
+  const response = await handleRequest(
+    new Request(`${SITE_ORIGIN}/loop-library/`),
+    env,
+    undefined,
+    {
+      async fetch() {
+        throw new Error("connection refused");
+      },
+    },
+  );
+  const html = await response.text();
+
+  assert.equal(response.status, 502);
+  assert.match(html, /briefly unavailable/);
+  assert.match(html, /The database publishing loop/);
+});
+
 test("normalizes legacy Forward Future domains on every public catalog surface", async () => {
   const env = makeEnv();
   await handleRequest(
