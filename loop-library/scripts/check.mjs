@@ -3,11 +3,13 @@ import { access, readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const siteRoot = path.join(root, "site");
-const workerRoot = path.join(root, "worker");
-const skillRoot = path.join(root, "skills", "loopy");
-const legacySkillRoot = path.join(root, "skills", "loop-library");
+const here = path.dirname(fileURLToPath(import.meta.url));
+const websiteRoot = path.resolve(here, "..");
+const repoRoot = path.resolve(here, "..", "..");
+const siteRoot = path.join(websiteRoot, "site");
+const workerRoot = path.join(websiteRoot, "worker");
+const skillRoot = path.join(repoRoot, "skills", "loopy");
+const legacySkillRoot = path.join(repoRoot, "skills", "loop-library");
 
 const [
   html,
@@ -65,8 +67,8 @@ const [
   readFile(path.join(legacySkillRoot, "references", "run.md"), "utf8"),
   readFile(path.join(legacySkillRoot, "references", "debrief.md"), "utf8"),
   readFile(path.join(legacySkillRoot, "references", "publish.md"), "utf8"),
-  readFile(path.join(root, "README.md"), "utf8"),
-  readFile(path.join(root, "AGENTS.md"), "utf8"),
+  readFile(path.join(repoRoot, "README.md"), "utf8"),
+  readFile(path.join(repoRoot, "AGENTS.md"), "utf8"),
 ]);
 
 const workerPackage = JSON.parse(workerPackageSource);
@@ -86,21 +88,21 @@ const collection = structuredData["@graph"].find(
 
 // GitHub contains only the shell and application. Published loop records and
 // generated public catalog surfaces must remain database-only.
-for (const relativePath of [
-  "scripts/loop-data.mjs",
-  "scripts/build-loop-pages.mjs",
-  "scripts/build-skill-catalog.mjs",
-  "scripts/build-social-images.mjs",
-  "scripts/validate-loop-data.mjs",
-  "site/catalog.json",
-  "site/catalog.md",
-  "site/catalog.txt",
-  "site/feed.xml",
-  "site/sitemap.xml",
-  "site/llms.txt",
-  "skills/loopy/references/catalog.md",
+for (const absolutePath of [
+  path.join(websiteRoot, "scripts/loop-data.mjs"),
+  path.join(websiteRoot, "scripts/build-loop-pages.mjs"),
+  path.join(websiteRoot, "scripts/build-skill-catalog.mjs"),
+  path.join(websiteRoot, "scripts/build-social-images.mjs"),
+  path.join(websiteRoot, "scripts/validate-loop-data.mjs"),
+  path.join(siteRoot, "catalog.json"),
+  path.join(siteRoot, "catalog.md"),
+  path.join(siteRoot, "catalog.txt"),
+  path.join(siteRoot, "feed.xml"),
+  path.join(siteRoot, "sitemap.xml"),
+  path.join(siteRoot, "llms.txt"),
+  path.join(skillRoot, "references", "catalog.md"),
 ]) {
-  await assert.rejects(access(path.join(root, relativePath)), undefined, relativePath);
+  await assert.rejects(access(absolutePath), undefined, absolutePath);
 }
 
 const loopPageFiles = await readdir(path.join(siteRoot, "loops"), {

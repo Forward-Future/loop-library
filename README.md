@@ -4,7 +4,7 @@ Loop Library has two separate but related parts in this repository:
 
 | Part | What it is | Where it lives |
 | --- | --- | --- |
-| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.com/loop-library/) · shell in [`site/`](site/), database and rendering in [`worker/`](worker/) |
+| **Loop Library website** | The public catalog where people and agents can browse published loops, read them, and copy their prompts. No installation is required. | [Live website](https://signals.forwardfuture.com/loop-library/) · all website code under [`loop-library/`](loop-library/) (shell in [`loop-library/site/`](loop-library/site/), database and rendering in [`loop-library/worker/`](loop-library/worker/)) |
 | **Loopy skill** | An optional installable guide that helps an AI agent discover, find, audit, repair, craft, run, debrief, or prepare loops for publication. It uses the website's live catalog when recommending or publishing loops. | source in [`skills/loopy/`](skills/loopy/) |
 
 The website is the library; Loopy is a companion way to work with it. You
@@ -264,12 +264,12 @@ Public loops are stored in the catalog database attached to the Cloudflare
 Worker. Publishing a reviewed loop does not require a GitHub commit or a static
 site deployment.
 
-Copy `worker/examples/loop.json` somewhere outside the repository, fill in the
-record, and run:
+Copy `loop-library/worker/examples/loop.json` somewhere outside the repository,
+fill in the record, and run:
 
 ```bash
 LOOP_PUBLISH_TOKEN=... \
-  npm --prefix worker run loop:publish -- /path/to/loop.json
+  npm --prefix loop-library/worker run loop:publish -- /path/to/loop.json
 ```
 
 The command validates the record and publishes the homepage row, detail page,
@@ -283,7 +283,7 @@ GitHub:
 
 ```bash
 LOOP_PUBLISH_TOKEN=... \
-  npm --prefix worker run loops:import -- /private/path/bootstrap.json
+  npm --prefix loop-library/worker run loops:import -- /private/path/bootstrap.json
 ```
 
 Set a long random `LOOP_PUBLISH_TOKEN` as a Worker secret. The catalog uses a
@@ -295,14 +295,14 @@ Create a private backup of the current database with:
 
 ```bash
 LOOP_PUBLISH_TOKEN=... \
-  npm --prefix worker run loops:export -- /private/path/catalog-backup.ndjson
+  npm --prefix loop-library/worker run loops:export -- /private/path/catalog-backup.ndjson
 ```
 
 Restore that snapshot only into a fresh, empty catalog database:
 
 ```bash
 LOOP_PUBLISH_TOKEN=... \
-  npm --prefix worker run loops:restore -- /private/path/catalog-backup.ndjson
+  npm --prefix loop-library/worker run loops:restore -- /private/path/catalog-backup.ndjson
 ```
 
 Bootstrap and backup files must be owner-only (`chmod 600`). Exports include
@@ -318,7 +318,7 @@ this migration does not rewrite repository history or disrupt existing clones.
 ### Preview locally
 
 ```bash
-python3 -m http.server 4173 --directory site
+python3 -m http.server 4173 --directory loop-library/site
 ```
 
 Then open `http://localhost:4173`.
@@ -326,12 +326,12 @@ Then open `http://localhost:4173`.
 ### Validate a change
 
 ```bash
-npm ci --prefix worker
-node --check site/script.js
-node scripts/check.mjs
-npm --prefix worker run check
-python3 -m json.tool site/.herenow/data.json >/dev/null
-python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
+npm ci --prefix loop-library/worker
+node --check loop-library/site/script.js
+node loop-library/scripts/check.mjs
+npm --prefix loop-library/worker run check
+python3 -m json.tool loop-library/site/.herenow/data.json >/dev/null
+python3 -m json.tool loop-library/scripts/seo-geo-query-benchmark.json >/dev/null
 git diff --check
 ```
 
@@ -340,7 +340,7 @@ git diff --check
 Voting is stored in a dedicated SQLite Durable Object. Reading totals is
 public, but casting, changing, or removing a vote requires a GitHub login.
 Set `SESSION_SECRET` and the GitHub OAuth client credentials as Worker
-secrets; use `worker/.dev.vars.example` for local variable names only. Register
+secrets; use `loop-library/worker/.dev.vars.example` for local variable names only. Register
 the canonical callbacks shown in `AGENTS.md`, then deploy the Worker before the
 site shell because the shell calls the new auth and vote routes.
 

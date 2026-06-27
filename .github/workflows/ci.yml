@@ -28,19 +28,19 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: worker/package-lock.json
+          cache-dependency-path: loop-library/worker/package-lock.json
 
       - name: Install Worker dependencies
-        run: npm ci --prefix worker
+        run: npm ci --prefix loop-library/worker
 
       - name: Validate site and skill sources
         run: |
-          node --check site/script.js
-          node scripts/check.mjs
-          python3 -m json.tool site/.herenow/data.json >/dev/null
-          python3 -m json.tool site/.herenow/proxy.json >/dev/null
-          python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
+          node --check loop-library/site/script.js
+          node loop-library/scripts/check.mjs
+          python3 -m json.tool loop-library/site/.herenow/data.json >/dev/null
+          python3 -m json.tool loop-library/site/.herenow/proxy.json >/dev/null
+          python3 -m json.tool loop-library/scripts/seo-geo-query-benchmark.json >/dev/null
           git diff --check
 
       - name: Test form Worker
-        run: npm --prefix worker run check
+        run: npm --prefix loop-library/worker run check

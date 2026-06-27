@@ -1,4 +1,19 @@
-# Loop Library Operating Rules
+# Loopy Repository Operating Rules
+
+This repository holds two separate but related parts:
+
+- **Loop Library website** — the public catalog (site shell, database, and
+  rendering). All website code lives under [`loop-library/`](loop-library/)
+  (`loop-library/site/`, `loop-library/worker/`, `loop-library/scripts/`,
+  `loop-library/audits/`).
+- **Loopy skill** — the installable agent skill in
+  [`skills/loopy/`](skills/loopy/), with the compatibility alias in
+  [`skills/loop-library/`](skills/loop-library/).
+
+The operating rules below govern the Loop Library website unless they call out
+the skill explicitly. Live URLs that contain `/loop-library/` and the
+`loop-library-forms` Worker name are deployed identifiers and do not change with
+this repository layout.
 
 ## Adding or editing loops
 
@@ -12,10 +27,10 @@
 
   ```bash
   LOOP_PUBLISH_TOKEN=... \
-    npm --prefix worker run loop:publish -- /path/to/loop.json
+    npm --prefix loop-library/worker run loop:publish -- /path/to/loop.json
   ```
 
-  Use `worker/examples/loop.json` as the record template. The command validates
+  Use `loop-library/worker/examples/loop.json` as the record template. The command validates
   the complete record before writing it, and the Worker records every revision.
 - Every loop must have a stable slug, unique number, search title and
   description, contributor attribution, published and modified dates,
@@ -27,18 +42,18 @@
   reviewed HTTPS `socialImageUrl` is supplied.
 - Keep bootstrap and backup exports outside the repository with owner-only
   permissions. The one-time bootstrap command requires an explicit private
-  file path; routine recovery exports use `npm --prefix worker run loops:export`.
+  file path; routine recovery exports use `npm --prefix loop-library/worker run loops:export`.
   Restore an export only into a fresh empty catalog with
-  `npm --prefix worker run loops:restore`; never overwrite a live catalog.
+  `npm --prefix loop-library/worker run loops:restore`; never overwrite a live catalog.
 - Changes to the site shell, Worker, schema, or renderers still go through
   GitHub. Run the full repository checks before committing those code changes:
 
   ```bash
-  node --check site/script.js
-  node scripts/check.mjs
-  npm --prefix worker run check
-  python3 -m json.tool site/.herenow/data.json >/dev/null
-  python3 -m json.tool scripts/seo-geo-query-benchmark.json >/dev/null
+  node --check loop-library/site/script.js
+  node loop-library/scripts/check.mjs
+  npm --prefix loop-library/worker run check
+  python3 -m json.tool loop-library/site/.herenow/data.json >/dev/null
+  python3 -m json.tool loop-library/scripts/seo-geo-query-benchmark.json >/dev/null
   git diff --check
   ```
 
@@ -51,7 +66,7 @@
 - The loop form writes to the here.now Site Data collection `suggestions`. The
   weekly email form writes to `weekly_signups`.
 - Keep both collections owner-write-only. Browser clients must send submissions
-  through the Cloudflare Worker in `worker/`; never expose here.now owner
+  through the Cloudflare Worker in `loop-library/worker/`; never expose here.now owner
   credentials or allow direct public inserts.
 - Keep Turnstile validation for the expected action, hostname, and origin, plus
   the existing schema checks, rate limits, duplicate suppression, honeypot,
@@ -77,7 +92,7 @@ The production Worker serves at
 deployment checkout:
 
 ```bash
-cd worker
+cd loop-library/worker
 npm ci
 npm exec -- wrangler secret put TURNSTILE_SITE_KEY
 npm exec -- wrangler secret put TURNSTILE_SECRET_KEY
@@ -112,7 +127,7 @@ npm run deploy
   browser code, logs, or committed development files. Configure them with:
 
   ```bash
-  cd worker
+  cd loop-library/worker
   npm exec -- wrangler secret put SESSION_SECRET
   npm exec -- wrangler secret put GITHUB_OAUTH_CLIENT_ID
   npm exec -- wrangler secret put GITHUB_OAUTH_CLIENT_SECRET
@@ -132,12 +147,13 @@ npm run deploy
 - Deploy and verify the Worker before publishing a shell or proxy manifest that
   exposes voting or auth routes.
 
-For local development, copy `worker/.dev.vars.example` to `worker/.dev.vars`,
-replace the here.now development credentials, then run:
+For local development, copy `loop-library/worker/.dev.vars.example` to
+`loop-library/worker/.dev.vars`, replace the here.now development credentials,
+then run:
 
 ```bash
-npm --prefix worker run dev
-python3 -m http.server 4173 --directory site
+npm --prefix loop-library/worker run dev
+python3 -m http.server 4173 --directory loop-library/site
 ```
 
 Review or delete private records from the here.now dashboard under
@@ -157,8 +173,8 @@ curl -sS "https://here.now/api/v1/publishes/{slug}/data/weekly_signups?limit=50"
   changes, then deploy the affected site from the newest `origin/main` commit
   that contains those changes.
 - Never deploy from a task worktree, dirty checkout, feature branch, or partial
-  file overlay. Publish the complete `site/` directory from a clean deployment
-  checkout on latest integrated main.
+  file overlay. Publish the complete `loop-library/site/` directory from a clean
+  deployment checkout on latest integrated main.
 - Serialize deployments with
   `$HOME/.codex/deploy-locks/loop-library.lock`. Wait for an
   active deployment, then fetch and fast-forward again before selecting the

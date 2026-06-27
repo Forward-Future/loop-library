@@ -1,10 +1,10 @@
 .DS_Store
 /.herenow/
-site/.herenow/state.json
+loop-library/site/.herenow/state.json
 node_modules/
 .wrangler/
 __pycache__/
 *.py[cod]
 /.playwright-mcp/
-worker/.dev.vars
-worker/.wrangler/
+loop-library/worker/.dev.vars
+loop-library/worker/.wrangler/
