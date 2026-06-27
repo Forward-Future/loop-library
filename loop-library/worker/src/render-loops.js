@@ -384,6 +384,69 @@ export function renderLoopPage(loop, loops) {
 </html>`;
 }
 
+export function renderHomepageFallback(loops) {
+  const items = loops
+    .map(
+      (loop) =>
+        `        <li class="fallback-loop"><a href="${SITE.baseUrl}loops/${escapeHtml(loop.slug)}/">${escapeHtml(loop.title)}</a><p>${escapeHtml(loop.summary)}</p></li>`,
+    )
+    .join("\n");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="${escapeHtml(SITE.description)}" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#faf8f7" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (() => {
+        const storageKey = "loop-library-theme";
+        let storedTheme;
+        try { storedTheme = window.localStorage.getItem(storageKey); } catch { storedTheme = null; }
+        const theme = storedTheme === "light" || storedTheme === "dark"
+          ? storedTheme
+          : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]')
+          .setAttribute("content", theme === "dark" ? "#101010" : "#faf8f7");
+      })();
+    </script>
+    <link rel="canonical" href="${SITE.baseUrl}" />
+    <link rel="alternate" type="application/json" title="Loop Library catalog" href="${SITE.baseUrl}catalog.json" />
+    <link rel="alternate" type="text/plain" title="${SITE.name} agent instructions" href="${SITE.baseUrl}llms.txt" />
+    <link rel="icon" type="image/png" href="${SITE.baseUrl}assets/favicon.png" />
+    <link rel="stylesheet" href="${SITE.baseUrl}styles.css" />
+    <title>${escapeHtml(SITE.name)} — temporarily unavailable</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand-lockup" href="${SITE.baseUrl}" aria-label="Forward Future Loop Library home">
+        <img class="brand-mark" src="${SITE.baseUrl}assets/favicon.png" width="32" height="32" alt="" />
+        <span class="brand-name">Forward Future</span>
+        <span class="brand-product">Loop Library</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="${SITE.baseUrl}learn/">Learn</a>
+        <a href="${SITE.baseUrl}agents/">For agents</a>
+      </nav>
+    </header>
+    <main class="detail-main page-width" id="main">
+      <h1>The Loop Library is briefly unavailable</h1>
+      <p>The full homepage could not be loaded right now. Every published loop is still listed below, and the machine-readable <a href="${SITE.baseUrl}catalog.json">catalog.json</a> and <a href="${SITE.baseUrl}llms.txt">agent instructions</a> remain available.</p>
+      <p>Showing ${loops.length} loops.</p>
+      <ul class="fallback-loop-list">
+${items}
+      </ul>
+    </main>
+    <footer class="site-footer"><div class="page-width footer-inner"><p><strong>Forward Future</strong> <span>Make the future legible.</span></p><p><a href="${SITE.baseUrl}">Loop Library</a> <a href="https://forwardfuture.com/" rel="noopener">forwardfuture.com</a></p></div></footer>
+  </body>
+</html>`;
+}
+
 function shareActions(loop, url) {
   const text = `Try "${loop.title}" from the Loop Library: ${loop.summary}`;
   return `<div class="share-actions" aria-label="Share this loop"><button class="share-action share-action-primary" type="button" data-copy-social-post data-post-text="${escapeHtml(text)}" data-post-url="${escapeHtml(url)}" aria-label="Copy a social post about ${escapeHtml(loop.title)}"><svg class="share-copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11"></rect><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path></svg><span>Share on social</span></button></div>`;

@@ -9,6 +9,7 @@ import {
   renderAgentInstructions,
   renderCatalogMarkdown,
   renderFeed,
+  renderHomepageFallback,
   renderLoopPage,
   renderSitemap,
 } from "./render-loops.js";
@@ -159,7 +160,33 @@ export async function handleLoopRoute(
           conditional: false,
           range: false,
         });
-    const originResponse = await dependencies.fetch(originRequest);
+    let originResponse;
+    try {
+      originResponse = await dependencies.fetch(originRequest);
+    } catch {
+      // The here.now shell is unreachable. Serve a branded fallback built from
+      // the catalog the Worker already holds so every loop stays reachable,
+      // rather than leaking the upstream failure. Report it honestly as 502.
+      return textResponse(
+        renderHomepageFallback(loops),
+        "text/html; charset=utf-8",
+        502,
+        CACHE_HEADERS,
+        request.method,
+      );
+    }
+
+    if (originResponse.status >= 500) {
+      // Upstream shell error: serve the same fallback and preserve the real
+      // failure status instead of passing through the upstream error page.
+      return textResponse(
+        renderHomepageFallback(loops),
+        "text/html; charset=utf-8",
+        originResponse.status,
+        CACHE_HEADERS,
+        request.method,
+      );
+    }
 
     if (!originResponse.ok) {
       return originResponse;
