@@ -75,6 +75,7 @@ const loopRowPositions = new Map(
 );
 const SORT_OPTIONS = new Set([
   "featured",
+  "popular",
   "newest",
   "oldest",
   "alphabetical",
@@ -153,6 +154,10 @@ function applySort(sort) {
       return rowTitle(a).localeCompare(rowTitle(b), undefined, {
         sensitivity: "base",
       });
+    }
+
+    if (activeSort === "popular") {
+      return comparePopular(a, b);
     }
 
     if (activeSort === "newest") {

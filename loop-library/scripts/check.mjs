@@ -184,6 +184,8 @@ assert(browserScript.includes('params.set("sort", activeSort)'));
 assert(browserScript.includes("function comparePopular"));
 assert(browserScript.includes("Number(b.dataset.upvotes || 0)"));
 assert(html.includes('<option value="featured">Featured, then popular</option>'));
+assert(html.includes('<option value="popular">Most popular</option>'));
+assert(browserScript.includes('activeSort === "popular"'));
 assert(browserScript.includes("library-pagination"));
 assert(!browserScript.includes("innerHTML"));
 
