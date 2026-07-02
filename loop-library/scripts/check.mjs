@@ -143,7 +143,7 @@ assert(html.includes("Search the library"));
 assert(html.includes("Search by title, task, or contributor"));
 assert(html.includes('class="search-field"'));
 assert(html.includes("styles.css?v=20260623-row-background-v2"));
-assert(html.includes("script.js?v=20260625-form-protection"));
+assert(html.includes("script.js?v=20260702-popular-sort"));
 assert(css.includes(".search-control-label"));
 assert(css.includes(".search-control:hover .search-field"));
 assert(css.includes(".search-control:focus-within .search-field"));
@@ -152,7 +152,7 @@ assert.match(css, /\.loop-table td\s*\{[^}]*background:\s*transparent;[^}]*\}/);
 assert.equal((html.match(/data-here-now-credit/g) || []).length, 2);
 for (const page of [learnHtml, agentHtml]) {
   assert(page.includes("styles.css?v=20260623-row-background-v2"));
-  assert(page.includes("script.js?v=20260625-form-protection"));
+  assert(page.includes("script.js?v=20260702-popular-sort"));
 }
 for (const page of [html, learnHtml, agentHtml]) {
   const brandPosition = page.indexOf('class="brand-lockup"');
@@ -184,6 +184,8 @@ assert(browserScript.includes('params.set("sort", activeSort)'));
 assert(browserScript.includes("function comparePopular"));
 assert(browserScript.includes("Number(b.dataset.upvotes || 0)"));
 assert(html.includes('<option value="featured">Featured, then popular</option>'));
+assert(html.includes('<option value="popular">Most popular</option>'));
+assert(browserScript.includes('activeSort === "popular"'));
 assert(browserScript.includes("library-pagination"));
 assert(!browserScript.includes("innerHTML"));
 
